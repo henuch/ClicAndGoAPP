@@ -19,7 +19,7 @@ public class TestAddMoT {
 
 		MeanOfTransport MeanOfTransport2 = new MeanOfTransport();
 		MeanOfTransport.setRegistrationNumber("laal"); 
-		System.out.println(proxy.addMeanOfTransport(MeanOfTransport));
+		System.out.println(proxy.addMeanOfTransport(MeanOfTransport2));
 	}
 }
 

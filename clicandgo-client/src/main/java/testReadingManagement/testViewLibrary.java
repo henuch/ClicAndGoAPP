@@ -2,9 +2,10 @@ package testReadingManagement;
 
 import BusinessDelegator.ReadingManagementDelegate;
 
-public class testLookUpEbook {
+public class testViewLibrary {
+
 	public static void main(String[] args) {
-		System.out.println(ReadingManagementDelegate.doLookUpEbook("lo"));
+		System.out.println(ReadingManagementDelegate.doViewLibraryByCategory("Fiction"));
 
 	}
 }
