@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import services.interfaces.MeanOfTransportServicesLocal;
 import services.interfaces.MeanOfTransportServicesRemote;
+import entities.Line;
 import entities.MeanOfTransport;
 
 /**
@@ -99,6 +100,24 @@ public class MeanOfTransportServices implements MeanOfTransportServicesRemote,
 		String jpql = "select m from MeanOfTransport m";
 		Query query = entityManager.createQuery(jpql);
 		return query.getResultList();
+	}
+
+	@Override
+	public Boolean assignMeanOfTransportToLine(
+			MeanOfTransport meanOfTransport, Integer lineId) {
+	
+		Boolean b = false;
+		try {
+			Line line = entityManager.find(Line.class, lineId);
+			meanOfTransport= entityManager.find(MeanOfTransport.class, meanOfTransport.getRegistrationNumber());
+			meanOfTransport.setLine(line);
+			//une fois les cruds de nadia fait na7iwHa
+			entityManager.merge(line);
+			entityManager.merge(meanOfTransport);
+			b = true;
+		} catch (Exception e) {
+		}
+		return b;
 	}
 
 }

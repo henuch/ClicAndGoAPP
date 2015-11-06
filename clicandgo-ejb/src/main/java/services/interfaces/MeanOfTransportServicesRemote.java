@@ -19,5 +19,7 @@ public interface MeanOfTransportServicesRemote {
 	Boolean deleteMeanOfTransport(MeanOfTransport MeanOfTransport);
 
 	List<MeanOfTransport> findAllMeanOfTransports();
+	
+	Boolean assignMeanOfTransportToLine(MeanOfTransport newMeanOfTransport, Integer lineId);
 
 }

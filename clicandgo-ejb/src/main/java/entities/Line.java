@@ -66,6 +66,13 @@ public class Line implements Serializable {
 	 public void setMeansOftransport(List<MeanOfTransport> meansOftransport) {
 	 this.meansOftransport = meansOftransport;
 	 }
+	 
+	 public void linkMeanOfTransportToThisLine(List<MeanOfTransport> meansOftransport) {
+			this.meansOftransport = meansOftransport;
+			for (MeanOfTransport m : meansOftransport) {
+				m.setLine(this);
+			}
+		}
 	
 
 	
