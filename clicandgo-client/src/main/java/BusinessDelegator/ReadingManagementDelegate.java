@@ -28,4 +28,11 @@ public class ReadingManagementDelegate {
 	public static List<Ebook> doLookUpEbook(String search){
 		return getProxy().lookUpEbook(search);
 	}
+	
+	public static List<Ebook> doViewLibrary(){
+		return getProxy().viewLibrary();
+	}
+	public static List<Ebook> doViewLibraryByCategory(String category){
+		return getProxy().viewLibraryByCategory(category);
+	}
 }

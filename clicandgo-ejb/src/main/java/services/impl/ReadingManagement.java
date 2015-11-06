@@ -7,24 +7,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import services.interfaces.ReadingManagementLocal;
+import services.interfaces.ReadingManagementRemote;
 import entities.Ebook;
 import entities.StationLine;
 import entities.Traveler;
-import services.interfaces.ReadingManagementLocal;
-import services.interfaces.ReadingManagementRemote;
 
 /**
  * Session Bean implementation class ReadingManagement
  */
 @Stateless
-public class ReadingManagement implements ReadingManagementRemote, ReadingManagementLocal {
+public class ReadingManagement implements ReadingManagementRemote,
+		ReadingManagementLocal {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-    public ReadingManagement() {
-        // TODO Auto-generated constructor stub
-    }
+
+	public ReadingManagement() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Boolean addEbook(Ebook ebook) {
@@ -37,29 +38,30 @@ public class ReadingManagement implements ReadingManagementRemote, ReadingManage
 		return b;
 	}
 
-	//je recupere l'utilisateur connecté et son trajet actuel
+	// je recupere l'utilisateur connecté et son trajet actuel
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Ebook> suggestEbooks(StationLine stationLine,
-			Traveler traveler) {
+	public List<Ebook> suggestEbooks(StationLine stationLine, Traveler traveler) {
 		try {
-			//Traveler travelerFound=entityManager.find(Traveler.class, traveler.getUserId());
-			//StationItinerary stationItineraryFound=entityManager.find(StationItinerary.class, stationItinerary.getStationItineraryId());
-			//Double duration=stationItineraryFound.getDuration();//supposant que c'est en minute
-			//entityManager.merge(travelerFound);
-			//entityManager.merge(stationItineraryFound);
-			Integer MaxNbOfWords = 22 ; //MaxNbOfWords = duration/ReaderSpeed
+			// Traveler travelerFound=entityManager.find(Traveler.class,
+			// traveler.getUserId());
+			// StationItinerary
+			// stationItineraryFound=entityManager.find(StationItinerary.class,
+			// stationItinerary.getStationItineraryId());
+			// Double duration=stationItineraryFound.getDuration();//supposant
+			// que c'est en minute
+			// entityManager.merge(travelerFound);
+			// entityManager.merge(stationItineraryFound);
+			Integer MaxNbOfWords = 22; // MaxNbOfWords = duration/ReaderSpeed
 			String jpql = "select m from Ebook m where m.nbOfWords <= ?1";
 			Query query = entityManager.createQuery(jpql);
 			query.setParameter(1, MaxNbOfWords);
 			return query.getResultList();
-			
+
 		} catch (Exception e) {
 			return null;
 		}
-		
-		
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -69,7 +71,7 @@ public class ReadingManagement implements ReadingManagementRemote, ReadingManage
 			String jpql = "select m from Ebook m";
 			Query query = entityManager.createQuery(jpql);
 			return query.getResultList();
-			
+
 		} catch (Exception e) {
 			return null;
 		}
@@ -79,11 +81,11 @@ public class ReadingManagement implements ReadingManagementRemote, ReadingManage
 	@Override
 	public List<Ebook> viewLibraryByCategory(String category) {
 		try {
-			String jpql = "select m from Ebook m where m.category:=param";
+			String jpql = "select m from Ebook m where m.category=:param";
 			Query query = entityManager.createQuery(jpql);
 			query.setParameter("param", category);
 			return query.getResultList();
-			
+
 		} catch (Exception e) {
 			return null;
 		}
@@ -94,14 +96,14 @@ public class ReadingManagement implements ReadingManagementRemote, ReadingManage
 	@Override
 	public List<Ebook> lookUpEbook(String search) {
 		try {
-			String jpql = "select m from Ebook m where m.author LIKE '%:param%'";
+			String jpql = "select m from Ebook m where m.author LIKE :param or m.title  LIKE :param";
 			Query query = entityManager.createQuery(jpql);
-			query.setParameter("param", search);
+			query.setParameter("param", '%' + search + '%');
 			return query.getResultList();
-			
+
 		} catch (Exception e) {
 			return null;
 		}
-		}
+	}
 
 }
