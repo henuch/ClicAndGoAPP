@@ -8,10 +8,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import entities.Traveler;
+import entities.User;
+import BusinessDelegator.UserServicesDelegate;
 
 
 
@@ -21,7 +26,7 @@ public class Authentification extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JFrame frame;
+	//private JFrame frame;
 	private JPanel contentPane;
 	private JTextField loginField;
 	private JTextField passwordField;
@@ -33,8 +38,8 @@ public class Authentification extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Authentification window = new Authentification();
-					window.frame.setVisible(true);
+					Authentification frame = new Authentification();
+					frame.setVisible(true);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +52,7 @@ public class Authentification extends JFrame {
 	 * Create the application.
 	 */
 	public Authentification() {
-		// initialize();
+		 //initialize();
 		setTitle("Authentication");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 750);
@@ -79,9 +84,25 @@ public class Authentification extends JFrame {
 		buttonLogin.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-//				System.out.println("DEBUT_AUTHENTIFICATION");
-//				User y = null;
-//				 y=UserManagementDelegate.doAuthentificate(login.getText(),passwordField.getText());
+				System.out.println("DEBUT_AUTHENTIFICATION");
+				User authentifiedUser = null;
+				authentifiedUser=UserServicesDelegate.doAuthenticate(loginField.getText(), passwordField.getText());
+				if(authentifiedUser instanceof Traveler)
+				{
+					
+					System.out.println("Hello Traveler"+authentifiedUser.getName());
+					JOptionPane.showMessageDialog(rootPane, "Welcome  traveler " +authentifiedUser.getName());
+					
+					Authentification frame = new Authentification();
+					frame.setVisible(true);
+					
+					dispose();
+					
+				}
+				else
+				{
+					System.out.println("Hello Content Manager"+ authentifiedUser.getName());
+				}
 //				 if(y.getRole().equals("admin")){
 //				 System.out.println("Test Utilisateur"+y.getPassword());
 //				
