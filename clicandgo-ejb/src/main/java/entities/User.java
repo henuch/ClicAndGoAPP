@@ -41,6 +41,13 @@ public class User implements Serializable {
 		this.tickets = tickets;
 	}
 
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", surname=" + surname + ", email="
+				+ email + ", password=" + password + ", nbOfWordsPerMinute="
+				+ nbOfWordsPerMinute + ", tickets=" + tickets + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getUserId() {

@@ -1,9 +1,12 @@
 package services.impl;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -88,4 +91,23 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		return null;
 
 }
+	@Override
+	public User authenticate(String name, String password) {
+		
+		User found = new User();
+		Query query = entityManager.createQuery("select u from User u where u.name=:n and u.password=:p");
+		query.setParameter("n", name);
+		query.setParameter("p", password);
+		try{
+			found  = (User) query.getSingleResult();
+			System.out.println("c bn! hetheya connecté"+found);
+			return found;
+		}catch(NoResultException e){
+			Logger
+				.getLogger(getClass().getName())
+					.log(Level.WARNING, "auth attempt failed with login="+name+" and password="+password);
+			return null;
+		}
+		
+	}
 }
