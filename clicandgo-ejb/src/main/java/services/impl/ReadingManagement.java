@@ -43,8 +43,9 @@ public class ReadingManagement implements ReadingManagementRemote,
 	@Override
 	public List<Ebook> suggestEbooks(StationLine stationLine, Traveler traveler) {
 		try {
-			// Traveler travelerFound=entityManager.find(Traveler.class,
-			// traveler.getUserId());
+			 Traveler travelerFound=entityManager.find(Traveler.class,
+			 traveler.getUserId());
+			 Integer ReaderSpeed = travelerFound.getNbOfWordsPerMinute();
 			// StationItinerary
 			// stationItineraryFound=entityManager.find(StationItinerary.class,
 			// stationItinerary.getStationItineraryId());
