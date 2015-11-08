@@ -1,5 +1,9 @@
 package gui;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.EbookTableModel;
@@ -24,19 +28,26 @@ public class ReadingPanel extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		jPanel1 = new javax.swing.JPanel();
-		jPanel1.setBounds(10, 20, 690, 110);
-		jLabel1 = new javax.swing.JLabel();
+		jPanelSearch = new javax.swing.JPanel();
+		jPanelSearch.setBounds(10, 20, 690, 73);
+		DescriptionTextSearch = new javax.swing.JLabel();
 		searchText = new javax.swing.JTextField();
 		SearchBtn = new javax.swing.JButton();
-		jPanel2 = new javax.swing.JPanel();
-		jPanel2.setBounds(10, 140, 520, 330);
-		jScrollPane1 = new javax.swing.JScrollPane();
+		jPannelLibrary = new javax.swing.JPanel();
+		jPannelLibrary.setBounds(10, 108, 520, 330);
+		jScrollLibrary = new javax.swing.JScrollPane();
+		jScrollLibrary.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println(e.getComponent());
+
+			}
+		});
 		jTable1 = new javax.swing.JTable();
-		jPanel3 = new javax.swing.JPanel();
-		jPanel3.setBounds(550, 140, 150, 330);
+		jPanelOptions = new javax.swing.JPanel();
+		jPanelOptions.setBounds(550, 108, 150, 73);
 		DownloadBtn = new javax.swing.JButton();
-		DownloadBtn.setBounds(15, 96, 120, 23);
+		DownloadBtn.setBounds(10, 40, 130, 23);
 
 		setBorder(javax.swing.BorderFactory.createTitledBorder(null,
 				"E-Library",
@@ -44,47 +55,41 @@ public class ReadingPanel extends JPanel {
 				javax.swing.border.TitledBorder.DEFAULT_POSITION,
 				new java.awt.Font("Arial", 2, 14)));
 
-		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(
+		jPanelSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(
 				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
 						51, 0, 0)), "Search",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
 				javax.swing.border.TitledBorder.DEFAULT_POSITION,
 				new java.awt.Font("Arial", 2, 12),
 				new java.awt.Color(102, 0, 0))); // NOI18N
-		jPanel1.setLayout(null);
+		jPanelSearch.setLayout(null);
 
-		jLabel1.setText("Type the name of an author or a book:");
-		jPanel1.add(jLabel1);
-		jLabel1.setBounds(20, 45, 309, 23);
+		DescriptionTextSearch.setText("Type the name of an author or a book:");
+		jPanelSearch.add(DescriptionTextSearch);
+		DescriptionTextSearch.setBounds(10, 28, 309, 23);
 
 		searchText.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				descriptionTextActionPerformed(evt);
 			}
 		});
-		jPanel1.add(searchText);
-		searchText.setBounds(484, 46, 95, 20);
+		jPanelSearch.add(searchText);
+		searchText.setBounds(469, 29, 95, 20);
 
 		SearchBtn.setText("Search");
 		SearchBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-				// ReadingManagementDelegate.doLookUpEbook(searchText.getText());
 				jTable1.setModel(new EbookTableModel(searchText.getText()));
-				// DiscountDelegate.findDiscountByAllCriteria(descriptionText.getText(),Integer.parseInt(rateText.getText()),caleddarDebut.getDate(),calendarFin.getDate());
-				// jTable1.setModel(new DiscountModelTable(
-				// descriptionText.getText(),Integer.parseInt(rateText.getText()),caleddarDebut.getDate(),calendarFin.getDate()));
-
 			}
 
 		});
 		setLayout(null);
-		jPanel1.add(SearchBtn);
-		SearchBtn.setBounds(589, 45, 91, 23);
+		jPanelSearch.add(SearchBtn);
+		SearchBtn.setBounds(589, 28, 91, 23);
 
-		add(jPanel1);
+		add(jPanelSearch);
 
-		jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(
+		jPannelLibrary.setBorder(javax.swing.BorderFactory.createTitledBorder(
 				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
 						51, 0, 0)), "List Of Ebooks and Articles",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
@@ -92,32 +97,42 @@ public class ReadingPanel extends JPanel {
 				new java.awt.Font("Arial", 2, 12),
 				new java.awt.Color(102, 0, 0))); // NOI18N
 
-		 jTable1.setModel(new EbookTableModel());
-		 jScrollPane1.setViewportView(jTable1);
+		jTable1.setModel(new EbookTableModel());
+		jScrollLibrary.setViewportView(jTable1);
 
-		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(
-				jPanel2);
-		jPanel2.setLayout(jPanel2Layout);
-		jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				jPanel2Layout
-						.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(jScrollPane1,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 490,
-								Short.MAX_VALUE).addContainerGap()));
-		jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				jPanel2Layout
-						.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(jScrollPane1,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 286,
-								Short.MAX_VALUE).addContainerGap()));
+		javax.swing.GroupLayout gl_jPannelLibrary = new javax.swing.GroupLayout(
+				jPannelLibrary);
+		jPannelLibrary.setLayout(gl_jPannelLibrary);
+		gl_jPannelLibrary
+				.setHorizontalGroup(gl_jPannelLibrary
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								gl_jPannelLibrary
+										.createSequentialGroup()
+										.addContainerGap()
+										.addComponent(
+												jScrollLibrary,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												490, Short.MAX_VALUE)
+										.addContainerGap()));
+		gl_jPannelLibrary
+				.setVerticalGroup(gl_jPannelLibrary
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								gl_jPannelLibrary
+										.createSequentialGroup()
+										.addContainerGap()
+										.addComponent(
+												jScrollLibrary,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												286, Short.MAX_VALUE)
+										.addContainerGap()));
 
-		add(jPanel2);
+		add(jPannelLibrary);
 
-		jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(
+		jPanelOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(
 				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
 						51, 0, 0)), "Option",
 				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
@@ -139,9 +154,14 @@ public class ReadingPanel extends JPanel {
 			}
 		});
 
-		add(jPanel3);
-		jPanel3.setLayout(null);
-		jPanel3.add(DownloadBtn);
+		add(jPanelOptions);
+		jPanelOptions.setLayout(null);
+		jPanelOptions.add(DownloadBtn);
+
+		JLabel labelDownload = new JLabel();
+		labelDownload.setText("Select to download");
+		labelDownload.setBounds(20, 11, 109, 32);
+		jPanelOptions.add(labelDownload);
 	}
 
 	private void descriptionTextActionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +170,7 @@ public class ReadingPanel extends JPanel {
 
 	private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {
 
-		 jTable1.setModel(new EbookTableModel(searchText.getText()));
+		jTable1.setModel(new EbookTableModel(searchText.getText()));
 
 	}
 
@@ -158,13 +178,11 @@ public class ReadingPanel extends JPanel {
 	private javax.swing.JButton SearchBtn;
 	// private com.toedter.calendar.JDateChooser datexyzz;
 	private javax.swing.JTextField searchText;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JPanel jPanel2;
-	private javax.swing.JPanel jPanel3;
-	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JLabel DescriptionTextSearch;
+	private javax.swing.JPanel jPanelSearch;
+	private javax.swing.JPanel jPannelLibrary;
+	private javax.swing.JPanel jPanelOptions;
+	private javax.swing.JScrollPane jScrollLibrary;
 	private javax.swing.JTable jTable1;
 	private javax.swing.JButton DownloadBtn;
-	// private com.toedter.calendar.JDateChooser datexy;
-
 }

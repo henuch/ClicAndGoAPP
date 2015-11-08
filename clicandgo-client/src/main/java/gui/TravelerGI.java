@@ -15,6 +15,7 @@ public class TravelerGI extends JFrame {
 
 		private javax.swing.JPanel bodyPanel;
 		private javax.swing.JButton readingBtn;
+		private javax.swing.JButton ticketingBtn;
 		private javax.swing.JButton logoutBtn;
 		public static javax.swing.JPanel panelContent;
 		private javax.swing.JPanel panelGeneral;
@@ -28,6 +29,7 @@ public class TravelerGI extends JFrame {
 	// private JFrame frame;
 	//Authentification authentification = new Authentification();
 	ReadingPanel readingPanel =new ReadingPanel();
+	
 
 	/**
 	 * Create the application.
@@ -203,7 +205,7 @@ public class TravelerGI extends JFrame {
 		
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
-
+	
 	private void AuthentificationBtnActionPerformed(
 			java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
 		panelContent.removeAll();
