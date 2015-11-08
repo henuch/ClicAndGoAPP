@@ -172,13 +172,34 @@ public class StationLineManagement implements StationLineManagementRemote,
 	@Override
 	public StationLine findStationLineOfOneStationInTheSameLineOfAnotherStation(
 			Station station, Station station1) {
-		return null;
+
+		StationLine stationLine = new StationLine();
+		Line line = new Line();
+		line = findLineOfTwoStations(station.getStationId(),
+				station.getStationId());
+		stationLine = findStationLineByLineAndStation(line, station);
+		return stationLine;
+
 	}
 
 	@Override
 	public Boolean AntecedentInTheSameLine(Station station, Station station1) {
-		// TODO Auto-generated method stub
-		return null;
+		Boolean b = false;
+		Line line = findLineOfTwoStations(station.getStationId(),
+				station1.getStationId());
+		if (line == null) {
+			b = false;
+		} else {
+			StationLine stationLine = findStationLineByLineAndStation(line,
+					station);
+			StationLine stationLine1 = findStationLineByLineAndStation(line,
+					station1);
+			if (stationLine.getPosition() == stationLine1.getPosition() + 1) {
+				b = true;
+			}
+		}
+
+		return b;
 	}
 
 	@Override
@@ -205,7 +226,12 @@ public class StationLineManagement implements StationLineManagementRemote,
 	}
 
 	@Override
-	public Line findLineOfTwoStations(Station station, Station station1) {
+	public Line findLineOfTwoStations(Integer stationId, Integer stationId1) {
+
+		Station station = (Station) entityManager
+				.find(Station.class, stationId);
+		Station station1 = (Station) entityManager.find(Station.class,
+				stationId1);
 		List<Line> lines = findAllLinesByStationId(station.getStationId());
 		List<Line> lines1 = findAllLinesByStationId(station1.getStationId());
 		Line line = new Line();

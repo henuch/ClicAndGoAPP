@@ -30,7 +30,7 @@ public interface StationLineManagementRemote {
 
 	public List<Station> findAllStationsByLineId(Integer id);
 
-	public Line findLineOfTwoStations(Station station, Station station1);
+	public Line findLineOfTwoStations(Integer stationId, Integer stationId1);
 
 	public StationLine findStationLineByLineAndStation(Line line,
 			Station station);
