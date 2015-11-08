@@ -21,7 +21,8 @@ public class Line implements Serializable {
 
 	private List<StationLine> stationLines;
 	private List<MeanOfTransport> meansOftransport;
-	//private List<Ticket> tickets;
+
+	// private List<Ticket> tickets;
 
 	@Id
 	public Integer getLineId() {
@@ -57,25 +58,27 @@ public class Line implements Serializable {
 		this.stationLines = stationLines;
 	}
 
+	@OneToMany(mappedBy = "line")
+	public List<MeanOfTransport> getMeansOftransport() {
+		return meansOftransport;
+	}
 
-	 @OneToMany(mappedBy = "line")
-	 public List<MeanOfTransport> getMeansOftransport() {
-	 return meansOftransport;
-	 }
-	
-	 public void setMeansOftransport(List<MeanOfTransport> meansOftransport) {
-	 this.meansOftransport = meansOftransport;
-	 }
-	 
-	 public void linkMeanOfTransportToThisLine(List<MeanOfTransport> meansOftransport) {
-			this.meansOftransport = meansOftransport;
-			for (MeanOfTransport m : meansOftransport) {
-				m.setLine(this);
-			}
+	public void setMeansOftransport(List<MeanOfTransport> meansOftransport) {
+		this.meansOftransport = meansOftransport;
+	}
+
+	public void linkMeanOfTransportToThisLine(
+			List<MeanOfTransport> meansOftransport) {
+		this.meansOftransport = meansOftransport;
+		for (MeanOfTransport m : meansOftransport) {
+			m.setLine(this);
 		}
-	
+	}
 
-	
-
+	@Override
+	public String toString() {
+		return "Line [lineId=" + lineId + ", name=" + name + ", nbStations="
+				+ nbStations + "]";
+	}
 
 }
