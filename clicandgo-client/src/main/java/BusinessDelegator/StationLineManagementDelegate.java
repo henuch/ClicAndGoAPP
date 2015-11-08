@@ -23,9 +23,9 @@ public class StationLineManagementDelegate {
 				duration, distance);
 	}
 
-	public static Boolean doAssignStationToLine(Station station,
+	public static Boolean doAssignStationToLine(Integer stationId,
 			Integer lineId, Integer position, Integer duration, Integer distance) {
-		return getProxy().assignStationToLine(station, lineId, position,
+		return getProxy().assignStationToLine(stationId, lineId, position,
 				duration, distance);
 	}
 

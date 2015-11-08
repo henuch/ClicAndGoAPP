@@ -50,11 +50,13 @@ public class StationLineManagement implements StationLineManagementRemote,
 	}
 
 	@Override
-	public Boolean assignStationToLine(Station station, Integer lineId,
+	public Boolean assignStationToLine(Integer stationId, Integer lineId,
 			Integer position, Integer duration, Integer distance) {
 		Boolean b = false;
 		try {
 			Line line = (Line) entityManager.find(Line.class, lineId);
+			Station station = (Station) entityManager.find(Station.class,
+					stationId);
 			StationLine stationLine = new StationLine(station, line, position,
 					duration, distance);
 			entityManager.merge(stationLine);
@@ -142,9 +144,11 @@ public class StationLineManagement implements StationLineManagementRemote,
 	@Override
 	public List<Station> findAllStationsByLineId(Integer id) {
 		try {
-			String jpql = "select s from Station s join s.stationLines l where l.lineId=:param";
+			String jpql = "select s from Station s join s.stationLines l where l.lineId=:p";
 			Query query = entityManager.createQuery(jpql);
-			query.setParameter("param", id);
+			query.setParameter("p", id);
+			System.out.println("succes");
+
 			return query.getResultList();
 
 		} catch (Exception e) {
@@ -180,15 +184,7 @@ public class StationLineManagement implements StationLineManagementRemote,
 	@Override
 	public StationLine findStationLineOfOneStationInTheSameLineOfAnotherStation(
 			Station station, Station station1) {
-		try {
-			String jpql = "select sl from StationLine sl where sl.line.lineId=:param and sl.station.stationId";
-			Query query = entityManager.createQuery(jpql);
-			// query.setParameter("param", line.getLineId());
-			return (StationLine) query.getSingleResult();
-
-		} catch (Exception e) {
-			return null;
-		}
+		return null;
 	}
 
 	@Override
