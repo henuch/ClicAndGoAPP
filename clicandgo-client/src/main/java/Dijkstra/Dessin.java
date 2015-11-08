@@ -43,26 +43,23 @@ public class Dessin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 419, 282);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\esprit\\git\\ClicAndGoAPP\\clicandgo-client\\img\\map.jpg"));
-		lblNewLabel.setBounds(0, 0, 419, 226);
-		panel.add(lblNewLabel);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\esprit\\git\\ClicAndGoAPP\\clicandgo-client\\img\\map.jpg"));
+		label.setBounds(0, 0, 434, 252);
+		contentPane.add(label);
 		
 		JButton btnDraw = new JButton("Draw");
-		btnDraw.setBounds(161, 237, 89, 23);
-		panel.add(btnDraw);
+		btnDraw.setBounds(173, 278, 89, 23);
+		contentPane.add(btnDraw);
 		btnDraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				pn p=new pn();
-		 panel.add(p);
-		 p.setSize(panel.getWidth(), panel.getHeight());
+			 pn p=new pn();
+			 contentPane.add(p);
+			 p.setSize(contentPane.getWidth(),contentPane.getHeight());
+			
+			
 			}
 		});
+		
 	}
 }

@@ -10,6 +10,7 @@ import entities.Ebook;
 public class EbookTableModel extends AbstractTableModel {
 	List<Ebook> ebooks;
 	String[] entete = { "Title", "Author", "Description", "Category", "Type" };
+	
 
 	public EbookTableModel() {
 		ebooks = ReadingManagementDelegate.doViewLibrary();

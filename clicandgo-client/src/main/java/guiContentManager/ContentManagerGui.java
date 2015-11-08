@@ -33,7 +33,7 @@ public class ContentManagerGui extends JFrame {
 private static final long serialVersionUID = 1L;
 // private JFrame frame;
 Authentification authentification = new Authentification();
-StationPanel stationPanel =new StationPanel();
+//StationPanel stationPanel =new StationPanel();
 private JButton btnPlace;
 
 /**
@@ -203,7 +203,7 @@ private void initComponents() {
 private void AuthentificationBtnActionPerformed(
 		java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
 	panelContent.removeAll();
-	panelContent.add(stationPanel);
+//	panelContent.add(stationPanel);
 	panelContent.repaint();
 	panelContent.revalidate(); // TODO add your handling code here:
 }// GEN-LAST:event_gestionFournisseursBtnActionPerformed

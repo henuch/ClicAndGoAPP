@@ -10,24 +10,26 @@ import javax.swing.JFrame;
 import BusinessDelegator.SessionDelegate;
 
 public class TravelerGI extends JFrame {
-	
+
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 
-		private javax.swing.JPanel bodyPanel;
-		private javax.swing.JButton readingBtn;
-		private javax.swing.JButton logoutBtn;
-		public static javax.swing.JPanel panelContent;
-		private javax.swing.JPanel panelGeneral;
-		private javax.swing.JPanel panelMenu;
-		private JButton btnNewButton;
+	private javax.swing.JPanel bodyPanel;
+	private javax.swing.JButton readingBtn;
+	private javax.swing.JButton ticketingBtn;
+	private javax.swing.JButton logoutBtn;
+	public static javax.swing.JPanel panelContent;
+	private javax.swing.JPanel panelGeneral;
+	private javax.swing.JPanel panelMenu;
+	private JButton btnNewButton;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	// private JFrame frame;
-	//Authentification authentification = new Authentification();
-	ReadingPanel readingPanel =new ReadingPanel();
+	// Authentification authentification = new Authentification();
+	ReadingPanel readingPanel = new ReadingPanel();
+	TicketingPanel ticketingPanel = new TicketingPanel();
 
 	/**
 	 * Create the application.
@@ -42,17 +44,19 @@ public class TravelerGI extends JFrame {
 		panelGeneral = new javax.swing.JPanel();
 		bodyPanel = new javax.swing.JPanel();
 		panelMenu = new javax.swing.JPanel();
-		readingBtn = new javax.swing.JButton();
-		logoutBtn = new javax.swing.JButton();
 
+		ticketingBtn = new JButton();
+		readingBtn = new JButton();
+
+		logoutBtn = new javax.swing.JButton();
+		logoutBtn.setText("Logout");
 		logoutBtn.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
-				
 				dispose();
 				SessionDelegate.doExit();
-				System.out.println("ena deconnectit: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
-
+				System.out.println("ena deconnectit: session login "
+						+ SessionDelegate.doGetLogin() + " Session Pwd "
+						+ SessionDelegate.doGetPwd());
 			}
 		});
 
@@ -67,11 +71,16 @@ public class TravelerGI extends JFrame {
 		readingBtn.setText("Reading");
 		readingBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				AuthentificationBtnActionPerformed(evt);
+				readingBtnActionPerformed(evt);
 			}
 		});
 
-		logoutBtn.setText("Logout");
+		ticketingBtn.setText("Ticketing");
+		ticketingBtn.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				ticketingBtnActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(
 				panelMenu);
@@ -93,6 +102,11 @@ public class TravelerGI extends JFrame {
 																false)
 														.addComponent(
 																readingBtn,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																137,
+																Short.MAX_VALUE)
+														.addComponent(
+																ticketingBtn,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																137,
 																Short.MAX_VALUE)
@@ -122,6 +136,13 @@ public class TravelerGI extends JFrame {
 												javax.swing.GroupLayout.DEFAULT_SIZE,
 												Short.MAX_VALUE)
 										.addComponent(
+												ticketingBtn,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												62,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(
+												javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+												.addComponent(
 												logoutBtn,
 												javax.swing.GroupLayout.PREFERRED_SIZE,
 												46,
@@ -180,9 +201,9 @@ public class TravelerGI extends JFrame {
 																				javax.swing.GroupLayout.PREFERRED_SIZE)))
 										.addContainerGap()));
 
-		 btnNewButton = new JButton("");
-		 btnNewButton.setBackground(new Color(255, 255, 255));
-		 //btnNewButton.setIcon(new ImageIcon(
+		btnNewButton = new JButton("");
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		// btnNewButton.setIcon(new ImageIcon(
 		// "C:\\Users\\Mourad\\Desktop\\PI\\logofinal.png"));
 		// panelContent.add(btnNewButton, "name_551560228642910");
 
@@ -200,17 +221,22 @@ public class TravelerGI extends JFrame {
 
 		getContentPane().add(panelGeneral, "card2");
 
-		
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void AuthentificationBtnActionPerformed(
-			java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
+	private void readingBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
 		panelContent.removeAll();
 		panelContent.add(readingPanel);
 		panelContent.repaint();
 		panelContent.revalidate(); // TODO add your handling code here:
 	}// GEN-LAST:event_gestionFournisseursBtnActionPerformed
+
+	private void ticketingBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionCategorieBtnActionPerformed
+		panelContent.removeAll();
+		panelContent.add(ticketingPanel);
+		panelContent.repaint();
+		panelContent.revalidate(); // TODO add your handling code here:
+	}// GEN-LAST:event_gestionCategorieBtnActionPerformed
 
 	public static void main(String args[]) {
 		/* Set the Nimbus look and feel */
@@ -252,6 +278,6 @@ public class TravelerGI extends JFrame {
 			}
 		});
 
-	} 
+	}
 
 }
