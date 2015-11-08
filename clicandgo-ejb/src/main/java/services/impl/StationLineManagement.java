@@ -142,14 +142,16 @@ public class StationLineManagement implements StationLineManagementRemote,
 	@Override
 	public List<Station> findAllStationsByLineId(Integer id) {
 		try {
-			String jpql = "select s from Station s join s.stationLines sls where sls.line.lineId=:param";
+			String jpql = "select s from Station s join s.stationLines l where l.lineId=:param";
 			Query query = entityManager.createQuery(jpql);
 			query.setParameter("param", id);
 			return query.getResultList();
 
 		} catch (Exception e) {
 			return null;
+
 		}
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -163,9 +165,10 @@ public class StationLineManagement implements StationLineManagementRemote,
 	public StationLine findStationLineByLineAndStation(Line line,
 			Station station) {
 		try {
-			String jpql = "select sl from StationLine sl where sl.line.lineId=:param";
+			String jpql = "select sl from StationLine sl where sl.line.lineId=:param and sl.station.stationId=:paramm";
 			Query query = entityManager.createQuery(jpql);
 			query.setParameter("param", line.getLineId());
+			query.setParameter("paramm", station.getStationId());
 			return (StationLine) query.getSingleResult();
 
 		} catch (Exception e) {
@@ -173,11 +176,19 @@ public class StationLineManagement implements StationLineManagementRemote,
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public StationLine findStationLineOfOneStationInTheSameLineOfAnotherStation(
 			Station station, Station station1) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			String jpql = "select sl from StationLine sl where sl.line.lineId=:param and sl.station.stationId";
+			Query query = entityManager.createQuery(jpql);
+			// query.setParameter("param", line.getLineId());
+			return (StationLine) query.getSingleResult();
+
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
