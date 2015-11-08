@@ -10,7 +10,7 @@ public class testAuthentificate {
 public static void main(String[] args) throws NamingException{
 	
 
-	System.out.println(UserServicesDelegate.doAuthenticate("houcem", "houcem"));
+	System.out.println(UserServicesDelegate.doAuthenticate("houcem", "bargouga"));
 		
 
 	}

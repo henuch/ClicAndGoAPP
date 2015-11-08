@@ -38,4 +38,15 @@ public class StationDelegate {
     public static 	Boolean doDeleteStationById(Integer Id){
     	return getProxy().deleteStationById(Id);
     }
+    
+    public static Station doFindStationByReference(int ref)
+    {
+    	return getProxy().findStationByStationByReference(ref);
+    	
+    }
+    public static Station findStationByStationName(String name)
+    {
+    	return getProxy().findStationByStationName(name);
+    	
+    }
 }
