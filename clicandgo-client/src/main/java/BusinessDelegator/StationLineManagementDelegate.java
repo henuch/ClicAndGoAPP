@@ -6,6 +6,7 @@ import services.interfaces.StationLineManagementRemote;
 import ServiceLocator.ServiceLocator;
 import entities.Line;
 import entities.Station;
+import entities.StationLine;
 
 public class StationLineManagementDelegate {
 
@@ -54,6 +55,11 @@ public class StationLineManagementDelegate {
 
 	public static List<Station> doFindAllStationsByLineId(Integer id) {
 		return getProxy().findAllStationsByLineId(id);
+	}
+
+	public static StationLine doFindStationLineByLineAndStation(Line line,
+			Station station) {
+		return getProxy().findStationLineByLineAndStation(line, station);
 	}
 
 }

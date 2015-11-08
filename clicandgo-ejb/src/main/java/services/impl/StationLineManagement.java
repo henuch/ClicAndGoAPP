@@ -17,8 +17,8 @@ import entities.StationLine;
  * Session Bean implementation class StationLineManagement
  */
 @Stateless
-public class StationLineManagement implements StationLineManagementRemote, StationLineManagementLocal {
-
+public class StationLineManagement implements StationLineManagementRemote,
+		StationLineManagementLocal {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -142,14 +142,48 @@ public class StationLineManagement implements StationLineManagementRemote, Stati
 	@Override
 	public List<Station> findAllStationsByLineId(Integer id) {
 		try {
-			String jpql = "select s from Station s join s.stationLines sls where sls.line.lineId=:param";
+			String jpql = "select s from Station s join s.stationLines sls where sls.line.lineId=?1";
 			Query query = entityManager.createQuery(jpql);
-			query.setParameter("param", id);
+			query.setParameter(1, id);
 			return query.getResultList();
 
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Line findLineOfTwoStations(Station station, Station station1) {
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public StationLine findStationLineByLineAndStation(Line line,
+			Station station) {
+		try {
+			String jpql = "select sl from StationLine sl where sl.line.lineId=:param";
+			Query query = entityManager.createQuery(jpql);
+			query.setParameter("param", line.getLineId());
+			return (StationLine) query.getSingleResult();
+
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public StationLine findStationLineOfOneStationInTheSameLineOfAnotherStation(
+			Station station, Station station1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean AntecedentInTheSameLine(Station station, Station station1) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 
 import entities.Line;
 import entities.Station;
+import entities.StationLine;
 
 @Remote
 public interface StationLineManagementRemote {
@@ -28,4 +29,14 @@ public interface StationLineManagementRemote {
 	public List<Line> findAllLines();
 
 	public List<Station> findAllStationsByLineId(Integer id);
+
+	public Line findLineOfTwoStations(Station station, Station station1);
+
+	public StationLine findStationLineByLineAndStation(Line line,
+			Station station);
+
+	public StationLine findStationLineOfOneStationInTheSameLineOfAnotherStation(
+			Station station, Station station1);
+
+	public Boolean AntecedentInTheSameLine(Station station, Station station1);
 }
