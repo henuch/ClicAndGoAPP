@@ -46,6 +46,12 @@ public class populateDB {
 		System.out.println(UserServicesDelegate.getProxy().addUser(traveler));
 
 		
+		Traveler traveler2 = new Traveler();
+		traveler2.setName("sabrine");
+		traveler2.setPassword("sabrine");
+		traveler2.setNbOfWordsPerMinute(300);
+		System.out.println(UserServicesDelegate.getProxy().addUser(traveler2));
+		
 		ContentManager contentManager = new ContentManager();
 		contentManager.setName("yosr");
 		contentManager.setPassword("yosr");

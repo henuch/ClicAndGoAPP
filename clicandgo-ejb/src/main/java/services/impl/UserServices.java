@@ -112,4 +112,17 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		}
 
 	}
+
+	@Override
+	public User updateReadingSpeed(int id,int speed) {
+		User user = entityManager.find(User.class, id);
+		try {
+			user.setNbOfWordsPerMinute(speed);
+			entityManager.merge(user);
+
+		} catch (Exception e) {
+			System.err.println("A problem occured while updating " + user);
+		}
+		return user;
+	}
 }

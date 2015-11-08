@@ -1,13 +1,19 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 
 import model.EbookTableModel;
-import javax.swing.SwingConstants;
+import BusinessDelegator.SessionDelegate;
+import BusinessDelegator.UserServicesDelegate;
+import entities.User;
 
 //import model.DiscountModelTable;
 
@@ -16,6 +22,7 @@ public class ReadingPanel extends JPanel {
 	/**
 	 * 
 	 */
+	public User authentifiedUser;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,13 +36,16 @@ public class ReadingPanel extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		authentifiedUser = UserServicesDelegate.doAuthenticate(
+				SessionDelegate.doGetLogin(), SessionDelegate.doGetPwd());
+
 		jPanelSearch = new javax.swing.JPanel();
 		jPanelSearch.setBounds(10, 20, 690, 73);
 		DescriptionTextSearch = new javax.swing.JLabel();
 		searchText = new javax.swing.JTextField();
 		SearchBtn = new javax.swing.JButton();
 		jPannelLibrary = new javax.swing.JPanel();
-		jPannelLibrary.setBounds(10, 108, 520, 330);
+		jPannelLibrary.setBounds(10, 108, 520, 410);
 		jScrollLibrary = new javax.swing.JScrollPane();
 		jScrollLibrary.addMouseListener(new MouseAdapter() {
 			@Override
@@ -164,17 +174,146 @@ public class ReadingPanel extends JPanel {
 		labelDownload.setText("Select to download");
 		labelDownload.setBounds(10, 11, 140, 32);
 		jPanelOptions.add(labelDownload);
-		
+
 		jPanelReaderSpeed = new JPanel();
-		jPanelReaderSpeed.setBounds(540, 192, 160, 246);
-		jPanelReaderSpeed.setBorder(javax.swing.BorderFactory.createTitledBorder(
-				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
-						51, 0, 0)), "Reader Speed",
-				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-				javax.swing.border.TitledBorder.DEFAULT_POSITION,
-				new java.awt.Font("Arial", 2, 12),
-				new java.awt.Color(102, 0, 0)));
+		jPanelReaderSpeed.setBounds(540, 192, 160, 326);
+		jPanelReaderSpeed.setBorder(javax.swing.BorderFactory
+				.createTitledBorder(javax.swing.BorderFactory
+						.createLineBorder(new java.awt.Color(51, 0, 0)),
+						"Reader Speed",
+						javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+						javax.swing.border.TitledBorder.DEFAULT_POSITION,
+						new java.awt.Font("Arial", 2, 12), new java.awt.Color(
+								102, 0, 0)));
 		add(jPanelReaderSpeed);
+		jPanelReaderSpeed.setLayout(null);
+
+		// ********************************
+		if (authentifiedUser.getNbOfWordsPerMinute() == null) {
+			JRadioButton rdbtnLecteurMoyen = new JRadioButton("Average Reader");
+			rdbtnLecteurMoyen.setBounds(10, 131, 144, 23);
+			jPanelReaderSpeed.add(rdbtnLecteurMoyen);
+			rdbtnLecteurMoyen.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					UserServicesDelegate.doUpdateReadingSpeed(
+							authentifiedUser.getUserId(), 250);
+					jPanelReaderSpeed.removeAll();
+					jPanelReaderSpeed.updateUI();
+					lblSpeed = new JLabel();
+					System.out.println(authentifiedUser);
+					lblSpeed.setText("250 Words/Min");
+					lblSpeed.setHorizontalAlignment(SwingConstants.CENTER);
+					lblSpeed.setBounds(10, 34, 144, 270);
+					jPanelReaderSpeed.add(lblSpeed);
+
+				}
+			});
+
+			JRadioButton rdbtnLecteurLent = new JRadioButton("Slow Reader");
+			rdbtnLecteurLent.setBounds(10, 64, 144, 30);
+			jPanelReaderSpeed.add(rdbtnLecteurLent);
+
+			rdbtnLecteurLent.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					UserServicesDelegate.doUpdateReadingSpeed(
+							authentifiedUser.getUserId(), 150);
+					jPanelReaderSpeed.removeAll();
+					jPanelReaderSpeed.updateUI();
+					lblSpeed = new JLabel();
+					System.out.println(authentifiedUser);
+					lblSpeed.setText("150 Words/Min");
+					lblSpeed.setHorizontalAlignment(SwingConstants.CENTER);
+					lblSpeed.setBounds(10, 34, 144, 270);
+					jPanelReaderSpeed.add(lblSpeed);
+
+				}
+			});
+
+			JRadioButton rdbtnLecteurRapide = new JRadioButton("Good Reader");
+			rdbtnLecteurRapide.setBounds(10, 191, 144, 23);
+			jPanelReaderSpeed.add(rdbtnLecteurRapide);
+
+			rdbtnLecteurRapide.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					UserServicesDelegate.doUpdateReadingSpeed(
+							authentifiedUser.getUserId(), 400);
+					jPanelReaderSpeed.removeAll();
+					jPanelReaderSpeed.updateUI();
+					lblSpeed = new JLabel();
+					System.out.println(authentifiedUser);
+					lblSpeed.setText("400 Words/Min");
+					lblSpeed.setHorizontalAlignment(SwingConstants.CENTER);
+					lblSpeed.setBounds(10, 34, 144, 270);
+					jPanelReaderSpeed.add(lblSpeed);
+				}
+			});
+
+			JLabel lblVitesseDuNiveau = new JLabel();
+			lblVitesseDuNiveau.setHorizontalAlignment(SwingConstants.LEFT);
+			lblVitesseDuNiveau.setText("elementary school level");
+			lblVitesseDuNiveau.setBounds(10, 101, 144, 23);
+			jPanelReaderSpeed.add(lblVitesseDuNiveau);
+
+			JLabel lblVitesseDuNiveau_1 = new JLabel();
+			lblVitesseDuNiveau_1.setText("middle school level");
+			lblVitesseDuNiveau_1.setHorizontalAlignment(SwingConstants.LEFT);
+			lblVitesseDuNiveau_1.setBounds(10, 161, 144, 23);
+			jPanelReaderSpeed.add(lblVitesseDuNiveau_1);
+
+			JLabel lblHighSchoolLevel = new JLabel();
+			lblHighSchoolLevel.setText("high school level");
+			lblHighSchoolLevel.setHorizontalAlignment(SwingConstants.LEFT);
+			lblHighSchoolLevel.setBounds(10, 221, 140, 23);
+			jPanelReaderSpeed.add(lblHighSchoolLevel);
+
+			JRadioButton rdbtnNewRadioButton = new JRadioButton(
+					"Fast Reader\r\n");
+			rdbtnNewRadioButton.setBounds(10, 251, 109, 23);
+			jPanelReaderSpeed.add(rdbtnNewRadioButton);
+
+			rdbtnNewRadioButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					UserServicesDelegate.doUpdateReadingSpeed(
+							authentifiedUser.getUserId(), 1000);
+					jPanelReaderSpeed.removeAll();
+					jPanelReaderSpeed.updateUI();
+					lblSpeed = new JLabel();
+					System.out.println(authentifiedUser);
+					lblSpeed.setText("1000 Words/Min");
+					lblSpeed.setHorizontalAlignment(SwingConstants.CENTER);
+					lblSpeed.setBounds(10, 34, 144, 270);
+					jPanelReaderSpeed.add(lblSpeed);
+				}
+			});
+
+			lblTrainedToFast = new JLabel();
+			lblTrainedToFast.setText("trained to fast reading\r\n");
+			lblTrainedToFast.setHorizontalAlignment(SwingConstants.LEFT);
+			lblTrainedToFast.setBounds(6, 281, 148, 23);
+			jPanelReaderSpeed.add(lblTrainedToFast);
+
+			lblPleaseSelectYour = new JLabel();
+			lblPleaseSelectYour.setText("Please select your speed\r\n");
+			lblPleaseSelectYour.setHorizontalAlignment(SwingConstants.LEFT);
+			lblPleaseSelectYour.setBounds(6, 34, 144, 23);
+			jPanelReaderSpeed.add(lblPleaseSelectYour);
+
+		} else {
+			lblSpeed = new JLabel();
+			lblSpeed.setText(authentifiedUser.getNbOfWordsPerMinute()
+					+ " Words/Min");
+			lblSpeed.setHorizontalAlignment(SwingConstants.CENTER);
+			lblSpeed.setBounds(10, 34, 144, 270);
+			jPanelReaderSpeed.add(lblSpeed);
+		}
+
 	}
 
 	private void descriptionTextActionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,4 +338,7 @@ public class ReadingPanel extends JPanel {
 	private javax.swing.JTable jTable1;
 	private javax.swing.JButton DownloadBtn;
 	private JPanel jPanelReaderSpeed;
+	private JLabel lblTrainedToFast;
+	private JLabel lblPleaseSelectYour;
+	private JLabel lblSpeed;
 }

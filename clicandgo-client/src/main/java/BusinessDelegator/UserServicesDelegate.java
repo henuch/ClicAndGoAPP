@@ -39,4 +39,10 @@ public class UserServicesDelegate {
 	public static User doAuthenticate(String name, String password) {
 		return getProxy().authenticate(name, password);
 	}
+	
+	
+	public static User doUpdateReadingSpeed(int id,int speed)
+	{
+		return getProxy().updateReadingSpeed(id, speed);
+	}
 }
