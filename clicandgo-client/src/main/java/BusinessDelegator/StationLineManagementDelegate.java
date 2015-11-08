@@ -69,5 +69,19 @@ public class StationLineManagementDelegate {
 	public static List<Line> doFindAllLinesByStationId(Integer stationId) {
 		return getProxy().findAllLinesByStationId(stationId);
 	}
-
+	
+	public static Line doFindLineOfTwoStations(Integer stationId, Integer stationId1) {
+		return getProxy().findLineOfTwoStations(stationId, stationId1);
+	}
+	
+	public static StationLine doFindStationLineOfOneStationInTheSameLineOfAnotherStation(
+			Station station, Station station1) {
+		return getProxy()
+				.findStationLineOfOneStationInTheSameLineOfAnotherStation(
+						station, station1);
+	}
+	
+	public static Boolean doAntecedentInTheSameLine(Station station, Station station1) {
+		return getProxy().AntecedentInTheSameLine(station, station1);
+	}
 }
