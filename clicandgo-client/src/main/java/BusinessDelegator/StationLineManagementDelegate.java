@@ -23,9 +23,9 @@ public class StationLineManagementDelegate {
 				duration, distance);
 	}
 
-	public static Boolean doAssignStationToLine(Station station,
+	public static Boolean doAssignStationToLine(Integer stationId,
 			Integer lineId, Integer position, Integer duration, Integer distance) {
-		return getProxy().assignStationToLine(station, lineId, position,
+		return getProxy().assignStationToLine(stationId, lineId, position,
 				duration, distance);
 	}
 
@@ -60,6 +60,14 @@ public class StationLineManagementDelegate {
 	public static StationLine doFindStationLineByLineAndStation(Line line,
 			Station station) {
 		return getProxy().findStationLineByLineAndStation(line, station);
+	}
+
+	public static Boolean doAddLine(Line line) {
+		return getProxy().addLine(line);
+	}
+
+	public static List<Line> doFindAllLinesByStationId(Integer stationId) {
+		return getProxy().findAllLinesByStationId(stationId);
 	}
 
 }

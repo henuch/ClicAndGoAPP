@@ -13,7 +13,7 @@ public interface StationLineManagementRemote {
 	public Boolean assignNewStationToLine(Station newStation, Integer lineId,
 			Integer position, Integer duration, Integer distance);
 
-	public Boolean assignStationToLine(Station station, Integer lineId,
+	public Boolean assignStationToLine(Integer stationId, Integer lineId,
 			Integer position, Integer duration, Integer distance);
 
 	public Station findStationById(Integer id);
@@ -39,4 +39,8 @@ public interface StationLineManagementRemote {
 			Station station, Station station1);
 
 	public Boolean AntecedentInTheSameLine(Station station, Station station1);
+
+	public Boolean addLine(Line line);
+
+	public List<Line> findAllLinesByStationId(Integer stationId);
 }

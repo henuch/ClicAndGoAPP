@@ -50,11 +50,13 @@ public class StationLineManagement implements StationLineManagementRemote,
 	}
 
 	@Override
-	public Boolean assignStationToLine(Station station, Integer lineId,
+	public Boolean assignStationToLine(Integer stationId, Integer lineId,
 			Integer position, Integer duration, Integer distance) {
 		Boolean b = false;
 		try {
 			Line line = (Line) entityManager.find(Line.class, lineId);
+			Station station = (Station) entityManager.find(Station.class,
+					stationId);
 			StationLine stationLine = new StationLine(station, line, position,
 					duration, distance);
 			entityManager.merge(stationLine);
@@ -138,24 +140,16 @@ public class StationLineManagement implements StationLineManagementRemote,
 		return query.getResultList();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Station> findAllStationsByLineId(Integer id) {
-		try {
-			String jpql = "select s from Station s join s.stationLines sls where sls.line.lineId=?1";
-			Query query = entityManager.createQuery(jpql);
-			query.setParameter(1, id);
-			return query.getResultList();
 
-		} catch (Exception e) {
-			return null;
-		}
-	}
+		String jpql = "select s from Station s join s.stationLines l where l.line.lineId=:param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param", id);
+		System.out.println("succes");
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Line findLineOfTwoStations(Station station, Station station1) {
-		return null;
+		return query.getResultList();
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -163,9 +157,10 @@ public class StationLineManagement implements StationLineManagementRemote,
 	public StationLine findStationLineByLineAndStation(Line line,
 			Station station) {
 		try {
-			String jpql = "select sl from StationLine sl where sl.line.lineId=:param";
+			String jpql = "select sl from StationLine sl where sl.line.lineId=:param and sl.station.stationId=:paramm";
 			Query query = entityManager.createQuery(jpql);
 			query.setParameter("param", line.getLineId());
+			query.setParameter("paramm", station.getStationId());
 			return (StationLine) query.getSingleResult();
 
 		} catch (Exception e) {
@@ -173,10 +168,10 @@ public class StationLineManagement implements StationLineManagementRemote,
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public StationLine findStationLineOfOneStationInTheSameLineOfAnotherStation(
 			Station station, Station station1) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -186,4 +181,49 @@ public class StationLineManagement implements StationLineManagementRemote,
 		return null;
 	}
 
+	@Override
+	public Boolean addLine(Line line) {
+		Boolean b = false;
+		try {
+			entityManager.merge(line);
+			b = true;
+		} catch (Exception e) {
+			System.err.println("A problem occured while adding " + line);
+		}
+		return b;
+	}
+
+	@Override
+	public List<Line> findAllLinesByStationId(Integer stationId) {
+		String jpql = "select l from Line l join l.stationLines sl where sl.station.stationId=:param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param", stationId);
+		System.out.println("succes");
+
+		return query.getResultList();
+
+	}
+
+	@Override
+	public Line findLineOfTwoStations(Station station, Station station1) {
+		List<Line> lines = findAllLinesByStationId(station.getStationId());
+		List<Line> lines1 = findAllLinesByStationId(station1.getStationId());
+		Line line = new Line();
+
+		try {
+			for (Line l : lines) {
+				for (Line l1 : lines1) {
+					if (l.equals(l1)) {
+						line = l;
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			return null;
+		}
+
+		return line;
+
+	}
 }

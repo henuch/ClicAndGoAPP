@@ -95,4 +95,11 @@ public class StationLine implements Serializable {
 		this.duration = duration;
 	}
 
+	@Override
+	public String toString() {
+		return "StationLine [StationLineId=" + StationLineId + ", position="
+				+ position + ", duration=" + duration + ", distance="
+				+ distance + "]";
+	}
+
 }
