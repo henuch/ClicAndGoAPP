@@ -14,13 +14,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.UserServicesDelegate;
 import entities.ContentManager;
 import entities.Traveler;
 import entities.User;
 
 public class Authentification extends JFrame {
-	public User user;
+	public User authentifiedUser;
 	/**
 	 * 
 	 */
@@ -36,6 +37,8 @@ public class Authentification extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					System.out.println("ena doub ma 7allit l'app: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
+
 					Authentification authentification = new Authentification();
 					authentification.setVisible(true);
 
@@ -82,10 +85,13 @@ public class Authentification extends JFrame {
 		buttonLogin.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				User authentifiedUser = null;
+				
 				authentifiedUser = UserServicesDelegate.doAuthenticate(
 						loginField.getText(), passwordField.getText());
-				user = authentifiedUser;
+				//recuperer l'utilisateur connecté
+				SessionDelegate.doSetLogin(authentifiedUser.getName());
+				SessionDelegate.doSetPwd(authentifiedUser.getPassword());
+				
 				if (authentifiedUser instanceof Traveler) {
 
 					System.out.println("Hello Traveler "
@@ -94,7 +100,7 @@ public class Authentification extends JFrame {
 							"Welcome  traveler " + authentifiedUser.getName());
 					TravelerGI travelerGI = new TravelerGI();
 					travelerGI.setVisible(true);
-
+					System.out.println("ena connectit: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
 					dispose();
 
 				} else if (authentifiedUser instanceof ContentManager) {
