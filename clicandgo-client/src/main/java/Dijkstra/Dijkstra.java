@@ -134,7 +134,9 @@ public class Dijkstra {
 			return j;
 	}
 
-	public void afficheCheminByStation(String depart, String arrivee) {
+	public String afficheCheminByStation(String depart, String arrivee) {
+		String ch=null;
+		String sh ="";
 		Station stationdepart = StationDelegate
 				.findStationByStationName(depart);
 		Station stationarrivee = StationDelegate
@@ -145,8 +147,8 @@ public class Dijkstra {
 		int antécédent = i;
 		Vector<Integer> lesNoeudsIntermediaires = new Vector<Integer>();
 		;
-		System.out.println(" de " + stationdepart.getName() + " à "
-				+ stationarrivee.getName() + ":");
+		System.out.println(" de " + depart + " à "
+				+ arrivee + ":");
 		while (antécédent != source) {
 			lesNoeudsIntermediaires.add(antécédent);
 			antécédent = R[antécédent];
@@ -157,13 +159,18 @@ public class Dijkstra {
 			Station stationvariable = StationDelegate
 					.doFindStationByReference(lesNoeudsIntermediaires.get(j));
 			System.out.print("-->" + stationvariable.getName());
+			sh=sh+"-->" +  stationvariable.getName();
 		}
 		System.out.print("-->" + stationarrivee.getName());
 		System.out.println();
+		String yy = "-->"+arrivee; 
+		ch="le Chemin de " + depart + " à " + arrivee + ": "+sh+yy;
+		return ch;
 	}
 
-	public void afficheChemin(int i) {
-
+	public String afficheChemin(int i) {
+        String ch=null;
+        String sh=null;
 		int source = x0;
 		int antécédent = i;
 		Vector<Integer> lesNoeudsIntermediaires = new Vector<Integer>();
@@ -177,20 +184,29 @@ public class Dijkstra {
 		lesNoeudsIntermediaires.add(source);
 		for (int j = lesNoeudsIntermediaires.size() - 1; j > 0; j--) {
 			System.out.print("-->" + lesNoeudsIntermediaires.get(j));
+			sh=sh+"-->" + lesNoeudsIntermediaires.get(j);
 		}
 		System.out.print("-->" + i);
 		System.out.println();
+		ch="le Chemin de " + x0 + " à " + i + ": "+sh;
+		
+		return ch;
 	}
 
-	public void AfficherDestinationEtCout(String depart, String arrivee) { // Station
-																			// stationdepart=StationDelegate.findStationByStationName(depart);
+	public String AfficherDestinationEtCout(String depart, String arrivee) { // Station
+		String ch=null	;	
+		String sh=null;// stationdepart=StationDelegate.findStationByStationName(depart);
 		Station stationarrivee = StationDelegate
 				.findStationByStationName(arrivee);
 		System.out.print("le cout du chemin est ");
 		int duree = longueurChemin(stationarrivee.getReference());
 		System.out.println(+duree);
+		System.out.print("/n");
 		System.out.print("le chemain a prendre");
-		afficheCheminByStation(depart, arrivee);
+		sh=afficheCheminByStation(depart, arrivee);
+		
+		ch="le cout du chemin est "+duree+" \n "+sh;
+		return ch;
 
 	}
 

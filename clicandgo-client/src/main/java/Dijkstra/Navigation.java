@@ -25,6 +25,7 @@ public class Navigation extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -75,11 +76,16 @@ public class Navigation extends JFrame {
 		btnVisualize.setBounds(170, 122, 89, 23);
 		contentPane.add(btnVisualize);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(59, 183, 306, 45);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
-		textField_2.setVisible(false);
+		textArea = new JTextArea();
+		textArea.setBounds(26, 186, 373, 64);
+		contentPane.add(textArea);
+		textArea.setVisible(false);
+		
+//		textField_2 = new JTextField();
+//		textField_2.setBounds(10, 166, 414, 84);
+//		contentPane.add(textField_2);
+//		textField_2.setColumns(10);
+//		textField_2.setVisible(false);
 		btnVisualize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int N = Graphe.ALPHA_NOTDEF;
@@ -87,8 +93,6 @@ public class Navigation extends JFrame {
 						{ 4, 3, N, N, 7 }, { 1, 3, N, N, 2 }, { N, 6, 7, 2, N },
 
 				};
-				
-				
 			String depart=textField.getText();
 			String arrival=textField_1.getText();
 			Station stationdepart = StationDelegate
@@ -96,9 +100,10 @@ public class Navigation extends JFrame {
 			Graphe g0 = new Graphe(matDuree);
 			Dijkstra dij=new Dijkstra(stationdepart.getReference(), g0);
 			dij.AfficherDestinationEtCout(depart,arrival);
-			textField_2.setVisible(true);
-			textField_2.setText("Hello");
-			
+			//textField_2.setVisible(true);
+			//textField_2.setText(dij.AfficherDestinationEtCout(depart, arrival));
+			textArea.setVisible(true);
+			textArea.setText(dij.AfficherDestinationEtCout(depart, arrival));
 			
 			
 			}
