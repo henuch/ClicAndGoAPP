@@ -62,4 +62,8 @@ public class StationLineManagementDelegate {
 		return getProxy().findStationLineByLineAndStation(line, station);
 	}
 
+	public static Boolean doAddLine(Line line) {
+		return getProxy().addLine(line);
+	}
+
 }

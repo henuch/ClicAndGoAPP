@@ -39,4 +39,6 @@ public interface StationLineManagementRemote {
 			Station station, Station station1);
 
 	public Boolean AntecedentInTheSameLine(Station station, Station station1);
+
+	public Boolean addLine(Line line);
 }

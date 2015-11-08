@@ -142,9 +142,9 @@ public class StationLineManagement implements StationLineManagementRemote,
 	@Override
 	public List<Station> findAllStationsByLineId(Integer id) {
 		try {
-			String jpql = "select s from Station s join s.stationLines sls where sls.line.lineId=?1";
+			String jpql = "select s from Station s join s.stationLines sls where sls.line.lineId=:param";
 			Query query = entityManager.createQuery(jpql);
-			query.setParameter(1, id);
+			query.setParameter("param", id);
 			return query.getResultList();
 
 		} catch (Exception e) {
@@ -184,6 +184,18 @@ public class StationLineManagement implements StationLineManagementRemote,
 	public Boolean AntecedentInTheSameLine(Station station, Station station1) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Boolean addLine(Line line) {
+		Boolean b = false;
+		try {
+			entityManager.merge(line);
+			b = true;
+		} catch (Exception e) {
+			System.err.println("A problem occured while adding " + line);
+		}
+		return b;
 	}
 
 }
