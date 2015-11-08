@@ -14,19 +14,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import BusinessDelegator.UserServicesDelegate;
+import entities.ContentManager;
 import entities.Traveler;
 import entities.User;
-import BusinessDelegator.UserServicesDelegate;
-
-
 
 public class Authentification extends JFrame {
-
+	public User user;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private JFrame frame;
 	private JPanel contentPane;
 	private JTextField loginField;
 	private JTextField passwordField;
@@ -38,8 +36,8 @@ public class Authentification extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Authentification frame = new Authentification();
-					frame.setVisible(true);
+					Authentification authentification = new Authentification();
+					authentification.setVisible(true);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +50,7 @@ public class Authentification extends JFrame {
 	 * Create the application.
 	 */
 	public Authentification() {
-		 //initialize();
+		// initialize();
 		setTitle("Authentication");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 750);
@@ -84,44 +82,29 @@ public class Authentification extends JFrame {
 		buttonLogin.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("DEBUT_AUTHENTIFICATION");
 				User authentifiedUser = null;
-				authentifiedUser=UserServicesDelegate.doAuthenticate(loginField.getText(), passwordField.getText());
-				if(authentifiedUser instanceof Traveler)
-				{
-					
-					System.out.println("Hello Traveler"+authentifiedUser.getName());
-					JOptionPane.showMessageDialog(rootPane, "Welcome  traveler " +authentifiedUser.getName());
-					
-					Authentification frame = new Authentification();
-					frame.setVisible(true);
-					
+				authentifiedUser = UserServicesDelegate.doAuthenticate(
+						loginField.getText(), passwordField.getText());
+				user = authentifiedUser;
+				if (authentifiedUser instanceof Traveler) {
+
+					System.out.println("Hello Traveler "
+							+ authentifiedUser.getName());
+					JOptionPane.showMessageDialog(rootPane,
+							"Welcome  traveler " + authentifiedUser.getName());
+					TravelerGI travelerGI = new TravelerGI();
+					travelerGI.setVisible(true);
+
 					dispose();
-					
-				}
-				else
-				{
-					System.out.println("Hello Content Manager"+ authentifiedUser.getName());
-				}
-//				 if(y.getRole().equals("admin")){
-//				 System.out.println("Test Utilisateur"+y.getPassword());
-//				
-//				 JOptionPane.showMessageDialog(rootPane,
-//				 "Welcome   " +y.getNom());
-//				 AcceuilAdministrateur ac = new AcceuilAdministrateur();
-//				 ac.setVisible(true);
-//				dispose();
 
+				} else if (authentifiedUser instanceof ContentManager) {
+					System.out.println("Hello Content Manager"
+							+ authentifiedUser.getName());
+				} else {
+					JOptionPane.showMessageDialog(rootPane,
+							"authentification error, try again.");
+				}
 			}
-
-			// else
-			// JOptionPane.showMessageDialog(rootPane,
-			// "your are not admin");
-			//
-			// System.out.println("ok");
-			//
-			// }
-
 		});
 		buttonLogin.setBounds(491, 442, 117, 23);
 		panel.add(buttonLogin);
@@ -135,14 +118,5 @@ public class Authentification extends JFrame {
 		passwordField.setBounds(257, 295, 151, 20);
 		panel.add(passwordField);
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-//	private void initialize() {
-//		frame = new JFrame();
-//		frame.setBounds(100, 100, 450, 300);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	}
 
 }
