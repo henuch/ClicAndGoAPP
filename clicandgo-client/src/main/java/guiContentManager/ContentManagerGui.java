@@ -16,6 +16,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
+
+import java.awt.Font;
+
+import javax.swing.SwingConstants;
+
+import BusinessDelegator.SessionDelegate;
 
 public class ContentManagerGui extends JFrame {
         
@@ -33,8 +40,7 @@ public class ContentManagerGui extends JFrame {
 private static final long serialVersionUID = 1L;
 // private JFrame frame;
 Authentification authentification = new Authentification();
-//StationPanel stationPanel =new StationPanel();
-private JButton btnPlace;
+private JLabel label;
 
 /**
  * Create the application.
@@ -84,13 +90,6 @@ private void initComponents() {
 	
 	JButton btnUser = new JButton();
 	btnUser.setText("User");
-	
-	btnPlace = new JButton();
-	btnPlace.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		}
-	});
-	btnPlace.setText("Place");
 
 	javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(
 			panelMenu);
@@ -104,8 +103,7 @@ private void initComponents() {
 						.addComponent(logoutBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addComponent(btnMeanoftransport, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
 					.addComponent(btnLine, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnUser, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnPlace, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
+					.addComponent(btnUser, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
 				.addContainerGap(43, Short.MAX_VALUE))
 	);
 	panelMenuLayout.setVerticalGroup(
@@ -119,9 +117,7 @@ private void initComponents() {
 				.addComponent(btnLine, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
 				.addGap(38)
 				.addComponent(btnUser, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-				.addGap(47)
-				.addComponent(btnPlace, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+				.addPreferredGap(ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
 				.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
 				.addGap(19))
 	);
@@ -131,53 +127,38 @@ private void initComponents() {
 	panelContent.setBorder(javax.swing.BorderFactory
 			.createLineBorder(new java.awt.Color(102, 0, 0)));
 	panelContent.setLayout(new java.awt.CardLayout());
+	
+	label = new JLabel();
+	label.setText("Hi, "+SessionDelegate.doGetLogin());
+	label.setHorizontalAlignment(SwingConstants.CENTER);
+	label.setFont(new Font("Arial Black", Font.BOLD, 16));
 
 	javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(
 			bodyPanel);
+	bodyPanelLayout.setHorizontalGroup(
+		bodyPanelLayout.createParallelGroup(Alignment.LEADING)
+			.addGroup(bodyPanelLayout.createSequentialGroup()
+				.addGap(4)
+				.addGroup(bodyPanelLayout.createParallelGroup(Alignment.LEADING, false)
+					.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+				.addGap(18)
+				.addComponent(panelContent, GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+				.addContainerGap())
+	);
+	bodyPanelLayout.setVerticalGroup(
+		bodyPanelLayout.createParallelGroup(Alignment.LEADING)
+			.addGroup(Alignment.TRAILING, bodyPanelLayout.createSequentialGroup()
+				.addContainerGap()
+				.addGroup(bodyPanelLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(bodyPanelLayout.createSequentialGroup()
+						.addComponent(label, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE))
+					.addComponent(panelContent, GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE))
+				.addContainerGap())
+	);
 	bodyPanel.setLayout(bodyPanelLayout);
-	bodyPanelLayout.setHorizontalGroup(bodyPanelLayout.createParallelGroup(
-			javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-			bodyPanelLayout
-					.createSequentialGroup()
-					.addGap(4, 4, 4)
-					.addComponent(panelMenu,
-							javax.swing.GroupLayout.PREFERRED_SIZE,
-							javax.swing.GroupLayout.DEFAULT_SIZE,
-							javax.swing.GroupLayout.PREFERRED_SIZE)
-					.addGap(18, 18, 18)
-					.addComponent(panelContent,
-							javax.swing.GroupLayout.DEFAULT_SIZE, 780,
-							Short.MAX_VALUE).addContainerGap()));
-	bodyPanelLayout
-			.setVerticalGroup(bodyPanelLayout
-					.createParallelGroup(
-							javax.swing.GroupLayout.Alignment.LEADING)
-					.addGroup(
-							bodyPanelLayout
-									.createSequentialGroup()
-									.addContainerGap()
-									.addGroup(
-											bodyPanelLayout
-													.createParallelGroup(
-															javax.swing.GroupLayout.Alignment.LEADING)
-													.addComponent(
-															panelContent,
-															javax.swing.GroupLayout.DEFAULT_SIZE,
-															javax.swing.GroupLayout.DEFAULT_SIZE,
-															Short.MAX_VALUE)
-													.addGroup(
-															javax.swing.GroupLayout.Alignment.TRAILING,
-															bodyPanelLayout
-																	.createSequentialGroup()
-																	.addGap(0,
-																			0,
-																			Short.MAX_VALUE)
-																	.addComponent(
-																			panelMenu,
-																			javax.swing.GroupLayout.PREFERRED_SIZE,
-																			623,
-																			javax.swing.GroupLayout.PREFERRED_SIZE)))
-									.addContainerGap()));
 
 	 btnNewButton = new JButton("");
 	 btnNewButton.setBackground(new Color(255, 255, 255));

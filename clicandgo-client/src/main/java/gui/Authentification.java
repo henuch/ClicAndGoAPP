@@ -105,12 +105,15 @@ public class Authentification extends JFrame {
 					dispose();
 
 				} else if (authentifiedUser instanceof ContentManager) {
-					System.out.println("Hello Content Manager"
+
+					System.out.println("Hello CM "
 							+ authentifiedUser.getName());
 					JOptionPane.showMessageDialog(rootPane,
-							"Welcome  traveler " + authentifiedUser.getName());
-					ContentManagerGui contentManagerGui=new ContentManagerGui();
+							"Welcome  Content Manager " + authentifiedUser.getName());
+					ContentManagerGui	contentManagerGui=new ContentManagerGui();
 					contentManagerGui.setVisible(true);
+					System.out.println("ena connectit: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
+					dispose();
 				} else {
 					JOptionPane.showMessageDialog(rootPane,
 							"authentification error, try again.");

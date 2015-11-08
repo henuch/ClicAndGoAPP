@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.EbookTableModel;
+import javax.swing.SwingConstants;
 
 //import model.DiscountModelTable;
 
@@ -45,9 +46,9 @@ public class ReadingPanel extends JPanel {
 		});
 		jTable1 = new javax.swing.JTable();
 		jPanelOptions = new javax.swing.JPanel();
-		jPanelOptions.setBounds(550, 108, 150, 73);
+		jPanelOptions.setBounds(540, 108, 160, 73);
 		DownloadBtn = new javax.swing.JButton();
-		DownloadBtn.setBounds(10, 40, 130, 23);
+		DownloadBtn.setBounds(10, 40, 140, 23);
 
 		setBorder(javax.swing.BorderFactory.createTitledBorder(null,
 				"E-Library",
@@ -159,9 +160,21 @@ public class ReadingPanel extends JPanel {
 		jPanelOptions.add(DownloadBtn);
 
 		JLabel labelDownload = new JLabel();
+		labelDownload.setHorizontalAlignment(SwingConstants.CENTER);
 		labelDownload.setText("Select to download");
-		labelDownload.setBounds(20, 11, 109, 32);
+		labelDownload.setBounds(10, 11, 140, 32);
 		jPanelOptions.add(labelDownload);
+		
+		jPanelReaderSpeed = new JPanel();
+		jPanelReaderSpeed.setBounds(540, 192, 160, 246);
+		jPanelReaderSpeed.setBorder(javax.swing.BorderFactory.createTitledBorder(
+				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
+						51, 0, 0)), "Reader Speed",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+				javax.swing.border.TitledBorder.DEFAULT_POSITION,
+				new java.awt.Font("Arial", 2, 12),
+				new java.awt.Color(102, 0, 0)));
+		add(jPanelReaderSpeed);
 	}
 
 	private void descriptionTextActionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,4 +198,5 @@ public class ReadingPanel extends JPanel {
 	private javax.swing.JScrollPane jScrollLibrary;
 	private javax.swing.JTable jTable1;
 	private javax.swing.JButton DownloadBtn;
+	private JPanel jPanelReaderSpeed;
 }

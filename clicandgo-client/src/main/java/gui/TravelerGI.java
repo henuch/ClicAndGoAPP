@@ -8,6 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import BusinessDelegator.SessionDelegate;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TravelerGI extends JFrame {
 
@@ -30,6 +40,8 @@ public class TravelerGI extends JFrame {
 	// Authentification authentification = new Authentification();
 	ReadingPanel readingPanel = new ReadingPanel();
 	TicketingPanel ticketingPanel = new TicketingPanel();
+	private JButton itineraryBtn;
+	private JButton placesBtn;
 
 	/**
 	 * Create the application.
@@ -81,125 +93,90 @@ public class TravelerGI extends JFrame {
 				ticketingBtnActionPerformed(evt);
 			}
 		});
+		
+		itineraryBtn = new JButton();
+		itineraryBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		itineraryBtn.setText("Itinerary");
+		
+		placesBtn = new JButton();
+		placesBtn.setText("Places");
 
 		javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(
 				panelMenu);
+		panelMenuLayout.setHorizontalGroup(
+			panelMenuLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(panelMenuLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(panelMenuLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(logoutBtn, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+						.addComponent(itineraryBtn, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
+						.addComponent(ticketingBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+						.addComponent(readingBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+						.addComponent(placesBtn, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		panelMenuLayout.setVerticalGroup(
+			panelMenuLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(panelMenuLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(itineraryBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addGap(31)
+					.addComponent(ticketingBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addGap(32)
+					.addComponent(readingBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addComponent(placesBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+					.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addGap(19))
+		);
 		panelMenu.setLayout(panelMenuLayout);
-		panelMenuLayout
-				.setHorizontalGroup(panelMenuLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								panelMenuLayout
-										.createSequentialGroup()
-										.addContainerGap(
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addGroup(
-												panelMenuLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																false)
-														.addComponent(
-																readingBtn,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																137,
-																Short.MAX_VALUE)
-														.addComponent(
-																ticketingBtn,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																137,
-																Short.MAX_VALUE)
-														.addComponent(
-																logoutBtn,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE))
-										.addContainerGap(
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)));
-		panelMenuLayout
-				.setVerticalGroup(panelMenuLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								panelMenuLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(
-												readingBtn,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												66,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addComponent(
-												ticketingBtn,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												62,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-												.addComponent(
-												logoutBtn,
-												javax.swing.GroupLayout.PREFERRED_SIZE,
-												46,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(19, 19, 19)));
 
 		panelContent.setBackground(new java.awt.Color(255, 255, 255));
 		panelContent.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(102, 0, 0)));
 		panelContent.setLayout(new java.awt.CardLayout());
+		
+		JLabel lblUSER = new JLabel();
+		
+		lblUSER.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUSER.setText("Hi, "+SessionDelegate.doGetLogin());
+		lblUSER.setFont(new Font("Arial Black", Font.BOLD, 16));
 
 		javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(
 				bodyPanel);
+		bodyPanelLayout.setHorizontalGroup(
+			bodyPanelLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(bodyPanelLayout.createSequentialGroup()
+					.addGap(4)
+					.addGroup(bodyPanelLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(bodyPanelLayout.createSequentialGroup()
+							.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(18))
+						.addGroup(Alignment.LEADING, bodyPanelLayout.createSequentialGroup()
+							.addComponent(lblUSER, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)))
+					.addComponent(panelContent, GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+					.addGap(18))
+		);
+		bodyPanelLayout.setVerticalGroup(
+			bodyPanelLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(bodyPanelLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panelContent, GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+					.addGap(70))
+				.addGroup(Alignment.TRAILING, bodyPanelLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(lblUSER, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, 591, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
 		bodyPanel.setLayout(bodyPanelLayout);
-		bodyPanelLayout.setHorizontalGroup(bodyPanelLayout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				bodyPanelLayout
-						.createSequentialGroup()
-						.addGap(4, 4, 4)
-						.addComponent(panelMenu,
-								javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(18, 18, 18)
-						.addComponent(panelContent,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 780,
-								Short.MAX_VALUE).addContainerGap()));
-		bodyPanelLayout
-				.setVerticalGroup(bodyPanelLayout
-						.createParallelGroup(
-								javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(
-								bodyPanelLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												bodyPanelLayout
-														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
-														.addComponent(
-																panelContent,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																javax.swing.GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE)
-														.addGroup(
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																bodyPanelLayout
-																		.createSequentialGroup()
-																		.addGap(0,
-																				0,
-																				Short.MAX_VALUE)
-																		.addComponent(
-																				panelMenu,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				623,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)))
-										.addContainerGap()));
 
 		btnNewButton = new JButton("");
 		btnNewButton.setBackground(new Color(255, 255, 255));
@@ -279,5 +256,4 @@ public class TravelerGI extends JFrame {
 		});
 
 	}
-
 }
