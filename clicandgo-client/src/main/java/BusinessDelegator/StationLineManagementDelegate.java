@@ -66,4 +66,8 @@ public class StationLineManagementDelegate {
 		return getProxy().addLine(line);
 	}
 
+	public static List<Line> doFindAllLinesByStationId(Integer stationId) {
+		return getProxy().findAllLinesByStationId(stationId);
+	}
+
 }
