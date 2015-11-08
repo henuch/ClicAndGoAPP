@@ -30,17 +30,16 @@ public class StationLine implements Serializable {
 		super();
 	}
 
-	public StationLine(entities.StationLineId stationLineId,
-			Integer position, Integer duration, Station station,
-			Line line, Integer distance) {
+	public StationLine(Station station, Line line, Integer position,
+			Integer duration, Integer distance) {
 		super();
-		this.StationLineId = new StationLineId(
-				line.getLineId(), station.getStationId());
+		this.StationLineId = new StationLineId(line.getLineId(),
+				station.getStationId());
 		this.position = position;
 		this.setDuration(duration);
 		this.station = station;
 		this.line = line;
-		this.distance=distance;
+		this.distance = distance;
 	}
 
 	@EmbeddedId
@@ -60,10 +59,8 @@ public class StationLine implements Serializable {
 		this.position = position;
 	}
 
-
-
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "stationId", referencedColumnName = "stationId",insertable = false, updatable = false)
+	@JoinColumn(name = "stationId", referencedColumnName = "stationId", insertable = false, updatable = false)
 	public Station getStation() {
 		return station;
 	}
@@ -98,5 +95,4 @@ public class StationLine implements Serializable {
 		this.duration = duration;
 	}
 
-	
 }

@@ -11,6 +11,8 @@ public class TestAddStation {
 		Station st= new Station();
 		st.setName("BebAlioua");
 		StationDelegate.DoaddStation(st);
+		
+		
 	}
     
 }

@@ -17,5 +17,7 @@ public interface StationServicesRemote {
 			Id);
 	public Boolean deleteStation(Station station);
 	public List<Station> findAllStations();
+	public Station findStationByStationByReference(int ref);
+	public Station findStationByStationName(String name);
 
 }

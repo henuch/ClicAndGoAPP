@@ -4,13 +4,13 @@
     import java.util.List;
 
     import javax.ejb.Stateless;
-    import javax.persistence.EntityManager;
-    import javax.persistence.PersistenceContext;
-    import javax.persistence.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
     import services.interfaces.StationServicesLocal;
-    import services.interfaces.StationServicesRemote;
-    import entities.Station;
+import services.interfaces.StationServicesRemote;
+import entities.Station;
 
     /**
      * Session Bean implementation class StationServices
@@ -80,6 +80,14 @@
     		return null;
 
     	}
+    	@Override
+    	public Station findStationByStationByReference(int ref) {
+    		String jpql = "select s from Station s where s.reference=:param";
+    		Query query = entityManager.createQuery(jpql);
+    		query.setParameter("param",ref);
+    		return (Station) query.getSingleResult();
+
+    	}
 
     	@Override
     	public Boolean deleteStation(Station station) {
@@ -102,6 +110,17 @@
     		return query.getResultList();
     	}
 
+		@Override
+		public Station findStationByStationName(String name) {
+			String jpql = "select s from Station s where s.name LIKE :param";
+    		Query query = entityManager.createQuery(jpql);
+    		query.setParameter("param",'%'+name+'%');
+    		return (Station) query.getSingleResult();
+    		}
+
+    	
+    	
+    	
     }
 
 

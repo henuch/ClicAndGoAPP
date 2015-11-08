@@ -5,10 +5,12 @@ import entities.Category;
 import entities.Ebook;
 import entities.Line;
 import entities.MeanOfTransport;
+import entities.Station;
 import entities.Traveler;
 import entities.Type;
 import BusinessDelegator.MeansOfTransportDelegate;
 import BusinessDelegator.ReadingManagementDelegate;
+import BusinessDelegator.StationDelegate;
 import BusinessDelegator.UserServicesDelegate;
 
 
@@ -50,6 +52,33 @@ public class populateDB {
 		traveler.setName("houcem");
 		traveler.setPassword("houcem");
 		System.out.println(UserServicesDelegate.getProxy().addUser(traveler));
+		//////////Populate Stations
+		Station st0= new Station();
+		st0.setName("Ariana");
+		st0.setReference(0);
+		StationDelegate.DoaddStation(st0);
+		
+		Station st1= new Station();
+		st1.setName("Barcelone");
+		st1.setReference(1);
+		StationDelegate.DoaddStation(st1);
+		
+		Station st2= new Station();
+		st2.setName("Hamma lif");
+		st2.setReference(2);
+		StationDelegate.DoaddStation(st2);
+		
+		Station st3= new Station();
+		st3.setName("Rades");
+		st3.setReference(3);
+		StationDelegate.DoaddStation(st3);
+		
+		Station st4= new Station();
+		st4.setName("La marsa");
+		st4.setReference(4);
+		StationDelegate.DoaddStation(st4);
+		
+		
 		
 	}
 }
