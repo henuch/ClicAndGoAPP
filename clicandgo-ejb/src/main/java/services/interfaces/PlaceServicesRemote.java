@@ -15,5 +15,7 @@ public interface PlaceServicesRemote {
 	Place findPlaceByPlaceId(Integer placeId);
 
 	Boolean deletePlace(Place place);
+	
+	Boolean assignPlaceToStation(Place place, Integer stationId);
 
 }

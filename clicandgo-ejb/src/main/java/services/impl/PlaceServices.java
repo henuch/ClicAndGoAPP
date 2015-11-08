@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import entities.Place;
+import entities.Station;
 import services.interfaces.PlaceServicesLocal;
 import services.interfaces.PlaceServicesRemote;
 
@@ -76,4 +77,25 @@ public class PlaceServices implements PlaceServicesRemote, PlaceServicesLocal {
 		return b;
 	}
 
-}
+	@Override
+	public Boolean assignPlaceToStation(Place place, Integer stationId) {
+		Boolean b = false;
+		
+		try
+		{ Station station = entityManager.find(Station.class,stationId);
+			place= entityManager.find(Place.class, place.getPlaceId());
+		place.setStation(station);
+			//une fois les cruds de nadia fait na7iwHa
+			//entityManager.merge(line);
+		entityManager.merge(place);
+			b = true;
+		} catch (Exception e) {
+		}
+		return b;
+	}
+
+	
+	}
+	
+
+
