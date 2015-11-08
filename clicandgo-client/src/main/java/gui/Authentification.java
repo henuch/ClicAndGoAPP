@@ -19,6 +19,7 @@ import BusinessDelegator.UserServicesDelegate;
 import entities.ContentManager;
 import entities.Traveler;
 import entities.User;
+import guiContentManager.ContentManagerGui;
 
 public class Authentification extends JFrame {
 	public User authentifiedUser;
@@ -106,6 +107,10 @@ public class Authentification extends JFrame {
 				} else if (authentifiedUser instanceof ContentManager) {
 					System.out.println("Hello Content Manager"
 							+ authentifiedUser.getName());
+					JOptionPane.showMessageDialog(rootPane,
+							"Welcome  traveler " + authentifiedUser.getName());
+					ContentManagerGui contentManagerGui=new ContentManagerGui();
+					contentManagerGui.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(rootPane,
 							"authentification error, try again.");
