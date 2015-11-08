@@ -1,6 +1,6 @@
 package Dijkstra;
 
-public class Graphe {
+public class Graphe  {
 
 	// Declaration de variable
 	
