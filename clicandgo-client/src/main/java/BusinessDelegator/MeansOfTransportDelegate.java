@@ -1,5 +1,10 @@
 package BusinessDelegator;
 
+import java.lang.reflect.Proxy;
+import java.util.List;
+
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import services.interfaces.MeanOfTransportServicesRemote;
 import ServiceLocator.ServiceLocator;
 import entities.MeanOfTransport;
@@ -23,5 +28,16 @@ public class MeansOfTransportDelegate {
 		return getProxy().assignMeanOfTransportToLine(newMeanOfTransport,
 				lineId);
 
+	}
+	public static MeanOfTransport doFindMeanOfTransportById(String Id) {
+		return getProxy().findMeanOfTransportById(Id);
+	}
+	public static List<MeanOfTransport> doFindAllMeanOfTransports() 
+	{
+	return getProxy().findAllMeanOfTransports();
+	}
+	public static Boolean DoDeleteMeanOfTransportById(String Id)
+	{
+		return getProxy().deleteMeanOfTransportById(Id);
 	}
 }

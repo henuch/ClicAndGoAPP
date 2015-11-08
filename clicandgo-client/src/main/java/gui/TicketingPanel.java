@@ -29,7 +29,7 @@ public class TicketingPanel extends JPanel {
 	public TicketingPanel() {
 		DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd, yyyy");
 		Date date = new Date();
-		lblmaindate.setText(dateFormat.format(date));
+		//lblmaindate.setText(dateFormat.format(date));
 		initialize();
 	}
 
