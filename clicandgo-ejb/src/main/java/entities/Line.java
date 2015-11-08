@@ -84,4 +84,57 @@ public class Line implements Serializable {
 				+ nbStations + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((lineId == null) ? 0 : lineId.hashCode());
+		result = prime
+				* result
+				+ ((meansOftransport == null) ? 0 : meansOftransport.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result
+				+ ((nbStations == null) ? 0 : nbStations.hashCode());
+		result = prime * result
+				+ ((stationLines == null) ? 0 : stationLines.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Line other = (Line) obj;
+		if (lineId == null) {
+			if (other.lineId != null)
+				return false;
+		} else if (!lineId.equals(other.lineId))
+			return false;
+		if (meansOftransport == null) {
+			if (other.meansOftransport != null)
+				return false;
+		} else if (!meansOftransport.equals(other.meansOftransport))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (nbStations == null) {
+			if (other.nbStations != null)
+				return false;
+		} else if (!nbStations.equals(other.nbStations))
+			return false;
+		if (stationLines == null) {
+			if (other.stationLines != null)
+				return false;
+		} else if (!stationLines.equals(other.stationLines))
+			return false;
+		return true;
+	}
+
 }

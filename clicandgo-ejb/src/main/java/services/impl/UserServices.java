@@ -10,10 +10,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import entities.MeanOfTransport;
-import entities.User;
 import services.interfaces.UserServicesLocal;
 import services.interfaces.UserServicesRemote;
+import entities.User;
 
 /**
  * Session Bean implementation class UserServices
@@ -23,12 +22,13 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 
 	@PersistenceContext
 	EntityManager entityManager;
-    /**
-     * Default constructor. 
-     */
-    public UserServices() {
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * Default constructor.
+	 */
+	public UserServices() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Boolean addUser(User u) {
@@ -37,8 +37,7 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 			entityManager.persist(u);
 			b = true;
 		} catch (Exception e) {
-			System.err.println("A problem occured while adding "
-					+ u);
+			System.err.println("A problem occured while adding " + u);
 		}
 		return b;
 	}
@@ -58,16 +57,16 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 
 	@Override
 	public User updateUser(int id) {
-		User u=findUserById(id);
+		User u = findUserById(id);
 		try {
-			
+
 			entityManager.merge(u);
-		
+
 		} catch (Exception e) {
-			System.err.println("A problem occured while updating "+u);
+			System.err.println("A problem occured while updating " + u);
 		}
 		return u;
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -87,27 +86,30 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 					.println("A problem occured while trying to find MoT by  "
 							+ id);
 
-	}
+		}
 		return null;
 
-}
+	}
+
 	@Override
 	public User authenticate(String name, String password) {
-		
+
 		User found = new User();
-		Query query = entityManager.createQuery("select u from User u where u.name=:n and u.password=:p");
-		query.setParameter("n", name);
-		query.setParameter("p", password);
-		try{
-			found  = (User) query.getSingleResult();
-			System.out.println("c bn! hetheya connecté"+found);
+		Query query = entityManager
+				.createQuery("select u from User u where u.name=:name and u.password=:password");
+		query.setParameter("name", name);
+		query.setParameter("password", password);
+		try {
+			found = (User) query.getSingleResult();
+			System.out.println("The authentified user is:" + found);
 			return found;
-		}catch(NoResultException e){
-			Logger
-				.getLogger(getClass().getName())
-					.log(Level.WARNING, "auth attempt failed with login="+name+" and password="+password);
+		} catch (NoResultException e) {
+			Logger.getLogger(getClass().getName()).log(
+					Level.WARNING,
+					"auth attempt failed with login=" + name + " and password="
+							+ password);
 			return null;
 		}
-		
+
 	}
 }
