@@ -83,25 +83,25 @@ public class populateDB {
 		st4.setReference(4);
 		StationDelegate.DoaddStation(st4);
 
-//		Station st5 = new Station();
-//		st5.setName("Mourouj");
-//		st5.setReference(5);
-//		StationDelegate.DoaddStation(st5);
-//
-//		Station st6 = new Station();
-//		st6.setName("Ezzahra");
-//		st6.setReference(6);
-//		StationDelegate.DoaddStation(st6);
-//
-//		Station st7 = new Station();
-//		st7.setName("Le Kef");
-//		st7.setReference(7);
-//		StationDelegate.DoaddStation(st7);
-//
-//		Station st8 = new Station();
-//		st8.setName("Beb Alioua");
-//		st8.setReference(8);
-//		StationDelegate.DoaddStation(st8);
+		Station st5 = new Station();
+		st5.setName("Mourouj");
+		st5.setReference(5);
+		StationDelegate.DoaddStation(st5);
+
+		Station st6 = new Station();
+		st6.setName("Ezzahra");
+		st6.setReference(6);
+		StationDelegate.DoaddStation(st6);
+
+		Station st7 = new Station();
+		st7.setName("Le Kef");
+		st7.setReference(7);
+		StationDelegate.DoaddStation(st7);
+
+		Station st8 = new Station();
+		st8.setName("Beb Alioua");
+		st8.setReference(8);
+		StationDelegate.DoaddStation(st8);
 
 	}
 }
