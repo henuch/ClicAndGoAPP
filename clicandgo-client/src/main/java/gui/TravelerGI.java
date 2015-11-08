@@ -7,12 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import BusinessDelegator.SessionDelegate;
+
 public class TravelerGI extends JFrame {
 	
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 
 		private javax.swing.JPanel bodyPanel;
-		private javax.swing.JButton ItineraryBtn;
+		private javax.swing.JButton readingBtn;
 		private javax.swing.JButton logoutBtn;
 		public static javax.swing.JPanel panelContent;
 		private javax.swing.JPanel panelGeneral;
@@ -24,7 +26,8 @@ public class TravelerGI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	// private JFrame frame;
-	Authentification authentification = new Authentification();
+	//Authentification authentification = new Authentification();
+	ReadingPanel readingPanel =new ReadingPanel();
 
 	/**
 	 * Create the application.
@@ -39,13 +42,17 @@ public class TravelerGI extends JFrame {
 		panelGeneral = new javax.swing.JPanel();
 		bodyPanel = new javax.swing.JPanel();
 		panelMenu = new javax.swing.JPanel();
-		ItineraryBtn = new javax.swing.JButton();
+		readingBtn = new javax.swing.JButton();
 		logoutBtn = new javax.swing.JButton();
 
 		logoutBtn.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				
 				dispose();
+				SessionDelegate.doExit();
+				System.out.println("ena deconnectit: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
+
 			}
 		});
 
@@ -57,8 +64,8 @@ public class TravelerGI extends JFrame {
 		panelMenu.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(102, 0, 0)));
 
-		ItineraryBtn.setText("Itinerary");
-		ItineraryBtn.addActionListener(new java.awt.event.ActionListener() {
+		readingBtn.setText("Reading");
+		readingBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				AuthentificationBtnActionPerformed(evt);
 			}
@@ -85,7 +92,7 @@ public class TravelerGI extends JFrame {
 																javax.swing.GroupLayout.Alignment.TRAILING,
 																false)
 														.addComponent(
-																ItineraryBtn,
+																readingBtn,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																137,
 																Short.MAX_VALUE)
@@ -106,7 +113,7 @@ public class TravelerGI extends JFrame {
 										.createSequentialGroup()
 										.addContainerGap()
 										.addComponent(
-												ItineraryBtn,
+												readingBtn,
 												javax.swing.GroupLayout.PREFERRED_SIZE,
 												66,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +207,7 @@ public class TravelerGI extends JFrame {
 	private void AuthentificationBtnActionPerformed(
 			java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
 		panelContent.removeAll();
-		panelContent.add(authentification);
+		panelContent.add(readingPanel);
 		panelContent.repaint();
 		panelContent.revalidate(); // TODO add your handling code here:
 	}// GEN-LAST:event_gestionFournisseursBtnActionPerformed

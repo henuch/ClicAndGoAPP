@@ -23,16 +23,14 @@ public class Station implements Serializable {
 
 	private List<StationLine> stationLines;
 
-	public Station(){}
-	
-	
+	public Station() {
+	}
+
 	public Station(String name, Integer reference) {
 		super();
 		this.name = name;
 		this.reference = reference;
 	}
-	
-	
 
 	public Station(String name, Integer reference,
 			List<StationLine> stationLines) {
@@ -42,10 +40,8 @@ public class Station implements Serializable {
 		this.stationLines = stationLines;
 	}
 
-
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getStationId() {
 		return stationId;
 	}
@@ -63,11 +59,11 @@ public class Station implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "station")
-	public List<StationLine> getStationItineraries() {
+	public List<StationLine> getStationLines() {
 		return stationLines;
 	}
 
-	public void setStationItineraries(List<StationLine> stationLines) {
+	public void setStationLines(List<StationLine> stationLines) {
 		this.stationLines = stationLines;
 	}
 
