@@ -22,4 +22,7 @@ public class LineServicesDelegate {
 	public static List<Line> doFindAllLines() {
 		return getProxy().findAllLines();
 	}
+	public static Line doFindLineByName(String name){
+		return getProxy().findLineByName(name);
+	}
 }

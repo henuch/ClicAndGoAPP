@@ -49,7 +49,7 @@ public class MeanOfTransport implements Serializable {
 	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	public Line getLine() {
 		return line;
 	}

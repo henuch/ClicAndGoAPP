@@ -28,7 +28,9 @@ import BusinessDelegator.SessionDelegate;
 public class ContentManagerGui extends JFrame {
         
 	private javax.swing.JPanel bodyPanel;
+	private JPanel meanOfTransportPanel;
 	private javax.swing.JButton ItineraryBtn;
+	private JButton btnMeanoftransport;
 	private javax.swing.JButton logoutBtn;
 	public static javax.swing.JPanel panelContent;
 	private javax.swing.JPanel panelGeneral;
@@ -58,6 +60,10 @@ private void initComponents() {
 	panelMenu = new javax.swing.JPanel();
 	ItineraryBtn = new javax.swing.JButton();
 	logoutBtn = new javax.swing.JButton();
+	btnMeanoftransport = new JButton();
+	
+	
+	 meanOfTransportPanel = new MeanOfTransportPanel();
 
 	logoutBtn.addActionListener(new ActionListener() {
 		
@@ -83,8 +89,13 @@ private void initComponents() {
 
 	logoutBtn.setText("Logout");
 	
-	JButton btnMeanoftransport = new JButton();
 	btnMeanoftransport.setText("MeanOfTransport");
+	btnMeanoftransport.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			btnMeanoftransportActionPerformed(e);
+		}
+	});
+	
 	
 	JButton btnLine = new JButton();
 	btnLine.setText("Line");
@@ -198,6 +209,14 @@ private void AuthentificationBtnActionPerformed(
 	panelContent.repaint();
 	panelContent.revalidate(); // TODO add your handling code here:
 }// GEN-LAST:event_gestionFournisseursBtnActionPerformed
+
+private void btnMeanoftransportActionPerformed(ActionEvent e) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
+	panelContent.removeAll();
+	panelContent.add(meanOfTransportPanel);
+	panelContent.repaint();
+	panelContent.revalidate(); // TODO add your handling code here:
+}// GEN-LAST:event_gestionFournisseursBtnActionPerformed
+
 
 public static void main(String args[]) {
 	/* Set the Nimbus look and feel */

@@ -1,9 +1,6 @@
 package BusinessDelegator;
 
-import java.lang.reflect.Proxy;
 import java.util.List;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import services.interfaces.MeanOfTransportServicesRemote;
 import ServiceLocator.ServiceLocator;
@@ -18,26 +15,31 @@ public class MeansOfTransportDelegate {
 				.getProxy(jndiName);
 	}
 
-	public static Boolean addMeanOfTransport(MeanOfTransport MeanOfTransport) {
+	public static Boolean doAddMeanOfTransport(MeanOfTransport MeanOfTransport) {
 		return getProxy().addMeanOfTransport(MeanOfTransport);
 
 	}
 
 	public static Boolean doAssignMeanOfTransportToLine(
-			MeanOfTransport newMeanOfTransport, Integer lineId) {
-		return getProxy().assignMeanOfTransportToLine(newMeanOfTransport,
+			String meanId, Integer lineId) {
+		return getProxy().assignMeanOfTransportToLine(meanId,
 				lineId);
 
 	}
+
 	public static MeanOfTransport doFindMeanOfTransportById(String Id) {
 		return getProxy().findMeanOfTransportById(Id);
 	}
-	public static List<MeanOfTransport> doFindAllMeanOfTransports() 
-	{
-	return getProxy().findAllMeanOfTransports();
+
+	public static List<MeanOfTransport> doFindAllMeanOfTransports() {
+		return getProxy().findAllMeanOfTransports();
 	}
-	public static Boolean DoDeleteMeanOfTransportById(String Id)
-	{
+
+	public static Boolean DoDeleteMeanOfTransportById(String Id) {
 		return getProxy().deleteMeanOfTransportById(Id);
+	}
+
+	public static List<MeanOfTransport> doLookUpMeanOfTransport(String id) {
+		return getProxy().lookUpMeanOfTransport(id);
 	}
 }

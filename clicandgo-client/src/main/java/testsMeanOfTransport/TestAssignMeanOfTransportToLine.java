@@ -1,14 +1,17 @@
 package testsMeanOfTransport;
 
 import entities.MeanOfTransport;
+import entities.Place;
 import BusinessDelegator.MeansOfTransportDelegate;
+import BusinessDelegator.PlaceServicesDelegate;
 
 public class TestAssignMeanOfTransportToLine {
-
-	// PlayerServicesDelegate.doAssignPlayerToTeam(3, 1, 2);
-	// MeansOfTransportDelegate.doAssignMea
 	public static void main(String[] args) {
-		 
+		
+		
+		System.out.println(MeansOfTransportDelegate.doAssignMeanOfTransportToLine("TCV1", 1));
+		//System.out.println(MeansOfTransportDelegate.doAssignMeanOfTransportToLine(meanOfTransport1, 1));
+
 	}
 
 }
