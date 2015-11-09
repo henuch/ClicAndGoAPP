@@ -53,9 +53,9 @@ public class Dessin extends JFrame {
 		contentPane.add(btnDraw);
 		btnDraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			 pn p=new pn();
-			 contentPane.add(p);
-			 p.setSize(contentPane.getWidth(),contentPane.getHeight());
+			Mapy mapy=new Mapy();
+			 contentPane.add(mapy);
+			 mapy.setSize(contentPane.getWidth(),contentPane.getHeight());
 			
 			
 			}
