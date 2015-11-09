@@ -8,14 +8,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import BusinessDelegator.SessionDelegate;
+import Dijkstra.Navigation;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -40,6 +45,8 @@ public class TravelerGI extends JFrame {
 	// Authentification authentification = new Authentification();
 	ReadingPanel readingPanel = new ReadingPanel();
 	TicketingPanel ticketingPanel = new TicketingPanel();
+	NavigationPanel navigationPanel=new NavigationPanel();
+	
 	private JButton itineraryBtn;
 	private JButton placesBtn;
 
@@ -56,7 +63,8 @@ public class TravelerGI extends JFrame {
 		panelGeneral = new javax.swing.JPanel();
 		bodyPanel = new javax.swing.JPanel();
 		panelMenu = new javax.swing.JPanel();
-
+		
+        
 		ticketingBtn = new JButton();
 		readingBtn = new JButton();
 
@@ -95,9 +103,24 @@ public class TravelerGI extends JFrame {
 		});
 		
 		itineraryBtn = new JButton();
+		itineraryBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelContent.removeAll();
+				panelContent.add(navigationPanel);
+				panelContent.repaint();
+				panelContent.revalidate();
+				
+			
+			
+			}
+		});
 		itineraryBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				panelContent.removeAll();
+				panelContent.add(navigationPanel);
+				panelContent.repaint();
+				panelContent.revalidate();
 			}
 		});
 		itineraryBtn.setText("Itinerary");
