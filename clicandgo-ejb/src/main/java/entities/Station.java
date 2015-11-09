@@ -80,4 +80,50 @@ public class Station implements Serializable {
 		this.reference = reference;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result
+				+ ((reference == null) ? 0 : reference.hashCode());
+		result = prime * result
+				+ ((stationId == null) ? 0 : stationId.hashCode());
+		result = prime * result
+				+ ((stationLines == null) ? 0 : stationLines.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Station other = (Station) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (reference == null) {
+			if (other.reference != null)
+				return false;
+		} else if (!reference.equals(other.reference))
+			return false;
+		if (stationId == null) {
+			if (other.stationId != null)
+				return false;
+		} else if (!stationId.equals(other.stationId))
+			return false;
+		if (stationLines == null) {
+			if (other.stationLines != null)
+				return false;
+		} else if (!stationLines.equals(other.stationLines))
+			return false;
+		return true;
+	}
+
 }
