@@ -7,9 +7,13 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import entities.MeanOfTransport;
+import BusinessDelegator.MeansOfTransportDelegate;
 
 public class TicketingPanel extends JPanel {
 
@@ -48,7 +52,7 @@ public class TicketingPanel extends JPanel {
 		jLabel4 = new javax.swing.JLabel();
 		jLabel4.setBounds(10, 200, 90, 15);
 		jLabel5 = new javax.swing.JLabel();
-		jLabel5.setBounds(10, 90, 80, 15);
+		jLabel5.setBounds(10, 92, 80, 15);
 		cmbmovies = new javax.swing.JComboBox();
 		cmbmovies.setBounds(100, 90, 230, 20);
 		jLabel6 = new javax.swing.JLabel();
@@ -135,20 +139,26 @@ public class TicketingPanel extends JPanel {
 		add(jSeparator1);
 
 		jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12));
-		jLabel4.setText("Time of Show:");
+		jLabel4.setText("Time:");
 		add(jLabel4);
 
 		jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12));
 		jLabel5.setText("Select MOT: ");
 		add(jLabel5);
+		
+		
+		List <MeanOfTransport> listenom = MeansOfTransportDelegate.doFindAllMeanOfTransports();
+        for (MeanOfTransport c :listenom) 
+        {
+       
+        	cmbmovies.addItem((String)(c.getRegistrationNumber()));
+        }
+        ;
 
-		cmbmovies.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"X-Men: Days of Future Past", "Gone Girl", "If I Stay",
-				"Walk of Shame", "God's Pocket", "Obvious Child",
-				"Third Person", "I Origins", "A Most Wanted Man",
-				"Dolphin Tale 2", "Monkey Kingdom",
-				"When the Game Stands Tall", "Wish I Was Here",
-				"Soaked in Bleach", "How to Train Your Dragon 2", " " }));
+		/*cmbmovies.setModel(new javax.swing.DefaultComboBoxModel()
+		{	
+				BusinessDelegator.MeansOfTransportDelegate.doFindAllMeanOfTransports()
+				});*/
 		cmbmovies.addItemListener(new java.awt.event.ItemListener() {
 			public void itemStateChanged(java.awt.event.ItemEvent evt) {
 				cmbmoviesItemStateChanged(evt);
@@ -162,7 +172,7 @@ public class TicketingPanel extends JPanel {
 		add(cmbmovies);
 
 		jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12));
-		jLabel6.setText("Date of Show:");
+		jLabel6.setText("Date:");
 		add(jLabel6);
 
 		cmbdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] {

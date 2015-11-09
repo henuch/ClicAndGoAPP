@@ -28,3 +28,9 @@ Adult Ticket(s): 1
 Child Ticket(s): 1
 Show Date & Time: Sunday, April 20, 2014 :: 2:00PM
 Total Cost: 0
+
+Movie Name: lol
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: Sunday, April 20, 2014 :: 2:00PM
+Total Cost: $1 116,25

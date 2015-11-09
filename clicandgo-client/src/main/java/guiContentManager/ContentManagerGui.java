@@ -1,6 +1,7 @@
 package guiContentManager;
 
 import gui.Authentification;
+import gui.ReadingPanel;
 import gui.TravelerGI;
 
 import java.awt.BorderLayout;
@@ -33,7 +34,7 @@ public class ContentManagerGui extends JFrame {
 	private javax.swing.JPanel panelGeneral;
 	private javax.swing.JPanel panelMenu;
 	private JButton btnNewButton;
-
+	UserPanel userpanel = new UserPanel();
 /**
  * 
  */
@@ -89,6 +90,15 @@ private void initComponents() {
 	btnLine.setText("Line");
 	
 	JButton btnUser = new JButton();
+	btnUser.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			panelContent.removeAll();
+			panelContent.add(userpanel);
+			panelContent.repaint();
+			panelContent.revalidate(); // TODO add your handling code here:
+		}// GEN-LAST:event_gestionCategorieBtnActionPerformed
+		
+	});
 	btnUser.setText("User");
 
 	javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(
