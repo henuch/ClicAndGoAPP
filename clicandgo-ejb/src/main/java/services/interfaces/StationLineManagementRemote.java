@@ -38,9 +38,11 @@ public interface StationLineManagementRemote {
 	public StationLine findStationLineOfOneStationInTheSameLineOfAnotherStation(
 			Station station, Station station1);
 
-	public Boolean AntecedentInTheSameLine(Station station, Station station1);
+	public Integer AntecedentInTheSameLine(Station station, Station station1);
 
 	public Boolean addLine(Line line);
 
 	public List<Line> findAllLinesByStationId(Integer stationId);
+
+	public Integer[][] RemplirMatrice();
 }

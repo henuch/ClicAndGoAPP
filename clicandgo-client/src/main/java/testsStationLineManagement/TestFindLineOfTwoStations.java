@@ -5,7 +5,7 @@ import BusinessDelegator.StationLineManagementDelegate;
 public class TestFindLineOfTwoStations {
 	public static void main(String[] args) {
 		System.out.println(StationLineManagementDelegate
-				.doFindLineOfTwoStations(1, 2));
+				.doFindLineOfTwoStations(3,1));
 	}
 
 }

@@ -98,10 +98,5 @@ public class populateDB {
 		st7.setReference(7);
 		StationDelegate.DoaddStation(st7);
 
-		Station st8 = new Station();
-		st8.setName("Beb Alioua");
-		st8.setReference(8);
-		StationDelegate.DoaddStation(st8);
-
 	}
 }
