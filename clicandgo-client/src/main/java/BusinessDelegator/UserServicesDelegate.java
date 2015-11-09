@@ -45,4 +45,8 @@ public class UserServicesDelegate {
 	{
 		return getProxy().updateReadingSpeed(id, speed);
 	}
+	public static List<User> doFindUserByName(String name)
+	{
+		return getProxy().findUserByName(name);
+	}
 }

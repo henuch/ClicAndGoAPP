@@ -5,7 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -174,19 +176,22 @@ public class TicketingPanel extends JPanel {
 		jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12));
 		jLabel6.setText("Date:");
 		add(jLabel6);
-
-		cmbdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Sunday, April 20, 2014", "Monday, April 21, 2014",
-				"Tuesday, April 22, 2014", "Wednesday, April 23, 2014",
-				"Thursday, April 24, 2014", "Friday, April 25, 2014",
-				"Saturday, April 26, 2014", "Sunday, April 27, 2014",
-				"Monday, April 28, 2014", "Tuesday, April 29, 2014",
-				"Wednesday, April 30, 2014", "Thursday, April 31, 2014",
-				"Friday,May 1, 2014", "Saturday, May 2, 2014",
-				"Sunday, May 3, 2014", "Monday, May 4, 2014",
-				"Tuesday, May 5, 2014", "Wednesday, May 6, 2014",
-				"Thursday, May 7, 2014", "Friday,May 8, 2014",
-				"Saturday, May 9, 2014", " " }));
+			String dt = "2015-11-11"
+					+ "";  // Start date
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		try {
+			c.setTime(sdf.parse(dt));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i=0; i<7; i++){
+		c.add(Calendar.DATE, 1);  // number of days to add
+		dt = sdf.format(c.getTime());  // dt is now the new date
+		cmbdate.addItem(dt);
+		}
 		cmbdate.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				cmbdateActionPerformed(evt);

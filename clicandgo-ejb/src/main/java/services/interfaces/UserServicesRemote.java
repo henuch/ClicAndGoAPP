@@ -17,5 +17,6 @@ public interface UserServicesRemote {
 	List<User> findAllUsers();
 	User findUserById(int id);
 	User authenticate(String name, String password);
+	List<User> findUserByName(String name);
 	
 }

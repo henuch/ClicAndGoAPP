@@ -112,6 +112,13 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		}
 
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findUserByName(String name) {
+		Query query = entityManager.createQuery("select p from User p where UPPER(p.name) LIKE:pname");
+		query.setParameter("pname", "%" + name + "%");
+return query.getResultList();
+	}
 
 	@Override
 	public User updateReadingSpeed(int id,int speed) {

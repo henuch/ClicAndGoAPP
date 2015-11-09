@@ -38,10 +38,10 @@ public class Authentification extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					System.out.println("ena doub ma 7allit l'app: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
-
+					
 					Authentification authentification = new Authentification();
 					authentification.setVisible(true);
+					System.out.println("ena doub ma 7allit l'app: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
 
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -19,8 +19,8 @@ public class UserTableModel extends AbstractTableModel {
     List<User> users;
     String[] entete = {"userId", "name","surname", "email", "password"};
 
-    public UserTableModel(String name, String surname, String email, String password) {
-        users = UserServicesDelegate.doFindAllUsers();
+    public UserTableModel(String name) {
+        users = UserServicesDelegate.doFindUserByName(name);
     }
  public UserTableModel(){
      users = UserServicesDelegate.doFindAllUsers();
@@ -72,11 +72,11 @@ public class UserTableModel extends AbstractTableModel {
     }
 
    
-    public List<User> searchUsers(  int id) {
+    public List<User> searchUsers(String name) {
 
-        User users = UserServicesDelegate.findUserById(id);
+        List<User> users = UserServicesDelegate.doFindUserByName(name);
         List<User> searchUsers = new ArrayList<>();
-        List<User> resultList = new ArrayList<>();;
+        List<User> resultList = new ArrayList<>();
 
         
         
