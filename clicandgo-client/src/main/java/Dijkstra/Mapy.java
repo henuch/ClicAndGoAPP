@@ -20,7 +20,7 @@ public class Mapy extends JPanel {
 		List<Line> lines = LineServicesDelegate.doFindAllLines();
 		
 		for (Line l : lines) {
-			gr.setColor(Color.red);
+			
 			List<Station> stations = StationLineManagementDelegate
 					.doFindAllStationsByLineId(l.getLineId());
 			
@@ -29,7 +29,9 @@ public class Mapy extends JPanel {
 			}
 
 			for (Station station : stations) {
+				
 				if (station.getX() != null && station.getY() != null) {
+					gr.setColor(Color.red);
 					gr.fillOval(station.getX(), station.getY(), 10, 10);
 					gr.setColor(Color.BLUE);
 					gr.drawString(station.getName(), station.getX(), station.getY()-10);
