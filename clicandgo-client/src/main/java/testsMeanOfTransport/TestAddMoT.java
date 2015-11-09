@@ -16,10 +16,12 @@ public class TestAddMoT {
 		
 		MeanOfTransport MeanOfTransport = new MeanOfTransport();
 		MeanOfTransport.setRegistrationNumber("lol"); 
+		MeanOfTransport.setCapacity(5);
+		MeanOfTransport.setNbOfWagons(55);
+		
 
-		MeanOfTransport MeanOfTransport2 = new MeanOfTransport();
-		MeanOfTransport.setRegistrationNumber("laal"); 
-		System.out.println(proxy.addMeanOfTransport(MeanOfTransport2));
+		 
+		System.out.println(proxy.addMeanOfTransport(MeanOfTransport));
 	}
 }
 

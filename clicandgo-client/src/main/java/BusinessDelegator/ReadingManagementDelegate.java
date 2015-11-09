@@ -21,8 +21,8 @@ public class ReadingManagementDelegate {
 		return getProxy().addEbook(ebook);
 	}
 	
-	public static List<Ebook> doSuggestEbooks(StationLine stationLine, Traveler traveler ){
-		return getProxy().suggestEbooks(stationLine, traveler);
+	public static List<Ebook> doSuggestEbooks(Integer duration, Traveler traveler ){
+		return getProxy().suggestEbooks(duration, traveler);
 	}
 	
 	public static List<Ebook> doLookUpEbook(String search){

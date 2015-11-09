@@ -14,11 +14,29 @@ public class Session implements SessionRemote {
 
 	public static String login;
     public static String pwd;
+    public static Integer departure;
+    public static Integer arrival;
 
     
     
     
-    public  String getLogin() {
+    public Integer getDeparture() {
+		return departure;
+	}
+
+	public void setDeparture(Integer departure) {
+		Session.departure = departure;
+	}
+
+	public Integer getArrival() {
+		return arrival;
+	}
+
+	public void setArrival(Integer arrival) {
+		Session.arrival = arrival;
+	}
+
+	public  String getLogin() {
         return login;
     }
 
@@ -33,20 +51,29 @@ public class Session implements SessionRemote {
     public  void setPwd(String pwd) {
         Session.pwd = pwd;
     }
+    
+    
     public Session() {
         // TODO Auto-generated constructor stub
     }
-    
-    @PreDestroy
-    public void exit () {
-        Session.pwd=null;
-        Session.login=null;
-    }
-    
-    @Remove
-    public void stopSession () {
-        Session.pwd=null;
-        Session.login=null;
-    } 
+
+	@Override
+	public void exit() {
+		login=null;
+		pwd=null;
+		arrival=null;
+		departure=null;
+		
+	}
+
+	@Override
+	public void stopSession() {
+		login=null;
+		pwd=null;
+		arrival=null;
+		departure=null;
+		
+	}
+  
 
 }

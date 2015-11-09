@@ -27,11 +27,31 @@ public class SessionDelegate {
 		getProxy().setPwd(pwd);
 	}
 	
-	public static 	void doStopSession() {
-		getProxy().stopSession();
+	public static Integer doGetArrival() {
+		return getProxy().getArrival();
+	}
+
+	public static void doSetArrival(Integer arrival) {
+		getProxy().setArrival(arrival);
 	}
 	
-	public static 	void doExit() {
+	public static Integer doGetDeparture() {
+		return getProxy().getDeparture();
+	}
+
+	public static void doSetDeparture(Integer departure) {
+		getProxy().setDeparture(departure);;
+	}
+	
+	
+	
+
+
+	public static void doStopSession() {
+		getProxy().stopSession();
+	}
+
+	public static void doExit() {
 		getProxy().exit();
 	}
 }
