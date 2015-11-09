@@ -21,8 +21,7 @@ public class Mapy extends JPanel {
 		
 		for (Line l : lines) {
 			
-			List<Station> stations = StationLineManagementDelegate
-					.doFindAllStationsByLineId(l.getLineId());
+			List<Station> stations = StationLineManagementDelegate.doFindAllStationsByLineId(l.getLineId());
 			
 			for (Station s : stations) {
 				System.out.println("" + l.getName() + "" + s.getName()+" ");
@@ -45,29 +44,11 @@ public class Mapy extends JPanel {
 						stations.get(i+1).getX()+5, stations.get(i+1).getY()+5);
 			}
 			
+			
 
 		}
 
-		// for (Station s : stations) {
-		// gr.fillOval(s.getX(), s.getY(), 10, 10);
-		// // }
-		// gr.fillOval(stations.get(1).getX(), stations.get(1).getY(), 10, 10);
-		// gr.fillOval(stations.get(2).getX(), stations.get(2).getY(), 10, 10);
-		//
-		// gr.setColor(Color.black);
-		// gr.drawLine(stations.get(1).getX(), stations.get(1).getY(), stations
-		// .get(2).getX(), stations.get(2).getY());
-		// gr.fillOval(10, 120, 10, 10);
-		// gr.fillOval(100, 60, 10, 10);
-		// gr.fillOval(150, 20, 10, 10);
-		// gr.fillOval(200, 60, 10, 10);
-		// gr.fillOval(280, 10, 10, 10);
-
-		// gr.setColor(Color.black);
-		// gr.drawLine(15, 125, 105, 65);
-		// gr.drawLine(105, 65, 155, 25);
-		// gr.drawLine(155, 25, 205, 65);
-		// gr.drawLine(155, 25, 285, 15);
+	
 
 	}
 }
