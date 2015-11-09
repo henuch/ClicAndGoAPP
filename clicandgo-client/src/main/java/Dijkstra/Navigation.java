@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
+import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.StationDelegate;
 import entities.Station;
 
@@ -100,6 +101,8 @@ public class Navigation extends JFrame {
 			Graphe g0 = new Graphe(matDuree);
 			Dijkstra dij=new Dijkstra(stationdepart.getReference(), g0);
 			dij.AfficherDestinationEtCout(depart,arrival);
+//			SessionDelegate.doSetDeparture(depart);
+//			SessionDelegate.doSetArrival(arrival);
 			//textField_2.setVisible(true);
 			//textField_2.setText(dij.AfficherDestinationEtCout(depart, arrival));
 			textArea.setVisible(true);

@@ -5,7 +5,10 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import BusinessDelegator.ReadingManagementDelegate;
+import BusinessDelegator.SessionDelegate;
+import BusinessDelegator.UserServicesDelegate;
 import entities.Ebook;
+import entities.Traveler;
 
 public class EbookTableModel extends AbstractTableModel {
 	List<Ebook> ebooks;
@@ -13,7 +16,12 @@ public class EbookTableModel extends AbstractTableModel {
 	
 
 	public EbookTableModel() {
+		if(SessionDelegate.doGetArrival()==null)
+		{
 		ebooks = ReadingManagementDelegate.doViewLibrary();
+		}else{
+			ebooks=ReadingManagementDelegate.doSuggestEbooks(30, (Traveler) UserServicesDelegate.doAuthenticate(SessionDelegate.doGetLogin(),SessionDelegate.doGetPwd()));
+		}
 	}
 
 	// public EbookTableModel(String category){

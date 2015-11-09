@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import services.interfaces.ReadingManagementLocal;
 import services.interfaces.ReadingManagementRemote;
 import entities.Ebook;
-import entities.StationLine;
 import entities.Traveler;
 
 /**
@@ -41,19 +40,14 @@ public class ReadingManagement implements ReadingManagementRemote,
 	// je recupere l'utilisateur connecté et son trajet actuel
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Ebook> suggestEbooks(StationLine stationLine, Traveler traveler) {
+	public List<Ebook> suggestEbooks(Integer duration, Traveler traveler) {
 		try {
-			 Traveler travelerFound=entityManager.find(Traveler.class,
-			 traveler.getUserId());
-			 Integer ReaderSpeed = travelerFound.getNbOfWordsPerMinute();
-			// StationItinerary
-			// stationItineraryFound=entityManager.find(StationItinerary.class,
-			// stationItinerary.getStationItineraryId());
-			// Double duration=stationItineraryFound.getDuration();//supposant
-			// que c'est en minute
-			// entityManager.merge(travelerFound);
-			// entityManager.merge(stationItineraryFound);
-			Integer MaxNbOfWords = 22; // MaxNbOfWords = duration/ReaderSpeed
+			Traveler travelerFound = entityManager.find(Traveler.class,
+					traveler.getUserId());
+			Integer ReaderSpeed = travelerFound.getNbOfWordsPerMinute();
+
+			Integer MaxNbOfWords = duration / ReaderSpeed; // MaxNbOfWords =
+															// duration/ReaderSpeed
 			String jpql = "select m from Ebook m where m.nbOfWords <= ?1";
 			Query query = entityManager.createQuery(jpql);
 			query.setParameter(1, MaxNbOfWords);

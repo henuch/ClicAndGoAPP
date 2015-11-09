@@ -19,6 +19,6 @@ public interface ReadingManagementLocal {
 	
 	List<Ebook> lookUpEbook(String search);
 	
-	List<Ebook> suggestEbooks(StationLine stationLine, Traveler traveler );
+	List<Ebook> suggestEbooks(Integer duration, Traveler traveler );
 
 }
