@@ -17,19 +17,34 @@ public class TestAssignStationToLine {
 				4, 1, 4, 4, 4));
 
 		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
-				5, 2, 1, 0, 0));
+				4, 2, 1, 0, 0));
 
 		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
-				6, 2, 3, 3, 3));
+				5, 2, 3, 3, 3));
 
 		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
-				7, 2, 4, 4, 4));
+				5, 3, 4, 4, 4));
 
 		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
-				8, 2, 5, 5, 5));
+				6, 3, 5, 5, 5));
 
 		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
-				2, 2, 2, 2, 2));
+				7, 3, 2, 2, 2));
+		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
+				8, 3, 2, 2, 2));
+		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
+				9, 3, 2, 2, 2));
+		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
+				5, 4, 2, 2, 2));
+		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
+				12, 4, 2, 2, 2));
+		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
+				4, 5, 2, 2, 2));
+		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
+				10, 5, 2, 2, 2));
+		System.out.println(StationLineManagementDelegate.doAssignStationToLine(
+				11, 5, 2, 2, 2));
+		
 
 	}
 

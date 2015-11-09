@@ -37,25 +37,27 @@ public class Dessin extends JFrame {
 	 */
 	public Dessin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 387);
+		setBounds(100, 100, 800, 592);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\esprit\\git\\ClicAndGoAPP\\clicandgo-client\\img\\map.jpg"));
-		label.setBounds(0, 0, 434, 252);
-		contentPane.add(label);
-		
 		JButton btnDraw = new JButton("Draw");
-		btnDraw.setBounds(173, 278, 89, 23);
+		btnDraw.setBounds(673, 331, 89, 23);
 		contentPane.add(btnDraw);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\esprit\\git\\ClicAndGoAPP\\clicandgo-client\\img\\map.jpg"));
+		
+		lblNewLabel.setBounds(100, 100, 505, 505);
+		contentPane.add(lblNewLabel);
 		btnDraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			Mapy mapy=new Mapy();
 			 contentPane.add(mapy);
-			 mapy.setSize(contentPane.getWidth(),contentPane.getHeight());
+			 
+			 mapy.setBounds(150,150,500,500);
 			
 			
 			}
