@@ -4,6 +4,7 @@ import BusinessDelegator.ReadingManagementDelegate;
 import BusinessDelegator.StationDelegate;
 import BusinessDelegator.UserServicesDelegate;
 import entities.Category;
+import entities.ContentManager;
 import entities.Ebook;
 import entities.MeanOfTransport;
 import entities.Station;
@@ -43,6 +44,19 @@ public class populateDB {
 		traveler.setName("houcem");
 		traveler.setPassword("houcem");
 		System.out.println(UserServicesDelegate.getProxy().addUser(traveler));
+
+		
+		Traveler traveler2 = new Traveler();
+		traveler2.setName("sabrine");
+		traveler2.setPassword("sabrine");
+		traveler2.setNbOfWordsPerMinute(300);
+		System.out.println(UserServicesDelegate.getProxy().addUser(traveler2));
+		
+		ContentManager contentManager = new ContentManager();
+		contentManager.setName("yosr");
+		contentManager.setPassword("yosr");
+		System.out.println(UserServicesDelegate.getProxy().addUser(contentManager));
+		
 		// ////////Populate Stations
 		Station st0 = new Station();
 		st0.setName("Ariana");

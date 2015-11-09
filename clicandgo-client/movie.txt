@@ -1,0 +1,30 @@
+
+Movie Name: X-Men: Days of Future Past
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: Sunday, April 20, 2014 :: 2:00PM
+Total Cost: $1 116,25
+
+Movie Name: X-Men: Days of Future Past
+Adult Ticket(s): 6
+Child Ticket(s): 1
+Show Date & Time: Sunday, April 20, 2014 :: 2:00PM
+Total Cost: $4 641,25
+
+Movie Name: X-Men: Days of Future Past
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: Sunday, April 20, 2014 :: 2:00PM
+Total Cost: $1 116,25
+
+Movie Name: X-Men: Days of Future Past
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: Sunday, April 20, 2014 :: 2:00PM
+Total Cost: $1 116,25
+
+Movie Name: X-Men: Days of Future Past
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: Sunday, April 20, 2014 :: 2:00PM
+Total Cost: 0
