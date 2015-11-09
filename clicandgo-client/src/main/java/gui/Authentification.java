@@ -117,6 +117,8 @@ public class Authentification extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(rootPane,
 							"authentification error, try again.");
+					System.out.println("ena connectit: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
+
 				}
 			}
 		});
