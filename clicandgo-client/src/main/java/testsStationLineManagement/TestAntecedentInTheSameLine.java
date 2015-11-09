@@ -8,7 +8,7 @@ public class TestAntecedentInTheSameLine {
 		Station station = new Station();
 		station.setStationId(2);
 		Station station1 = new Station();
-		station1.setStationId(1);
+		station1.setStationId(5);
 		System.out.println(StationLineManagementDelegate
 				.doAntecedentInTheSameLine(station, station1));
 	}

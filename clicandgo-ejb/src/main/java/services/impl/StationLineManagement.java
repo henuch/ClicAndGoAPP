@@ -183,26 +183,6 @@ public class StationLineManagement implements StationLineManagementRemote,
 	}
 
 	@Override
-	public Boolean AntecedentInTheSameLine(Station station, Station station1) {
-		Boolean b = false;
-		Line line = findLineOfTwoStations(station.getStationId(),
-				station1.getStationId());
-		if (line == null) {
-			b = false;
-		} else {
-			StationLine stationLine = findStationLineByLineAndStation(line,
-					station);
-			StationLine stationLine1 = findStationLineByLineAndStation(line,
-					station1);
-			if (stationLine.getPosition() == stationLine1.getPosition() + 1) {
-				b = true;
-			}
-		}
-
-		return b;
-	}
-
-	@Override
 	public Boolean addLine(Line line) {
 		Boolean b = false;
 		try {
@@ -239,8 +219,10 @@ public class StationLineManagement implements StationLineManagementRemote,
 		try {
 			for (Line l : lines) {
 				for (Line l1 : lines1) {
-					if (l.equals(l1)) {
-						line = l;
+					if (l.getLineId() == l1.getLineId()) {
+						line = l1;
+					} else {
+						line = null;
 					}
 				}
 			}
@@ -251,5 +233,96 @@ public class StationLineManagement implements StationLineManagementRemote,
 
 		return line;
 
+	}
+
+	@Override
+	public Integer AntecedentInTheSameLine(Station station, Station station1) {
+		Integer b = 0;
+		Line line = findLineOfTwoStations(station.getStationId(),
+				station1.getStationId());
+		if (line == null) {
+			b = 0;
+		} else {
+			StationLine stationLine = findStationLineByLineAndStation(line,
+					station);
+			StationLine stationLine1 = findStationLineByLineAndStation(line,
+					station1);
+			if (stationLine.getPosition() == stationLine1.getPosition() + 1) {
+				b = 1;
+			} else {
+
+				if (stationLine.getPosition() == stationLine1.getPosition() - 1) {
+					b = 1;
+				} else {
+					if (station.equals(station1)) {
+						b = 0;
+					}
+
+				}
+			}
+		}
+
+		return b;
+	}
+
+	@Override
+	public Integer[][] RemplirMatrice() {
+
+		List<Station> stations = findAllStations();
+		List<Station> stations1 = findAllStations();
+
+		StationLine stationLine = new StationLine();
+
+		Integer Nmax = 8;
+		Integer[][] matrice = new Integer[Nmax][Nmax];
+		for (int i = 0; i < Nmax; i++) {
+			for (int j = 0; j < Nmax; j++) {
+				matrice[i][j] = 1;
+			}
+
+		}
+
+		for (Station s : stations) {
+			for (Station s1 : stations1) {
+				Integer etat = AntecedentInTheSameLine(s, s1);
+				if (etat == 0) {
+					System.out.print("insctruction1");
+					matrice[s.getReference()][s1.getReference()] = 0;
+					matrice[s1.getReference()][s.getReference()] = 0;
+				} else {
+					if (etat == 1) {
+						System.out.print("insctruction2");
+						stationLine = findStationLineOfOneStationInTheSameLineOfAnotherStation(
+								s, s1);
+						matrice[s.getReference()][s1.getReference()] = stationLine
+								.getDistance();
+						matrice[s1.getReference()][s.getReference()] = stationLine
+								.getDistance();
+					} else {
+						if (s.equals(s1)) {
+							matrice[s.getReference()][s1.getReference()] = 0;
+							matrice[s1.getReference()][s.getReference()] = 0;
+
+						}
+					}
+				}
+			}
+
+		}
+
+		// for (Station s : stations) {
+		// for (Station s1 : stations1) {
+		//
+		// stationLine =
+		// findStationLineOfOneStationInTheSameLineOfAnotherStation(
+		// s, s1);
+		// matrice[s.getReference()][s1.getReference()] = stationLine
+		// .getDistance();
+		// matrice[s1.getReference()][s.getReference()] = stationLine
+		// .getDistance();
+		// }
+		// }
+
+		return matrice;
 	}
 }
