@@ -48,7 +48,7 @@ public class Dessin extends JFrame {
 		contentPane.add(btnDraw);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\esprit\\git\\ClicAndGoAPP\\clicandgo-client\\img\\map.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("/images/réseaubusdugrandtunis.png"));
 		
 		lblNewLabel.setBounds(100, 100, 505, 505);
 		contentPane.add(lblNewLabel);
