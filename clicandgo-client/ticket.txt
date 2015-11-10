@@ -10,3 +10,15 @@ Adult Ticket(s): 1
 Child Ticket(s): 1
 Show Date & Time: 2015-11-12 :: 2:00PM
 Total Cost: Mil940,00
+
+ticket Name: TCV2
+Adult Ticket(s): 4
+Child Ticket(s): 3
+Show Date & Time: 2015-11-13 :: 8:15AM
+Total Cost: Mil3 348,75
+
+ticket Name: TCV2
+Adult Ticket(s): 4
+Child Ticket(s): 3
+Show Date & Time: 2015-11-13 :: 8:15AM
+Total Cost: Mil3 348,75
