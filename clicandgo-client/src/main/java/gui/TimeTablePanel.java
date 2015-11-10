@@ -2,30 +2,21 @@ package gui;
 
 import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+
+import BusinessDelegator.MeansOfTransportDelegate;
+import entities.MeanOfTransport;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import BusinessDelegator.LineServicesDelegate;
-import BusinessDelegator.MeansOfTransportDelegate;
-import entities.Line;
-import entities.MeanOfTransport;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
-
-import model.MeanOfTransportModel;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 public class TimeTablePanel extends JPanel {
-	private JLabel lblTim;
-
+	private JTable table;
+	private JTable table2;
 	/**
 	 * Launch the application.
 	 */
@@ -34,7 +25,8 @@ public class TimeTablePanel extends JPanel {
 	 * Create the application.
 	 */
 	public TimeTablePanel() {
-
+		
+		
 		initialize();
 	}
 
@@ -42,114 +34,82 @@ public class TimeTablePanel extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
 		setLayout(null);
+		
+		
+		table2 = new JTable();
+		table2.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"sd", "sd", "ds"},
+				{"ds", "ds", "ds"},
+				{"ds", "ds", null},
+			},
+			new String[] {
+				"New column", "New column", "New column"
+			}
+		));
+		table2.getColumnModel().getColumn(0).setResizable(false);
+		add(table2);
+
 
 		JPanel panel = new JPanel();
-		JComboBox<String> comboBoxMot = new JComboBox<String>();
-		JButton btnTime = new JButton("Show time table");
-		
-		
-		new MeanOfTransport();
-
-		List<MeanOfTransport> meanOfTransports = MeansOfTransportDelegate
-				.doFindAllMeanOfTransports();
-		for (MeanOfTransport m : meanOfTransports) {
-			comboBoxMot.addItem(m.getRegistrationNumber());
-		}
-		
-		panel.setBounds(0, 5, 816, 387);
+		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null,
+				null));
+		panel.setBounds(408, 373, -312, -367);
 		add(panel);
 		panel.setLayout(null);
-		//panel.add(table3);
-		
 
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(124, 104, 129, 50);
+		add(comboBox);
 		
-		comboBoxMot.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "Choose your mean of transport" }));
-		comboBoxMot.setBounds(143, 51, 176, 28);
-		panel.add(comboBoxMot);
-		
-		
-		btnTime.addActionListener(new ActionListener() {
+		JButton btnShowTables = new JButton("show tables");
+		btnShowTables.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//////////////////////////////////////////////////////////////////////////////////////
+				String m=comboBox.getSelectedItem().toString();
+				int n=comboBox.getSelectedIndex();
+				System.out.println("\n : le comcom "+m);
+				System.out.println(n);
+				if(n==1)
+					table.setVisible(true);
+				//initialize();
+
+				if(n==2){
+					table.setVisible(false);
+
+					table2.setVisible(true);
+					//initialize();
+				}
+
+				
 			}
 		});
-		btnTime.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			
-			if (comboBoxMot.getSelectedItem().toString().equals("TCV1")) {
-					lblTim = new JLabel("");
-					lblTim.setBounds(47, 87, 383, 186);
-					lblTim.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-						"/images/tcv1.png")));
-					lblTim.setText("");
-					panel.add(lblTim);
-			 }
-		 else if(comboBoxMot.getSelectedItem().toString().equals("TCV2"))
-			 {
-				 lblTim = new JLabel("");
-					lblTim.setBounds(47, 87, 383, 186);
-					lblTim.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-							"/images/manager1.png")));
-					lblTim.setText("");
-					panel.add(lblTim);
-		 }
-				
-				
-				
-//				if(comboBoxMot.getSelectedItem().toString().trim() != null)
-//				{
-//					table3.setVisible(true);
-//					table4.setVisible(false);
-//				}
-//				else
-//				{table4.setVisible(true);
-//				table3.setVisible(false);}
-	}
-		});
+		btnShowTables.setBounds(126, 217, 89, 23);
+		add(btnShowTables);
 		
-		btnTime.setBounds(179, 105, 111, 23);
-		panel.add(btnTime);
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"545", "5454"},
+				{"5454", "55"},
+			},
+			new String[] {
+				"New column", "New column"
+			}
+		));
+		table.setBounds(270, 280, 280, 129);
 		
-		JLabel lbltim = new JLabel("");
-		lbltim.setBounds(47, 204, 334, 132);
-		panel.add(lbltim);
-		
-//		lblTim = new JLabel("");
-//		lblTim.setBounds(47, 87, 383, 186);
-//		lblTim.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-//				"/images/tcv1.png")));
-//		lblTim.setText("");
-//		panel.add(lblTim);
+		add(table);
+		table.setVisible(false);
+		table2.setVisible(false);
 
-		// //////////Receperer means of transport de la base//////////
-
-
-		// /////////////////////
-
-		// //////////condition sur le tableau///////////
-
-//		 if (comboBoxMot.getSelectedItem().toString().equals("TCV1")) {
-//				lblTim = new JLabel("");
-//				lblTim.setBounds(47, 87, 383, 186);
-//				lblTim.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-//						"/images/tcv1.png")));
-//				lblTim.setText("");
-//				panel.add(lblTim);
-//		 }
-//		 else if(comboBoxMot.getSelectedItem().toString().equals("TCV2"))
-//		 {
-//			 lblTim = new JLabel("");
-//				lblTim.setBounds(47, 87, 383, 186);
-//				lblTim.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-//						"/images/manager1.png")));
-//				lblTim.setText("");
-//				panel.add(lblTim);
-//		 
-//		 }
-
-		// //////////////////////////
+		List<MeanOfTransport> meanOfTransports = MeansOfTransportDelegate.doFindAllMeanOfTransports();
+		for(MeanOfTransport m : meanOfTransports)
+		{
+			comboBox.addItem(m.getRegistrationNumber());
+		}
+	
+	
 	}
 }
