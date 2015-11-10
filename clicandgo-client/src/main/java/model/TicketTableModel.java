@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,5 +80,9 @@ public class TicketTableModel extends AbstractTableModel {
         
         return searchTickets;
     }
+	public static void print(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
