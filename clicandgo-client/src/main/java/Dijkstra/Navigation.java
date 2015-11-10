@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 
 import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.StationDelegate;
+import BusinessDelegator.StationLineManagementDelegate;
 import entities.Station;
 
 import java.awt.event.ActionListener;
@@ -90,7 +91,8 @@ public class Navigation extends JFrame {
 		btnVisualize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int N = Graphe.ALPHA_NOTDEF;
-				int[][] matDuree = { 
+				int[][] matDuree =//StationLineManagementDelegate.doRemplirMatrice();
+					{ 
 						{ N ,5 ,N ,N ,N ,N ,N ,N ,N ,N ,N ,N  }, 
 						{ 5 ,N ,4 ,N ,N ,N ,N ,N ,N ,N ,N ,N }, 
 						{ N ,4 ,N ,2 ,N ,N ,N ,N ,N ,N ,N ,N   }, 

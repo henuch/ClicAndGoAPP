@@ -268,18 +268,18 @@ public class StationLineManagement implements StationLineManagementRemote,
 	}
 
 	@Override
-	public Integer[][] RemplirMatrice() {
-
+	public int[][] RemplirMatrice() {
+int N=9999;
 		List<Station> stations = findAllStations();
 		List<Station> stations1 = findAllStations();
 
 		StationLine stationLine = new StationLine();
 
 		Integer Nmax = stations.size();
-		Integer[][] matrice = new Integer[Nmax][Nmax];
+		int[][] matrice = new int[Nmax][Nmax];
 		for (int i = 0; i < Nmax; i++) {
 			for (int j = 0; j < Nmax; j++) {
-				matrice[i][j] = 0;
+				matrice[i][j] = N;
 			}
 
 		}
@@ -289,8 +289,8 @@ public class StationLineManagement implements StationLineManagementRemote,
 				Integer etat = AntecedentInTheSameLine(s, s1);
 				if (etat == 0) {
 					System.out.print("insctruction1");
-					matrice[s.getReference()][s1.getReference()] = 0;
-					matrice[s1.getReference()][s.getReference()] = 0;
+					matrice[s.getReference()][s1.getReference()] = N;
+					matrice[s1.getReference()][s.getReference()] = N;
 				} else {
 					if (etat == 1) {
 						System.out.print("insctruction2");
@@ -302,8 +302,8 @@ public class StationLineManagement implements StationLineManagementRemote,
 								.getDistance();
 					} else {
 						if (s.equals(s1)) {
-							matrice[s.getReference()][s1.getReference()] = 0;
-							matrice[s1.getReference()][s.getReference()] = 0;
+							matrice[s.getReference()][s1.getReference()] = N;
+							matrice[s1.getReference()][s.getReference()] = N;
 
 						}
 					}

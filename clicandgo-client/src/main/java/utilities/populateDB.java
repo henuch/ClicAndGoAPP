@@ -114,7 +114,7 @@ public class populateDB {
 		st6.setY(110);
 
 		Station st7 = new Station();
-		st7.setName("Ezzaha");
+		st7.setName("Ezzahra");
 		st7.setReference(7);
 		st7.setX(300);
 		st7.setY(80);
