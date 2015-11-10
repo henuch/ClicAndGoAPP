@@ -11,6 +11,7 @@ import entities.Station;
 public interface LineServicesRemote {
 
 	Boolean addLine(Line line);
+	Line findLineByName(String name);
 	public List<Line> findAllLines();
 
 }

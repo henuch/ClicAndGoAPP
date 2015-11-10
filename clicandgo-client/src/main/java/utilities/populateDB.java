@@ -2,6 +2,7 @@ package utilities;
 
 import testsStationLineManagement.TestAssignStationToLine;
 import BusinessDelegator.LineServicesDelegate;
+import BusinessDelegator.MeansOfTransportDelegate;
 import BusinessDelegator.ReadingManagementDelegate;
 import BusinessDelegator.StationDelegate;
 import BusinessDelegator.UserServicesDelegate;
@@ -29,18 +30,27 @@ public class populateDB {
 
 		// ////////Populating MOT
 
-		MeanOfTransport meanOfTransport = new MeanOfTransport();
-		meanOfTransport.setRegistrationNumber("TCV1");
-		// System.out.println(MeansOfTransportDelegate.addMeanOfTransport(meanOfTransport));
+		
 
-		// Line line=new Line();
-		// line.setLineId(1);
-		// System.out.println(MeansOfTransportDelegate.doAssignMeanOfTransportToLine(meanOfTransport,
-		// line.getLineId()));
+		MeanOfTransport meanOfTransport1 = new MeanOfTransport();
+		meanOfTransport1.setRegistrationNumber("TCV1");
+		meanOfTransport1.setCapacity(30);
+		meanOfTransport1.setNbOfWagons(1);
+		System.out.println(MeansOfTransportDelegate
+				.doAddMeanOfTransport(meanOfTransport1));
 
-		// MeanOfTransport meanOfTransport2=new MeanOfTransport();
-		// meanOfTransport2.setRegistrationNumber("TCV2");
-		// System.out.println(MeansOfTransportDelegate.addMeanOfTransport(meanOfTransport2));
+		MeanOfTransport meanOfTransport2 = new MeanOfTransport();
+		meanOfTransport2.setRegistrationNumber("TCV2");
+		meanOfTransport2.setCapacity(30);
+		meanOfTransport2.setNbOfWagons(1);
+
+		System.out.println(MeansOfTransportDelegate
+				.doAddMeanOfTransport(meanOfTransport2));
+		
+		System.out.println(MeansOfTransportDelegate
+				.doLookUpMeanOfTransport("TC"));
+		
+		
 
 		// //////Populate Users
 		Traveler traveler = new Traveler();
@@ -109,7 +119,6 @@ public class populateDB {
 		st7.setX(300);
 		st7.setY(80);
 
-
 		Station st8 = new Station();
 		st8.setName("Hammam Lif");
 		st8.setReference(8);
@@ -173,6 +182,10 @@ public class populateDB {
 		System.out.println(LineServicesDelegate.doFindAllLines());
 
 		TestAssignStationToLine.main(null);
+		
+		//Assign MOT TO LINE
+		
+				//System.out.println("assign test "+MeansOfTransportDelegate.doAssignMeanOfTransportToLine(meanOfTransport1, 1));
 
 	}
 }

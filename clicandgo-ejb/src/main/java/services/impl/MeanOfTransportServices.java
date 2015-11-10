@@ -103,21 +103,41 @@ public class MeanOfTransportServices implements MeanOfTransportServicesRemote,
 	}
 
 	@Override
-	public Boolean assignMeanOfTransportToLine(
-			MeanOfTransport meanOfTransport, Integer lineId) {
-	
+	public Boolean assignMeanOfTransportToLine(String meanOfTransportId,
+			Integer lineId) {
+
 		Boolean b = false;
 		try {
-			Line line = entityManager.find(Line.class, lineId);
-			meanOfTransport= entityManager.find(MeanOfTransport.class, meanOfTransport.getRegistrationNumber());
-			meanOfTransport.setLine(line);
-			//une fois les cruds de nadia fait na7iwHa
-			entityManager.merge(line);
-			entityManager.merge(meanOfTransport);
+			Line linefound = entityManager.find(Line.class, lineId);
+			MeanOfTransport meanOfTransportfound = entityManager.find(
+					MeanOfTransport.class, meanOfTransportId);
+			meanOfTransportfound.setLine(linefound);
+			entityManager.merge(linefound);
+			entityManager.merge(meanOfTransportfound);
 			b = true;
 		} catch (Exception e) {
 		}
 		return b;
+	}
+
+	@Override
+	public List<MeanOfTransport> lookUpMeanOfTransport(String id) {
+		try {
+			String jpql = "select m from MeanOfTransport m where m.registrationNumber LIKE :param";
+			Query query = entityManager.createQuery(jpql);
+			query.setParameter("param", '%' + id + '%');
+			return query.getResultList();
+
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Boolean assignMeanOfTransportToLine(
+			MeanOfTransport newMeanOfTransport, Integer lineId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
