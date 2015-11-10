@@ -101,7 +101,7 @@ public class Authentification extends JFrame {
 							"Welcome  traveler " + authentifiedUser.getName());
 					TravelerGI travelerGI = new TravelerGI();
 					travelerGI.setVisible(true);
-					System.out.println("ena connectit: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd());
+					System.out.println("ena connectit: session login "+SessionDelegate.doGetLogin()+" Session Pwd "+SessionDelegate.doGetPwd() +"Duree"+SessionDelegate.doGetDuration());
 					dispose();
 
 				} else if (authentifiedUser instanceof ContentManager) {

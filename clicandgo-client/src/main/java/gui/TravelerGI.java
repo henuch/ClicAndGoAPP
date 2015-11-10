@@ -140,13 +140,13 @@ public class TravelerGI extends JFrame {
 			panelMenuLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(panelMenuLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(panelMenuLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(itineraryBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(logoutBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(ticketingBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(readingBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(lblUSER, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(placesBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+					.addGroup(panelMenuLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(itineraryBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(ticketingBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(readingBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(lblUSER, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(placesBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(logoutBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		panelMenuLayout.setVerticalGroup(
@@ -162,9 +162,9 @@ public class TravelerGI extends JFrame {
 					.addComponent(readingBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
 					.addGap(27)
 					.addComponent(placesBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
 					.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(19))
+					.addGap(24))
 		);
 		panelMenu.setLayout(panelMenuLayout);
 
@@ -188,13 +188,10 @@ public class TravelerGI extends JFrame {
 			bodyPanelLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(bodyPanelLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(bodyPanelLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(bodyPanelLayout.createSequentialGroup()
-							.addComponent(panelContent, GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
-							.addGap(70))
-						.addGroup(Alignment.TRAILING, bodyPanelLayout.createSequentialGroup()
-							.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
-							.addContainerGap())))
+					.addGroup(bodyPanelLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelContent, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+						.addComponent(panelMenu, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		bodyPanel.setLayout(bodyPanelLayout);
 

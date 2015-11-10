@@ -16,11 +16,11 @@ public class EbookTableModel extends AbstractTableModel {
 	
 
 	public EbookTableModel() {
-		if(SessionDelegate.doGetArrival()==null)
+		if(SessionDelegate.doGetDuration()==null)
 		{
 		ebooks = ReadingManagementDelegate.doViewLibrary();
 		}else{
-			ebooks=ReadingManagementDelegate.doSuggestEbooks(30, (Traveler) UserServicesDelegate.doAuthenticate(SessionDelegate.doGetLogin(),SessionDelegate.doGetPwd()));
+			ebooks=ReadingManagementDelegate.doSuggestEbooks(SessionDelegate.doGetDuration(), (Traveler) UserServicesDelegate.doAuthenticate(SessionDelegate.doGetLogin(),SessionDelegate.doGetPwd()));
 		}
 	}
 
