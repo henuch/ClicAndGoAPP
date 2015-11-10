@@ -14,6 +14,7 @@ import model.EbookTableModel;
 import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.UserServicesDelegate;
 import entities.User;
+import javax.swing.JButton;
 
 //import model.DiscountModelTable;
 
@@ -40,12 +41,12 @@ public class ReadingPanel extends JPanel {
 				SessionDelegate.doGetLogin(), SessionDelegate.doGetPwd());
 
 		jPanelSearch = new javax.swing.JPanel();
-		jPanelSearch.setBounds(10, 20, 690, 73);
+		jPanelSearch.setBounds(10, 20, 684, 73);
 		DescriptionTextSearch = new javax.swing.JLabel();
 		searchText = new javax.swing.JTextField();
 		SearchBtn = new javax.swing.JButton();
 		jPannelLibrary = new javax.swing.JPanel();
-		jPannelLibrary.setBounds(10, 108, 520, 410);
+		jPannelLibrary.setBounds(10, 108, 482, 484);
 		jScrollLibrary = new javax.swing.JScrollPane();
 		jScrollLibrary.addMouseListener(new MouseAdapter() {
 			@Override
@@ -56,9 +57,9 @@ public class ReadingPanel extends JPanel {
 		});
 		jTable1 = new javax.swing.JTable();
 		jPanelOptions = new javax.swing.JPanel();
-		jPanelOptions.setBounds(540, 108, 160, 73);
+		jPanelOptions.setBounds(499, 108, 195, 118);
 		DownloadBtn = new javax.swing.JButton();
-		DownloadBtn.setBounds(10, 40, 140, 23);
+		DownloadBtn.setBounds(82, 34, 103, 23);
 
 		setBorder(javax.swing.BorderFactory.createTitledBorder(null,
 				"E-Library",
@@ -85,7 +86,7 @@ public class ReadingPanel extends JPanel {
 			}
 		});
 		jPanelSearch.add(searchText);
-		searchText.setBounds(469, 29, 95, 20);
+		searchText.setBounds(444, 29, 95, 20);
 
 		SearchBtn.setText("Search");
 		SearchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +97,7 @@ public class ReadingPanel extends JPanel {
 		});
 		setLayout(null);
 		jPanelSearch.add(SearchBtn);
-		SearchBtn.setBounds(589, 28, 91, 23);
+		SearchBtn.setBounds(569, 28, 102, 23);
 
 		add(jPanelSearch);
 
@@ -150,7 +151,7 @@ public class ReadingPanel extends JPanel {
 				javax.swing.border.TitledBorder.DEFAULT_POSITION,
 				new java.awt.Font("Arial", 2, 12),
 				new java.awt.Color(102, 0, 0)));
-		DownloadBtn.setText("download");
+		DownloadBtn.setText("Download");
 
 		DownloadBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,13 +171,37 @@ public class ReadingPanel extends JPanel {
 		jPanelOptions.add(DownloadBtn);
 
 		JLabel labelDownload = new JLabel();
-		labelDownload.setHorizontalAlignment(SwingConstants.CENTER);
+		labelDownload.setHorizontalAlignment(SwingConstants.LEFT);
 		labelDownload.setText("Select to download");
 		labelDownload.setBounds(10, 11, 140, 32);
 		jPanelOptions.add(labelDownload);
+		
+		lblShowBooksDepending = new JLabel();
+		lblShowBooksDepending.setText("show books depending on my trip");
+		lblShowBooksDepending.setHorizontalAlignment(SwingConstants.LEFT);
+		lblShowBooksDepending.setBounds(10, 50, 195, 32);
+		jPanelOptions.add(lblShowBooksDepending);
+		
+		buttonRefresh = new JButton();
+		buttonRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(SessionDelegate.doGetDuration());
+				jTable1.setModel(new EbookTableModel());
+			}
+		});
+		buttonRefresh.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+			}
+		});
+		buttonRefresh.setText("Refresh ");
+		buttonRefresh.setBounds(82, 84, 103, 23);
+		jPanelOptions.add(buttonRefresh);
 
 		jPanelReaderSpeed = new JPanel();
-		jPanelReaderSpeed.setBounds(540, 192, 160, 326);
+		jPanelReaderSpeed.setBounds(502, 237, 195, 355);
 		jPanelReaderSpeed.setBorder(javax.swing.BorderFactory
 				.createTitledBorder(javax.swing.BorderFactory
 						.createLineBorder(new java.awt.Color(51, 0, 0)),
@@ -341,4 +366,6 @@ public class ReadingPanel extends JPanel {
 	private JLabel lblTrainedToFast;
 	private JLabel lblPleaseSelectYour;
 	private JLabel lblSpeed;
+	private JLabel lblShowBooksDepending;
+	private JButton buttonRefresh;
 }

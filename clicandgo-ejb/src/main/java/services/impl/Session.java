@@ -1,7 +1,5 @@
 package services.impl;
 
-import javax.annotation.PreDestroy;
-import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 import services.interfaces.SessionRemote;
@@ -14,25 +12,34 @@ public class Session implements SessionRemote {
 
 	public static String login;
     public static String pwd;
-    public static Integer departure;
-    public static Integer arrival;
+    public static String departure;
+    public static String arrival;
+    public static Integer duration;
 
     
     
     
-    public Integer getDeparture() {
+    public  Integer getDuration() {
+		return duration;
+	}
+
+	public  void setDuration(Integer duration) {
+		Session.duration = duration;
+	}
+
+	public String getDeparture() {
 		return departure;
 	}
 
-	public void setDeparture(Integer departure) {
+	public void setDeparture(String departure) {
 		Session.departure = departure;
 	}
 
-	public Integer getArrival() {
+	public String getArrival() {
 		return arrival;
 	}
 
-	public void setArrival(Integer arrival) {
+	public void setArrival(String arrival) {
 		Session.arrival = arrival;
 	}
 
@@ -63,6 +70,7 @@ public class Session implements SessionRemote {
 		pwd=null;
 		arrival=null;
 		departure=null;
+		duration=null;
 		
 	}
 
@@ -72,6 +80,7 @@ public class Session implements SessionRemote {
 		pwd=null;
 		arrival=null;
 		departure=null;
+		duration=null;
 		
 	}
   

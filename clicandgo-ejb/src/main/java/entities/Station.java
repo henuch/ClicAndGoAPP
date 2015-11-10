@@ -19,6 +19,8 @@ public class Station implements Serializable {
 	private Integer stationId;
 	private String name;
 	private Integer reference;
+	private Integer x;
+	private Integer y;
 	private static final long serialVersionUID = 1L;
 
 	private List<StationLine> stationLines;
@@ -80,6 +82,21 @@ public class Station implements Serializable {
 		this.reference = reference;
 	}
 
+	public Integer getX() {
+		return x;
+	}
+
+	public void setX(Integer x) {
+		this.x = x;
+	}
+
+	public Integer getY() {
+		return y;
+	}
+
+	public void setY(Integer y) {
+		this.y = y;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -124,6 +141,7 @@ public class Station implements Serializable {
 		} else if (!stationLines.equals(other.stationLines))
 			return false;
 		return true;
+
 	}
 
 }

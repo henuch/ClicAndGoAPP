@@ -1,26 +1,20 @@
 package guiContentManager;
 
 import gui.Authentification;
-import gui.ReadingPanel;
 import gui.TravelerGI;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
-
-import java.awt.Font;
-
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import BusinessDelegator.SessionDelegate;
@@ -28,7 +22,9 @@ import BusinessDelegator.SessionDelegate;
 public class ContentManagerGui extends JFrame {
         
 	private javax.swing.JPanel bodyPanel;
+	private JPanel meanOfTransportPanel;
 	private javax.swing.JButton ItineraryBtn;
+	private JButton btnMeanoftransport;
 	private javax.swing.JButton logoutBtn;
 	public static javax.swing.JPanel panelContent;
 	private javax.swing.JPanel panelGeneral;
@@ -58,6 +54,10 @@ private void initComponents() {
 	panelMenu = new javax.swing.JPanel();
 	ItineraryBtn = new javax.swing.JButton();
 	logoutBtn = new javax.swing.JButton();
+	btnMeanoftransport = new JButton();
+	
+	
+	 meanOfTransportPanel = new MeanOfTransportPanel();
 
 	logoutBtn.addActionListener(new ActionListener() {
 		
@@ -83,8 +83,13 @@ private void initComponents() {
 
 	logoutBtn.setText("Logout");
 	
-	JButton btnMeanoftransport = new JButton();
 	btnMeanoftransport.setText("MeanOfTransport");
+	btnMeanoftransport.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			btnMeanoftransportActionPerformed(e);
+		}
+	});
+	
 	
 	JButton btnLine = new JButton();
 	btnLine.setText("Line");
@@ -199,7 +204,15 @@ private void AuthentificationBtnActionPerformed(
 	panelContent.revalidate(); // TODO add your handling code here:
 }// GEN-LAST:event_gestionFournisseursBtnActionPerformed
 
-public static void main(String args[]) {
+private void btnMeanoftransportActionPerformed(ActionEvent e) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
+	panelContent.removeAll();
+	panelContent.add(meanOfTransportPanel);
+	panelContent.repaint();
+	panelContent.revalidate(); // TODO add your handling code here:
+}// GEN-LAST:event_gestionFournisseursBtnActionPerformed
+
+
+	public static void main(String args[]) {
 	/* Set the Nimbus look and feel */
 	// <editor-fold defaultstate="collapsed"
 	// desc=" Look and feel setting code (optional) ">

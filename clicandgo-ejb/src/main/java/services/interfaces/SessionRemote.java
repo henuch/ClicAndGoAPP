@@ -13,13 +13,17 @@ public interface SessionRemote {
 
 	void setPwd(String pwd);
 
-	Integer getDeparture();
+	String getDeparture();
 
-	void setDeparture(Integer departure);
+	void setDeparture(String departure);
 
-	Integer getArrival();
+	String getArrival();
 
-	void setArrival(Integer arrival);
+	void setArrival(String arrival);
+
+	Integer getDuration();
+
+	void setDuration(Integer duration);
 
 	void exit();
 

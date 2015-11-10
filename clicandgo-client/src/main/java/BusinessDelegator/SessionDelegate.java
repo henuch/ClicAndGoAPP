@@ -27,20 +27,29 @@ public class SessionDelegate {
 		getProxy().setPwd(pwd);
 	}
 	
-	public static Integer doGetArrival() {
+	public static String doGetArrival() {
 		return getProxy().getArrival();
 	}
 
-	public static void doSetArrival(Integer arrival) {
+	public static void doSetArrival(String arrival) {
 		getProxy().setArrival(arrival);
 	}
 	
-	public static Integer doGetDeparture() {
+	public static String doGetDeparture() {
 		return getProxy().getDeparture();
 	}
 
-	public static void doSetDeparture(Integer departure) {
+	public static void doSetDeparture(String departure) {
 		getProxy().setDeparture(departure);;
+	}
+	
+	
+	public static Integer doGetDuration() {
+		return getProxy().getDuration();
+	}
+
+	public static void doSetDuration(Integer duration) {
+		getProxy().setDuration(duration);
 	}
 	
 	
@@ -54,4 +63,7 @@ public class SessionDelegate {
 	public static void doExit() {
 		getProxy().exit();
 	}
+	
+	
+	
 }

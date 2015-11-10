@@ -5,6 +5,7 @@ import java.util.Vector;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.StationDelegate;
 import entities.Station;
 
@@ -200,14 +201,21 @@ public class Dijkstra {
 				.findStationByStationName(arrivee);
 		System.out.print("le cout du chemin est ");
 		int duree = longueurChemin(stationarrivee.getReference());
+		SessionDelegate.doSetDuration(duree);
+		System.out.println(SessionDelegate.doGetDuration());
 		System.out.println(+duree);
 		System.out.print("/n");
 		System.out.print("le chemain a prendre");
 		sh=afficheCheminByStation(depart, arrivee);
 		
+//		SessionDelegate.doSetDeparture(depart);
+//		SessionDelegate.doSetDuration(duree);
+
 		ch="le cout du chemin est "+duree+" \n "+sh;
 		return ch;
 
+		
+		
 	}
 
 	public static void main(String[] args) {

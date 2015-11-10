@@ -90,8 +90,19 @@ public class Navigation extends JFrame {
 		btnVisualize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int N = Graphe.ALPHA_NOTDEF;
-				int[][] matDuree = { { N, 2, 4, 1, N }, { 2, N, 3, 3, 6 },
-						{ 4, 3, N, N, 7 }, { 1, 3, N, N, 2 }, { N, 6, 7, 2, N },
+				int[][] matDuree = { 
+						{ N ,5 ,N ,N ,N ,N ,N ,N ,N ,N ,N ,N  }, 
+						{ 5 ,N ,4 ,N ,N ,N ,N ,N ,N ,N ,N ,N }, 
+						{ N ,4 ,N ,2 ,N ,N ,N ,N ,N ,N ,N ,N   }, 
+						{ N ,N ,2 ,N ,2 ,N ,N ,N ,N ,8 ,N ,N  }, 
+						{ N ,N ,N ,2 ,N ,10 ,N ,N ,N ,N ,N ,15  }, 
+						{ N ,N ,N ,N ,10 ,N ,5 ,N ,N ,N ,N ,N  }, 
+						{ N ,N ,N ,N ,N ,5 ,N ,5 ,N ,N ,N ,N  }, 
+						{ N ,N ,N ,N ,N ,N ,5,N ,7 ,N ,N ,N  }, 
+						{ N ,N ,N ,N ,N ,N ,N ,7 ,N ,N ,N ,N  }, 
+						{ N ,N ,N ,8 ,N ,N ,N ,N ,N ,N ,3 ,N }, 
+						{ N ,N ,N ,N ,N ,N ,N ,N ,N ,3 ,N ,N  }, 
+						{ N ,N ,N ,N ,15 ,N ,N ,N ,N ,N ,N ,N }, 
 
 				};
 			String depart=textField.getText();

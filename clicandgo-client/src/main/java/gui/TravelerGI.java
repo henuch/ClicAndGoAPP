@@ -8,14 +8,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import BusinessDelegator.SessionDelegate;
+import Dijkstra.Navigation;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -40,6 +45,8 @@ public class TravelerGI extends JFrame {
 	// Authentification authentification = new Authentification();
 	ReadingPanel readingPanel = new ReadingPanel();
 	TicketingPanel ticketingPanel = new TicketingPanel();
+	NavigationPanel navigationPanel=new NavigationPanel();
+	
 	private JButton itineraryBtn;
 	private JButton placesBtn;
 
@@ -56,7 +63,8 @@ public class TravelerGI extends JFrame {
 		panelGeneral = new javax.swing.JPanel();
 		bodyPanel = new javax.swing.JPanel();
 		panelMenu = new javax.swing.JPanel();
-
+		
+        
 		ticketingBtn = new JButton();
 		readingBtn = new JButton();
 
@@ -95,9 +103,24 @@ public class TravelerGI extends JFrame {
 		});
 		
 		itineraryBtn = new JButton();
+		itineraryBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelContent.removeAll();
+				panelContent.add(navigationPanel);
+				panelContent.repaint();
+				panelContent.revalidate();
+				
+			
+			
+			}
+		});
 		itineraryBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				panelContent.removeAll();
+				panelContent.add(navigationPanel);
+				panelContent.repaint();
+				panelContent.revalidate();
 			}
 		});
 		itineraryBtn.setText("Itinerary");
@@ -117,13 +140,13 @@ public class TravelerGI extends JFrame {
 			panelMenuLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(panelMenuLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(panelMenuLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(itineraryBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(logoutBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(ticketingBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(readingBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(lblUSER, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(placesBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+					.addGroup(panelMenuLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(itineraryBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(ticketingBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(readingBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(lblUSER, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(placesBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(logoutBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		panelMenuLayout.setVerticalGroup(
@@ -139,9 +162,9 @@ public class TravelerGI extends JFrame {
 					.addComponent(readingBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
 					.addGap(27)
 					.addComponent(placesBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
 					.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(19))
+					.addGap(24))
 		);
 		panelMenu.setLayout(panelMenuLayout);
 
@@ -165,13 +188,10 @@ public class TravelerGI extends JFrame {
 			bodyPanelLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(bodyPanelLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(bodyPanelLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(bodyPanelLayout.createSequentialGroup()
-							.addComponent(panelContent, GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
-							.addGap(70))
-						.addGroup(Alignment.TRAILING, bodyPanelLayout.createSequentialGroup()
-							.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
-							.addContainerGap())))
+					.addGroup(bodyPanelLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelContent, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+						.addComponent(panelMenu, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		bodyPanel.setLayout(bodyPanelLayout);
 
