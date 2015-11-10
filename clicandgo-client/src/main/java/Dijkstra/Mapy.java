@@ -20,11 +20,7 @@ public class Mapy extends JPanel {
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
-		setBorder(javax.swing.BorderFactory.createTitledBorder(
-				null, "Map",
-				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-				javax.swing.border.TitledBorder.DEFAULT_POSITION,
-				new java.awt.Font("Arial", 2, 14))); // NOI18N
+	
 
 		Graphics2D gr = (Graphics2D) g;
 		
