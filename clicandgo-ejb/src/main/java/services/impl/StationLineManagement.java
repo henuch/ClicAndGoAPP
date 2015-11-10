@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import services.interfaces.StationLineManagementLocal;
 import services.interfaces.StationLineManagementRemote;
 import entities.Line;
+import entities.MeanOfTransport;
 import entities.Station;
 import entities.StationLine;
 
@@ -327,4 +328,24 @@ int N=9999;
 
 		return matrice;
 	}
-}
+	@Override
+	public Line findoutLIneBynName(String name) {
+		String jpql = "select L from Line L where L.name LIKE :param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param",'%'+name+'%');
+		return (Line) query.getSingleResult();
+		}
+
+	@Override
+	public List<Line> lookUpLinet(String id) {
+		try {
+			String jpql = "select m from Line m where m.name LIKE :param";
+			Query query = entityManager.createQuery(jpql);
+			query.setParameter("param", '%' + id + '%');
+			return query.getResultList();
+
+		} catch (Exception e) {
+			return null;
+		}
+	}}
+
