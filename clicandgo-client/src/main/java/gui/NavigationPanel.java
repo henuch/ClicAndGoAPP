@@ -4,31 +4,24 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import services.impl.StationServices;
-import BusinessDelegator.LineServicesDelegate;
 import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.StationDelegate;
 import BusinessDelegator.StationLineManagementDelegate;
-import Dijkstra.Dessin;
 import Dijkstra.Dijkstra;
 import Dijkstra.Graphe;
-import entities.Line;
 import entities.Station;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class NavigationPanel extends JPanel {
 
@@ -39,7 +32,6 @@ public class NavigationPanel extends JPanel {
 	int overrallchild = 0;
 	private JComboBox<Object> cmbArrival;
 	private JComboBox<Object> cmbdeparture;
-	
 
 	/**
 	 * Create the panel.
@@ -135,7 +127,7 @@ public class NavigationPanel extends JPanel {
 		btnsavepurchase.setText("Search");
 
 		Trip = new JPanel();
-		Trip.setBounds(10, 152, 751, 94);
+		Trip.setBounds(10, 152, 751, 200);
 		panel_Itinerary.add(Trip);
 		Trip.setLayout(null);
 		Trip.setBorder(javax.swing.BorderFactory.createTitledBorder(
@@ -146,14 +138,10 @@ public class NavigationPanel extends JPanel {
 				new java.awt.Font("Arial", 2, 12),
 				new java.awt.Color(102, 0, 0)));
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 21, 731, 62);
+		textArea.setFont(new Font("Arial", Font.PLAIN, 16));
+		textArea.setBounds(10, 21, 731, 168);
 		Trip.add(textArea);
 		textArea.setBackground(SystemColor.control);
-		btncomputecharge = new javax.swing.JButton();
-		btncomputecharge.setBounds(225, 251, 165, 23);
-		panel_Itinerary.add(btncomputecharge);
-		
-				btncomputecharge.setText("See on Google Map");
 				
 				
 			
@@ -181,21 +169,11 @@ public class NavigationPanel extends JPanel {
 								cmbmoviesActionPerformed(evt);
 							}
 						});
-				btncomputecharge.addActionListener(new java.awt.event.ActionListener() {
-
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-						Dessin des = new Dessin();
-						des.setVisible(true);
-					}
-				});
 		// textArea.setText("Press search to see itinerary description");
 		textArea.setVisible(false);
 		btnsavepurchase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Mapy mapy=new Mapy();
-				// panel.add(mapy);
-				// mapy.setSize(panel.getWidth()-50,panel.getHeight()-50);
+				
             
 				int N = Graphe.ALPHA_NOTDEF;
 				//int [] [] matDuree=
@@ -274,11 +252,9 @@ public class NavigationPanel extends JPanel {
 
 	private void cmbmoviesItemStateChanged(java.awt.event.ItemEvent evt) {
 	}
-
-	private javax.swing.JButton btncomputecharge;
 	private javax.swing.JButton btnnew;
 	private javax.swing.JButton btnsavepurchase;
-	
+
 	private javax.swing.JLabel lbldeparture;
 	private javax.swing.JSeparator jSeparator2;
 	private JPanel panel;

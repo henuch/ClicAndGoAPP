@@ -9,6 +9,7 @@ public class testFindStationByName {
 		System.out.print(StationLineManagementDelegate
 				.doFindStationByName(name));
 
+		System.out.println(StationLineManagementDelegate.doLookUpStation(name));
 	}
 
 }

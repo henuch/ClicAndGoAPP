@@ -15,6 +15,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
+import entities.Station;
+import BusinessDelegator.SessionDelegate;
+import BusinessDelegator.StationLineManagementDelegate;
+
 public class Dessin extends JFrame {
 
 	private JPanel contentPane;
@@ -59,6 +63,7 @@ public class Dessin extends JFrame {
 		
 		lblNewLabel.setBounds(100, 100, 505, 505);
 		contentPane.add(lblNewLabel);
+		
 		btnDraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			Mapy mapy=new Mapy();

@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.StationDelegate;
+import BusinessDelegator.StationLineManagementDelegate;
 import entities.Station;
 
 public class Dijkstra {
@@ -137,8 +138,8 @@ public class Dijkstra {
 	}
 
 	public String afficheCheminByStation(String depart, String arrivee) {
-		String ch=null;
-		String sh ="";
+		String ch = null;
+		String sh = "";
 		Station stationdepart = StationDelegate
 				.findStationByStationName(depart);
 		Station stationarrivee = StationDelegate
@@ -149,8 +150,7 @@ public class Dijkstra {
 		int antécédent = i;
 		Vector<Integer> lesNoeudsIntermediaires = new Vector<Integer>();
 		;
-		System.out.println(" de " + depart + " à "
-				+ arrivee + ":");
+		System.out.println(" de " + depart + " à " + arrivee + ":");
 		while (antécédent != source) {
 			lesNoeudsIntermediaires.add(antécédent);
 			antécédent = R[antécédent];
@@ -161,17 +161,17 @@ public class Dijkstra {
 			Station stationvariable = StationDelegate
 					.doFindStationByReference(lesNoeudsIntermediaires.get(j));
 			System.out.print("-->" + stationvariable.getName());
-			sh=sh+"-->" +  stationvariable.getName();
+			sh = sh + "-->" + stationvariable.getName();
 		}
 		System.out.print("-->" + stationarrivee.getName());
 		System.out.println();
-		String yy = "-->"+arrivee; 
-		ch="To go from  " + depart + " to " + arrivee + ": "+sh+yy;
+		String yy = "-->" + arrivee;
+		ch = "To go from  " + depart + " to " + arrivee + ": \n" + sh + yy;
 		return ch;
 	}
 
 	public List<Station> afficheListStations(String depart, String arrivee) {
-		List stationsToDraw = null;
+		List<Station> stationsToDraw = new Vector<Station>();
 		Station stationdepart = StationDelegate
 				.findStationByStationName(depart);
 		Station stationarrivee = StationDelegate
@@ -182,33 +182,32 @@ public class Dijkstra {
 		int antécédent = i;
 		Vector<Integer> lesNoeudsIntermediaires = new Vector<Integer>();
 		;
-		System.out.println(" de " + depart + " à "
-				+ arrivee + ":");
+		System.out.println(" de " + depart + " à " + arrivee + ":");
 		while (antécédent != source) {
 			lesNoeudsIntermediaires.add(antécédent);
 			antécédent = R[antécédent];
 
 		}
 		lesNoeudsIntermediaires.add(source);
+
 		for (int j = lesNoeudsIntermediaires.size() - 1; j > 0; j--) {
 			Station stationvariable = StationDelegate
 					.doFindStationByReference(lesNoeudsIntermediaires.get(j));
-			         stationsToDraw.add(stationvariable);
+			stationsToDraw.add(stationvariable);
 			System.out.print("-->" + stationvariable.getName());
-			
+
 		}
 		System.out.print("-->" + stationarrivee.getName());
 		System.out.println();
-		String yy = "-->"+arrivee;
+		String yy = "-->" + arrivee;
 		stationsToDraw.add(stationarrivee);
-		return stationsToDraw; 
-		
+		return stationsToDraw;
+
 	}
 
-	
 	public String afficheChemin(int i) {
-        String ch=null;
-        String sh=null;
+		String ch = null;
+		String sh = null;
 		int source = x0;
 		int antécédent = i;
 		Vector<Integer> lesNoeudsIntermediaires = new Vector<Integer>();
@@ -222,19 +221,19 @@ public class Dijkstra {
 		lesNoeudsIntermediaires.add(source);
 		for (int j = lesNoeudsIntermediaires.size() - 1; j > 0; j--) {
 			System.out.print("-->" + lesNoeudsIntermediaires.get(j));
-			sh=sh+"-->" + lesNoeudsIntermediaires.get(j);
+			sh = sh + "-->" + lesNoeudsIntermediaires.get(j);
 		}
 		System.out.print("-->" + i);
 		System.out.println();
-		ch="Your Itinerary  from " + x0 + " to " + i + ": "+sh;
-		
+		ch = "Your Itinerary  from " + x0 + " to " + i + ": " + sh;
+
 		return ch;
 	}
 
 	public String AfficherDestinationEtCout(String depart, String arrivee) { // Station
-	int time=0;
-		String ch=null	;	
-		String sh=null;// stationdepart=StationDelegate.findStationByStationName(depart);
+		int time = 0;
+		String ch = null;
+		String sh = null;// stationdepart=StationDelegate.findStationByStationName(depart);
 		Station stationarrivee = StationDelegate
 				.findStationByStationName(arrivee);
 		System.out.print("le cout du chemin est ");
@@ -244,24 +243,20 @@ public class Dijkstra {
 		System.out.println(+duree);
 		System.out.print("/n");
 		System.out.print("le chemain a prendre");
-		sh=afficheCheminByStation(depart, arrivee);
-		
-//		SessionDelegate.doSetDeparture(depart);
-//		SessionDelegate.doSetDuration(duree);
+		sh = afficheCheminByStation(depart, arrivee);
 
-	
-		time=(int) (duree/0.75);
-		
-		
-		
-		String timer="";
-		timer="Your itinerary takes about "+time+" minutes";
-		
-		ch="Your itinerary is  "+duree+" km long .\n "+sh+ " \n"+timer;
+		// SessionDelegate.doSetDeparture(depart);
+		// SessionDelegate.doSetDuration(duree);
+
+		time = (int) (duree / 0.75);
+
+		String timer = "";
+		timer = "Your itinerary takes about " + time + " minutes";
+
+		ch = "Your itinerary is  " + duree + " km long .\n " + sh + " \n"
+				+ timer;
 		return ch;
 
-		
-		
 	}
 
 	public static void main(String[] args) {
@@ -271,10 +266,11 @@ public class Dijkstra {
 		// Station
 		// stationarrivee=StationDelegate.findStationByStationName("La marsa");
 
-		int[][] matDuree = { { N, 2, 4, 1, N }, { 2, N, 3, 3, 6 },
-				{ 4, 3, N, N, 7 }, { 1, 3, N, N, 2 }, { N, 6, 7, 2, N },
-
-		};
+		int[][] matDuree = StationLineManagementDelegate.doRemplirMatrice();
+		// { { N, 2, 4, 1, N }, { 2, N, 3, 3, 6 },
+		// { 4, 3, N, N, 7 }, { 1, 3, N, N, 2 }, { N, 6, 7, 2, N },
+		//
+		// };
 		// création du graphe
 		Graphe g0 = new Graphe(matDuree);
 		// LA SUITE
@@ -309,6 +305,12 @@ public class Dijkstra {
 		// republiqueAutresStations.calculePlusCourtChemin();
 		// int duree3 = republiqueAutresStations.longueurChemin(3);
 		// System.out.println("Le temps mini pour aller de republique a Clemenceau est :"+duree3);
+		List<Station> stations = beaulieuAutresStations.afficheListStations(
+				"Ariana", "La marsa");
+
+		for (Station s : stations) {
+			System.out.println(s.getName());
+		}
 	}
 
 }
