@@ -48,6 +48,8 @@ public class TravelerGI extends JFrame {
 	TicketingPanel ticketingPanel = new TicketingPanel();
 	NavigationPanel navigationPanel = new NavigationPanel();
 	TimeTablePanel timeTablePanel = new TimeTablePanel();
+	private JLabel lblbackk;
+	
 
 	/**
 	 * Create the application.
@@ -223,6 +225,14 @@ public class TravelerGI extends JFrame {
 																682,
 																Short.MAX_VALUE))
 										.addContainerGap()));
+		
+		lblbackk = new JLabel("");
+		lblbackk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
+				"/images/traveler.jpg")));
+		lblbackk.setText("");
+		panelContent.add(lblbackk, "name_253067401558896");
+		
+	
 		bodyPanel.setLayout(bodyPanelLayout);
 
 		btnNewButton = new JButton("");
