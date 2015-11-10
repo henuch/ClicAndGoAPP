@@ -1,127 +1,277 @@
-//package guiContentManager;
-//
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//
-//import javax.swing.JButton;
-//import javax.swing.JLabel;
-//import javax.swing.JPanel;
-//import javax.swing.JTextField;
-//
-//import BusinessDelegator.StationDelegate;
-//
-//import javax.swing.JScrollPane;
-//import javax.swing.JTabbedPane;
-//import javax.swing.JTable;
-//
-//import model.StationTableModel;
-//
-//public class StationPanel extends JPanel {
-//
-//	/**
-//	 * 
-//	 */
-//	private static final long serialVersionUID = 1L;
-//	private JTextField textField_1;
-//	private JTable table;
-//
-//	public StationPanel() {
-//
-//		intialize();
-//	}
-//
-//	/**
-//	 * Create the panel.
-//	 */
-//
-//	public void intialize() {
-//
-//		JPanel panelSearch = new JPanel();
-//		JButton button = new JButton();
-//	
-//		
-//		setToolTipText("");
-//		setLayout(null);
-//
-//		panelSearch.setBounds(20, 27, 565, 94);
-//		add(panelSearch);
-//
-//		setBorder(javax.swing.BorderFactory.createTitledBorder(null,
-//				"Station Management",
-//				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-//				javax.swing.border.TitledBorder.DEFAULT_POSITION,
-//				new java.awt.Font("Arial", 2, 14)));
-//
-//		panelSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(
-//				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
-//						51, 0, 0)), "Search",
-//				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-//				javax.swing.border.TitledBorder.DEFAULT_POSITION,
-//				new java.awt.Font("Arial", 2, 12),
-//				new java.awt.Color(102, 0, 0))); // NOI18N
-//		panelSearch.setLayout(null);
-//
-//	
-//
-//		
-//		button.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//
-//				StationDelegate.findStationByStationName(textField_1.getText());
-//			}
-//		});
-//		button.setText("Search");
-//		button.setBounds(447, 37, 91, 23);
-//		panelSearch.add(button);
-//
-//		JLabel lblTypeTheStation = new JLabel();
-//		lblTypeTheStation.setText("type the station name");
-//		lblTypeTheStation.setBounds(10, 35, 218, 20);
-//		panelSearch.add(lblTypeTheStation);
-//		
-//		textField_1 = new JTextField();
-//		textField_1.setBounds(346, 38, 95, 20);
-//		panelSearch.add(textField_1);
-//		
-//		JPanel jpanelStations = new JPanel();
-//		jpanelStations.setBounds(20, 132, 410, 310);
-//		javax.swing.GroupLayout gl_jpanelStations = new javax.swing.GroupLayout(
-//				jpanelStations);
-//		jpanelStations.setLayout(gl_jpanelStations);
-//		gl_jpanelStations.setHorizontalGroup(gl_jpanelStations.createParallelGroup(
-//				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-//				gl_jpanelStations
-//						.createSequentialGroup()
-//						.addContainerGap()
-//						.addComponent(scrollPane,
-//								javax.swing.GroupLayout.DEFAULT_SIZE, 490,
-//								Short.MAX_VALUE).addContainerGap()));
-//		gl_jpanelStations.setVerticalGroup(gl_jpanelStations.createParallelGroup(
-//				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-//				gl_jpanelStations
-//						.createSequentialGroup()
-//						.addContainerGap()
-//						.addComponent(scrollPane,
-//								javax.swing.GroupLayout.DEFAULT_SIZE, 286,
-//								Short.MAX_VALUE).addContainerGap()));
-//		
-//		add(jpanelStations);
-//		jpanelStations.setBorder(javax.swing.BorderFactory.createTitledBorder(
-//				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
-//						51, 0, 0)), "List Of Stations",
-//				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-//				javax.swing.border.TitledBorder.DEFAULT_POSITION,
-//				new java.awt.Font("Arial", 2, 12),
-//				new java.awt.Color(102, 0, 0)));
-//		jpanelStations.setLayout(null);
-//		
-//		
-//		scrollPane.setBounds(74, 37, 265, 247);
-//		jpanelStations.add(scrollPane);
-////		table.setModel(new StationTableModel());
-//		 scrollPane.setViewportView(table);
-//		table = new JTable();
-//		scrollPane.setViewportView(table);
-//	}
-//	JScrollPane scrollPane = new JScrollPane();
-//}
+package guiContentManager;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
+
+
+//import model.StationModel;
+import model.StationTableModel;
+import BusinessDelegator.LineServicesDelegate;
+import BusinessDelegator.MeansOfTransportDelegate;
+import BusinessDelegator.StationDelegate;
+import BusinessDelegator.StationLineManagementDelegate;
+import entities.Line;
+import entities.Station;
+
+public class StationPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTable tableMot;
+	private JTextField searchText;
+	private JTextField Name;
+	private JSpinner x;
+	private JSpinner y;
+	private JComboBox<String> comboBoxLine;
+
+	/**
+	 * Create the application.
+	 */
+	public StationPanel() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+
+		setBorder(javax.swing.BorderFactory.createTitledBorder(null,
+				"Station_Line Management",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+				javax.swing.border.TitledBorder.DEFAULT_POSITION,
+				new java.awt.Font("Arial", 2, 14))); // NOI18N
+		setLayout(null);
+
+		JPanel panelMOTList = new JPanel();
+		panelMOTList.setBounds(10, 125, 324, 226);
+		add(panelMOTList);
+
+		panelMOTList.setLayout(null);
+		panelMOTList.setBorder(javax.swing.BorderFactory.createTitledBorder(
+				null, "Station List",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+				javax.swing.border.TitledBorder.DEFAULT_POSITION,
+				new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 24, 304, 191);
+		panelMOTList.add(scrollPane);
+
+		tableMot = new JTable();
+		tableMot.setModel(new StationTableModel());
+		scrollPane.setColumnHeaderView(tableMot);
+		scrollPane.setViewportView(tableMot);
+
+		JPanel jPanelSearch = new JPanel();
+		jPanelSearch.setBounds(10, 46, 662, 68);
+		add(jPanelSearch);
+		jPanelSearch.setLayout(null);
+
+		JLabel lblTypeTheRegistration = new JLabel();
+		lblTypeTheRegistration.setBounds(10, 34, 309, 23);
+		jPanelSearch.add(lblTypeTheRegistration);
+		lblTypeTheRegistration
+				.setText("Type the registration number of the mean of transport");
+
+		searchText = new JTextField();
+		searchText.setBounds(412, 35, 95, 20);
+		jPanelSearch.add(searchText);
+
+		JButton SearchBtn = new JButton();
+		SearchBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		SearchBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tableMot.setModel(new StationTableModel(searchText.getText()));
+			}
+		});
+		SearchBtn.setText("Search");
+		SearchBtn.setBounds(517, 34, 135, 23);
+		jPanelSearch.add(SearchBtn);
+
+		jPanelSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(
+				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
+						51, 0, 0)), "Search",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+				javax.swing.border.TitledBorder.DEFAULT_POSITION,
+				new java.awt.Font("Arial", 2, 12),
+				new java.awt.Color(102, 0, 0))); // NOI18N
+		jPanelSearch.setLayout(null);
+
+		JPanel jpanelAdd = new JPanel();
+		jpanelAdd.setBounds(10, 362, 662, 154);
+		add(jpanelAdd);
+		jpanelAdd.setBorder(javax.swing.BorderFactory.createTitledBorder(
+				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
+						51, 0, 0)), "Add Mean of Transport",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+				javax.swing.border.TitledBorder.DEFAULT_POSITION,
+				new java.awt.Font("Arial", 2, 12),
+				new java.awt.Color(102, 0, 0))); // NOI18N
+		jpanelAdd.setLayout(null);
+
+		JLabel lblRegistrationNumber = new JLabel();
+		lblRegistrationNumber.setText("Registration Number");
+		lblRegistrationNumber.setBounds(10, 29, 109, 23);
+		jpanelAdd.add(lblRegistrationNumber);
+
+		JLabel lblx = new JLabel();
+		lblx.setText("x");
+		lblx.setBounds(10, 100, 109, 23);
+		jpanelAdd.add(lblx);
+
+		JLabel lblNumberOfWagons = new JLabel();
+		lblNumberOfWagons.setText("Number of Wagons");
+		lblNumberOfWagons.setBounds(10, 100, 109, 23);
+		jpanelAdd.add(lblNumberOfWagons);
+
+		Name = new JTextField();
+		Name.setBounds(200, 30, 95, 20);
+		jpanelAdd.add(Name);
+
+		x = new JSpinner();
+		x.setBounds(230, 64, 74, 20);
+		jpanelAdd.add(x);
+
+		y = new JSpinner();
+		y.setBounds(230, 101, 66, 20);
+		jpanelAdd.add(y);
+
+		JButton buttonAdd = new JButton();
+		buttonAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buttonAdd.setBounds(515, 63, 137, 23);
+		jpanelAdd.add(buttonAdd);
+		buttonAdd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Station meanOfTransport = new Station();
+				meanOfTransport.setName((Name
+								.getText()));
+						
+				meanOfTransport.setX((Integer) x.getValue());
+				meanOfTransport.setY((Integer) y.getValue());
+				StationDelegate.DoaddStation(meanOfTransport);
+				tableMot.setModel(new StationTableModel());
+			}
+		});
+		buttonAdd.setText("Add");
+
+		JPanel panelAssign = new JPanel();
+		panelAssign.setBounds(375, 125, 297, 123);
+		add(panelAssign);
+
+		panelAssign.setBorder(javax.swing.BorderFactory.createTitledBorder(
+				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
+						51, 0, 0)), "Assign Station to Line",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+				javax.swing.border.TitledBorder.DEFAULT_POSITION,
+				new java.awt.Font("Arial", 2, 12),
+				new java.awt.Color(102, 0, 0))); // NOI18N
+		panelAssign.setLayout(null);
+
+		comboBoxLine = new JComboBox<String>();
+		comboBoxLine.setBounds(150, 63, 137, 20);
+
+		panelAssign.add(comboBoxLine);
+		List<Line> lines = LineServicesDelegate.doFindAllLines();
+		for (Line l : lines) {
+			comboBoxLine.addItem(l.getName());
+		}
+
+		JLabel lblSelectAMean = new JLabel();
+		lblSelectAMean
+				.setText("Select station and assign it to a selected line\r\n");
+		lblSelectAMean.setBounds(10, 29, 277, 23);
+		panelAssign.add(lblSelectAMean);
+
+		JLabel lblLine = new JLabel();
+		lblLine.setText("Station");
+		lblLine.setBounds(10, 63, 159, 23);
+		panelAssign.add(lblLine);
+
+		JButton assign = new JButton();
+		assign.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		assign.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+//				String x = (String) tableMot.getValueAt(
+//						tableMot.getSelectedRow(), 0);
+//				Station meanOfTransport = MeansOfTransportDelegate
+//						.doFindStationById(x);
+//				Line line = LineServicesDelegate.doFindLineByName(comboBoxLine
+//						.getSelectedItem().toString().trim());
+//				MeansOfTransportDelegate.doAssignStationToLine(
+//						meanOfTransport.getRegistrationNumber(),
+//						line.getLineId());
+//				tableMot.setModel(new StationTableModel());
+
+			}
+		});
+		assign.setText("assign");
+		assign.setBounds(150, 89, 137, 23);
+		panelAssign.add(assign);
+
+		JPanel panelDelete = new JPanel();
+		panelDelete.setBounds(375, 261, 297, 90);
+		add(panelDelete);
+
+		panelDelete.setBorder(javax.swing.BorderFactory.createTitledBorder(
+				javax.swing.BorderFactory.createLineBorder(new java.awt.Color(
+						51, 0, 0)), "Remove from circuit",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+				javax.swing.border.TitledBorder.DEFAULT_POSITION,
+				new java.awt.Font("Arial", 2, 12),
+				new java.awt.Color(102, 0, 0))); // NOI18N
+		panelDelete.setLayout(null);
+
+		JLabel lblSelectAMean_1 = new JLabel();
+		lblSelectAMean_1
+				.setText("Remove a mean of transport from circuit\r\n\r\n");
+		lblSelectAMean_1.setBounds(10, 22, 277, 23);
+		panelDelete.add(lblSelectAMean_1);
+
+		JButton buttonDelete = new JButton();
+		buttonDelete.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Integer x =  (Integer) tableMot.getValueAt(
+						tableMot.getSelectedRow(), 0);
+
+				Station meanOfTransport = StationDelegate.doFindStationById(x);
+					
+
+				StationDelegate.doDeleteStationById((meanOfTransport
+								.getStationId()));
+				tableMot.setModel(new StationTableModel());
+
+			}
+		});
+		buttonDelete.setText("delete");
+		buttonDelete.setBounds(150, 56, 137, 23);
+		panelDelete.add(buttonDelete);
+	}
+}
