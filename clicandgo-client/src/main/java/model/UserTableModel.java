@@ -1,88 +1,81 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
 import BusinessDelegator.UserServicesDelegate;
-import entities.Ticket;
 import entities.User;
-
-
-
-
 
 public class UserTableModel extends AbstractTableModel {
 
-    List<User> users;
-    String[] entete = {"userId", "name","surname", "email", "password"};
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	List<User> users;
+	String[] entete = {"userId", "name", "surname", "email", "password"};
 
-    public UserTableModel(String name) {
-        users = UserServicesDelegate.doFindUserByName(name);
-    }
- public UserTableModel(){
-     users = UserServicesDelegate.doFindAllUsers();
- }
- 
- 
+	public UserTableModel(String name) {
+		users = UserServicesDelegate.doFindUserByName(name);
+	}
 
-    @Override
-    public int getRowCount() {
-        return users.size();
-    }
+	public UserTableModel() {
+		users = UserServicesDelegate.doFindAllUsers();
+	}
 
-    @Override
-    public int getColumnCount() {
-        return entete.length;
-    }
+	@Override
+	public int getRowCount() {
+		return users.size();
+	}
 
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex) {
-            case 0: {
-                return users.get(rowIndex).getUserId();
-            }
-            case 1: {
-                return users.get(rowIndex).getName();
-            }
-            case 2: {
-                return users.get(rowIndex).getSurname();
+	@Override
+	public int getColumnCount() {
+		return entete.length;
+	}
 
-            }
-            case 3: {
-                return users.get(rowIndex).getEmail();
-            }
-            case 4: {
-                return users.get(rowIndex).getPassword();
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		switch (columnIndex) {
+		case 0: {
+			return users.get(rowIndex).getUserId();
+		}
+		case 1: {
+			return users.get(rowIndex).getName();
+		}
+		case 2: {
+			return users.get(rowIndex).getSurname();
 
-            }
-            default:
-                throw new IllegalArgumentException();
+		}
+		case 3: {
+			return users.get(rowIndex).getEmail();
+		}
+		case 4: {
+			return users.get(rowIndex).getPassword();
 
-        }
-    }
+		}
+		default:
+			throw new IllegalArgumentException();
 
-    @Override
-    public String getColumnName(int column) {
+		}
+	}
 
-        return entete[column];
+	@Override
+	public String getColumnName(int column) {
 
-    }
+		return entete[column];
 
-   
-    public List<User> searchUsers(String name) {
+	}
 
-        List<User> users = UserServicesDelegate.doFindUserByName(name);
-        List<User> searchUsers = new ArrayList<>();
-        List<User> resultList = new ArrayList<>();
+	@SuppressWarnings("unused")
+	public List<User> searchUsers(String name) {
 
-        
-        
-        
-        
-        return searchUsers;
-    }
+		List<User> users = UserServicesDelegate.doFindUserByName(name);
+		List<User> searchUsers = new ArrayList<>();
+		List<User> resultList = new ArrayList<>();
+
+		return searchUsers;
+	}
 
 }

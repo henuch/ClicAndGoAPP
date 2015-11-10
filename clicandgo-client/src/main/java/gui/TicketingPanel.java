@@ -406,7 +406,7 @@ public class TicketingPanel extends JPanel {
 		JButton btnNewButton = new JButton("List Tickets");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table.setModel(new TicketTableModel());
+				
 			}
 		});
 		btnNewButton.setBounds(386, 500, 89, 23);
@@ -557,6 +557,7 @@ public class TicketingPanel extends JPanel {
 			System.out.print(TicketServicesDelegate.doaddTicket(ticket));
 			Document document = new Document(PageSize.A4.rotate());
 			try {
+				table.setModel(new TicketTableModel());
 				PdfWriter pdf_writer = PdfWriter.getInstance(document,
 						new FileOutputStream("heni.pdf"));
 				
@@ -564,24 +565,23 @@ public class TicketingPanel extends JPanel {
 				document.open();
 				System.out.println("behi");
 				PdfContentByte cb = pdf_writer.getDirectContent();
-System.out.println("zouz");
+
 				cb.saveState();
 				System.out.println("thletha");
 				Graphics2D g2 = cb.createGraphicsShapes(500, 500);
-				System.out.println("arb3a");
+				
 
 				java.awt.Shape oldClip = g2.getClip();
-				System.out.println("5amsa");
+				
 				g2.clipRect(0, 0, 500, 500);
 
 				table.print(g2);
-				System.out.println("setta");
+				
 				g2.setClip(oldClip);
-System.out.println("sab3a");
 				g2.dispose();
 				cb.restoreState();
 				JOptionPane.showMessageDialog(null,
-						"User List sucessefully exported to PDF");
+						"Ticket List sucessefully exported to PDF");
 				
 			} catch (Exception e1) {
 				System.err.println(e1.getMessage());
