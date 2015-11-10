@@ -31,6 +31,10 @@ import entities.MeanOfTransport;
 import entities.State;
 import entities.Ticket;
 import entities.User;
+import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TicketingPanel extends JPanel {
 
@@ -330,6 +334,15 @@ public class TicketingPanel extends JPanel {
 		jLabel13.setBounds(10, 90, 140, 14);
 
 		add(jPanel1);
+		
+		panel = new JPanel();
+		panel.setBounds(139, 10, 1, 1);
+		jPanel1.add(panel);
+		panel.setLayout(null);
+		
+		table = new JTable();
+		table.setBounds(0, 0, 1, 1);
+		panel.add(table);
 
 		lblGCT.setText("0");
 		add(lblGCT);
@@ -389,6 +402,15 @@ public class TicketingPanel extends JPanel {
 
 		lblsubtotal.setText("0");
 		add(lblsubtotal);
+		
+		JButton btnNewButton = new JButton("List Tickets");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table.setModel(new TicketTableModel());
+			}
+		});
+		btnNewButton.setBounds(386, 500, 89, 23);
+		add(btnNewButton);
 
 	}
 
@@ -488,7 +510,7 @@ public class TicketingPanel extends JPanel {
 		double adultsubtotal = 0;
 		double tax = 0;
 		double total = 0;
-
+		
 		DecimalFormat formatter = new DecimalFormat("Mil#,###.00");
 
 		String adultstring = (String) cmbadult.getSelectedItem();
@@ -525,7 +547,9 @@ public class TicketingPanel extends JPanel {
 			MeanOfTransport mft = MeansOfTransportDelegate
 					.dofindMeanOftransportByName((String) cmbMOT
 							.getSelectedItem());
-
+			
+			
+			System.out.println("aaaaaaaaaaaaaaaaaaa"+table.getRowCount());
 			ticket.setMeanOfTransport(mft);
 			ticket.setPrice(total);
 			ticket.setState(State.PAID);
@@ -534,24 +558,31 @@ public class TicketingPanel extends JPanel {
 			Document document = new Document(PageSize.A4.rotate());
 			try {
 				PdfWriter pdf_writer = PdfWriter.getInstance(document,
-						new FileOutputStream("D:\\users.pdf"));
+						new FileOutputStream("heni.pdf"));
+				
 				System.out.println("cv");
 				document.open();
+				System.out.println("behi");
 				PdfContentByte cb = pdf_writer.getDirectContent();
-
+System.out.println("zouz");
 				cb.saveState();
+				System.out.println("thletha");
 				Graphics2D g2 = cb.createGraphicsShapes(500, 500);
+				System.out.println("arb3a");
 
 				java.awt.Shape oldClip = g2.getClip();
+				System.out.println("5amsa");
 				g2.clipRect(0, 0, 500, 500);
 
-				TicketTableModel.print(g2);
+				table.print(g2);
+				System.out.println("setta");
 				g2.setClip(oldClip);
-
+System.out.println("sab3a");
 				g2.dispose();
 				cb.restoreState();
 				JOptionPane.showMessageDialog(null,
 						"User List sucessefully exported to PDF");
+				
 			} catch (Exception e1) {
 				System.err.println(e1.getMessage());
 			}
@@ -628,4 +659,6 @@ public class TicketingPanel extends JPanel {
 	private javax.swing.JLabel lbltime;
 	private javax.swing.JLabel lbltimeanddate;
 	private javax.swing.JPanel pngimageticket;
+	private JTable table;
+	private JPanel panel;
 }
