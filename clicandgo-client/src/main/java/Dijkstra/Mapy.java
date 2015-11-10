@@ -49,10 +49,10 @@ public class Mapy extends JPanel {
 				
 				if (station.getX() != null && station.getY() != null) {
 					gr.setColor(Color.red);
-					gr.fillOval(station.getX(), station.getY(), 13, 13);
+					gr.fillOval(station.getX()+150, station.getY()+150, 13, 13);
 					gr.setColor(Color.BLUE);
 		
-					gr.drawString(station.getName(), station.getX(), station.getY()-10);
+					gr.drawString(station.getName(), station.getX()+150, station.getY()+140);
                      
 				}
 
@@ -60,8 +60,8 @@ public class Mapy extends JPanel {
 			for (int i = 0; i < stations.size()-1; i++) {
 				gr.setColor(Color.GRAY);
 				gr.setStroke(new BasicStroke( (float) 3 ));
-				gr.drawLine(stations.get(i).getX()+5, stations.get(i).getY()+5,
-						stations.get(i+1).getX()+5, stations.get(i+1).getY()+5);
+				gr.drawLine(stations.get(i).getX()+155, stations.get(i).getY()+155,
+						stations.get(i+1).getX()+155, stations.get(i+1).getY()+155);
 			}
 			
 
@@ -73,8 +73,8 @@ public class Mapy extends JPanel {
 		{
 			gr.setColor(Color.GREEN);
 			gr.setStroke(new BasicStroke( (float) 3.5 ));
-			gr.drawLine(stationtoDraw.get(i).getX()+5, stationtoDraw.get(i).getY()+8,
-					stationtoDraw.get(i+1).getX()+5, stationtoDraw.get(i+1).getY()+8);
+			gr.drawLine(stationtoDraw.get(i).getX()+155, stationtoDraw.get(i).getY()+158,
+					stationtoDraw.get(i+1).getX()+155, stationtoDraw.get(i+1).getY()+158);
 			
 		}
 

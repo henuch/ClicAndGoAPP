@@ -166,7 +166,7 @@ public class Dijkstra {
 		System.out.print("-->" + stationarrivee.getName());
 		System.out.println();
 		String yy = "-->" + arrivee;
-		ch = "To go from  " + depart + " to " + arrivee + ": " + sh + yy;
+		ch = "To go from  " + depart + " to " + arrivee + ": \n" + sh + yy;
 		return ch;
 	}
 

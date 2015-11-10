@@ -51,9 +51,9 @@ public class MeanOfTransportModel extends AbstractTableModel {
 
 		}
 		case 3: {
-			
-				return meanOfTransports.get(rowIndex).getLine();
-			
+
+			return meanOfTransports.get(rowIndex).getLine();
+
 		}
 
 		default:
