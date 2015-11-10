@@ -25,5 +25,6 @@ public interface MeanOfTransportServicesRemote {
 	List<MeanOfTransport> lookUpMeanOfTransport(String id);
 
 	Boolean assignMeanOfTransportToLine(String meanOfTransportId, Integer lineId);
+	MeanOfTransport findMeanOfTransportByName(String name);
 
 }

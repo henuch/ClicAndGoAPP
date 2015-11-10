@@ -1,14 +1,92 @@
 
-ticket Name: 20A
+ticket Name: TCV2
 Adult Ticket(s): 1
 Child Ticket(s): 1
-Show Date & Time: 2015-11-12 :: 2:00PM
-Total Cost: $1 116,25
+Show Date & Time: 2015-11-16 :: 11:00AM
+Total Cost: Mil940,00
 
-ticket Name: 20A
+ticket Name: TCV1
 Adult Ticket(s): 1
 Child Ticket(s): 1
-Show Date & Time: 2015-11-12 :: 2:00PM
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV2
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-18 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 4
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil2 173,75
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 4
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil2 173,75
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 4
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil2 173,75
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil940,00
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 3
+Show Date & Time: 2015-11-12 :: 8:00AM
+Total Cost: Mil1 762,50
+
+ticket Name: TCV1
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 8:00AM
 Total Cost: Mil940,00
 
 ticket Name: TCV2
