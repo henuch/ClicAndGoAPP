@@ -302,8 +302,8 @@ int N=9999;
 								.getDistance();
 					} else {
 						if (s.equals(s1)) {
-							matrice[s.getReference()][s1.getReference()] = N;
-							matrice[s1.getReference()][s.getReference()] = N;
+							matrice[s.getReference()][s1.getReference()] = 0;
+							matrice[s1.getReference()][s.getReference()] = 0;
 
 						}
 					}

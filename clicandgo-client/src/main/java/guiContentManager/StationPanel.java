@@ -15,12 +15,9 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-
-
 //import model.StationModel;
 import model.StationTableModel;
 import BusinessDelegator.LineServicesDelegate;
-import BusinessDelegator.MeansOfTransportDelegate;
 import BusinessDelegator.StationDelegate;
 import BusinessDelegator.StationLineManagementDelegate;
 import entities.Line;
@@ -58,7 +55,7 @@ public class StationPanel extends JPanel {
 		setLayout(null);
 
 		JPanel panelMOTList = new JPanel();
-		panelMOTList.setBounds(10, 125, 324, 226);
+		panelMOTList.setBounds(20, 125, 324, 226);
 		add(panelMOTList);
 
 		panelMOTList.setLayout(null);
@@ -100,7 +97,10 @@ public class StationPanel extends JPanel {
 		SearchBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				StationLineManagementDelegate.doFindLineByName(searchText
+						.getText());
 				tableMot.setModel(new StationTableModel(searchText.getText()));
+
 			}
 		});
 		SearchBtn.setText("Search");
@@ -148,11 +148,11 @@ public class StationPanel extends JPanel {
 		jpanelAdd.add(Name);
 
 		x = new JSpinner();
-		x.setBounds(230, 64, 74, 20);
+		x.setBounds(230, 64, 74, 29);
 		jpanelAdd.add(x);
 
 		y = new JSpinner();
-		y.setBounds(230, 101, 66, 20);
+		y.setBounds(230, 101, 74, 29);
 		jpanelAdd.add(y);
 
 		JButton buttonAdd = new JButton();
@@ -166,9 +166,8 @@ public class StationPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Station meanOfTransport = new Station();
-				meanOfTransport.setName((Name
-								.getText()));
-						
+				meanOfTransport.setName((Name.getText()));
+
 				meanOfTransport.setX((Integer) x.getValue());
 				meanOfTransport.setY((Integer) y.getValue());
 				StationDelegate.DoaddStation(meanOfTransport);
@@ -218,16 +217,17 @@ public class StationPanel extends JPanel {
 		assign.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-//				String x = (String) tableMot.getValueAt(
-//						tableMot.getSelectedRow(), 0);
-//				Station meanOfTransport = MeansOfTransportDelegate
-//						.doFindStationById(x);
-//				Line line = LineServicesDelegate.doFindLineByName(comboBoxLine
-//						.getSelectedItem().toString().trim());
-//				MeansOfTransportDelegate.doAssignStationToLine(
-//						meanOfTransport.getRegistrationNumber(),
-//						line.getLineId());
-//				tableMot.setModel(new StationTableModel());
+				// String x = (String) tableMot.getValueAt(
+				// tableMot.getSelectedRow(), 0);
+				// Station meanOfTransport = MeansOfTransportDelegate
+				// .doFindStationById(x);
+				// Line line =
+				// LineServicesDelegate.doFindLineByName(comboBoxLine
+				// .getSelectedItem().toString().trim());
+				// MeansOfTransportDelegate.doAssignStationToLine(
+				// meanOfTransport.getRegistrationNumber(),
+				// line.getLineId());
+				// tableMot.setModel(new StationTableModel());
 
 			}
 		});
@@ -258,14 +258,13 @@ public class StationPanel extends JPanel {
 		buttonDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Integer x =  (Integer) tableMot.getValueAt(
+				Integer x = (Integer) tableMot.getValueAt(
 						tableMot.getSelectedRow(), 0);
 
 				Station meanOfTransport = StationDelegate.doFindStationById(x);
-					
 
 				StationDelegate.doDeleteStationById((meanOfTransport
-								.getStationId()));
+						.getStationId()));
 				tableMot.setModel(new StationTableModel());
 
 			}

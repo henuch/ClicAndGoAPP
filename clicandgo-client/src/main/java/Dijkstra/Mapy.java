@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import BusinessDelegator.LineServicesDelegate;
+import BusinessDelegator.StationDelegate;
 import BusinessDelegator.StationLineManagementDelegate;
 import entities.Line;
 import entities.Station;
@@ -17,6 +18,8 @@ public class Mapy extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D gr = (Graphics2D) g;
+		
+		
 	//gr.setColor(Color.red);
 		List<Line> lines = LineServicesDelegate.doFindAllLines();
 		
@@ -47,7 +50,6 @@ public class Mapy extends JPanel {
 				gr.drawLine(stations.get(i).getX()+5, stations.get(i).getY()+5,
 						stations.get(i+1).getX()+5, stations.get(i+1).getY()+5);
 			}
-			
 			
 
 		}
