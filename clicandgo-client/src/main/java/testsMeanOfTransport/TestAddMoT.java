@@ -15,9 +15,12 @@ public class TestAddMoT {
 				.lookup(jndiName);
 		
 		MeanOfTransport MeanOfTransport = new MeanOfTransport();
-		MeanOfTransport.setRegistrationNumber("lol"); 
+		MeanOfTransport.setRegistrationNumber("47A"); 
 		MeanOfTransport.setCapacity(5);
 		MeanOfTransport.setNbOfWagons(55);
+		MeanOfTransport MeanOfTransport1 = new MeanOfTransport();
+		MeanOfTransport.setRegistrationNumber("20A"); 
+		MeanOfTransport.setCapacity(5);
 		
 
 		 

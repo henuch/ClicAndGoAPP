@@ -1,0 +1,12 @@
+
+ticket Name: 20A
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 2:00PM
+Total Cost: $1 116,25
+
+ticket Name: 20A
+Adult Ticket(s): 1
+Child Ticket(s): 1
+Show Date & Time: 2015-11-12 :: 2:00PM
+Total Cost: Mil940,00

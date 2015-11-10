@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import entities.MeanOfTransport;
 import BusinessDelegator.MeansOfTransportDelegate;
+import BusinessDelegator.SessionDelegate;
 
 public class TicketingPanel extends JPanel {
 
@@ -55,8 +56,8 @@ public class TicketingPanel extends JPanel {
 		jLabel4.setBounds(10, 200, 90, 15);
 		jLabel5 = new javax.swing.JLabel();
 		jLabel5.setBounds(10, 92, 80, 15);
-		cmbmovies = new javax.swing.JComboBox();
-		cmbmovies.setBounds(100, 90, 230, 20);
+		cmbMOT = new javax.swing.JComboBox();
+		cmbMOT.setBounds(100, 90, 230, 20);
 		jLabel6 = new javax.swing.JLabel();
 		jLabel6.setBounds(10, 160, 80, 15);
 		cmbdate = new javax.swing.JComboBox();
@@ -93,7 +94,7 @@ public class TicketingPanel extends JPanel {
 		lblchildticketreport = new javax.swing.JLabel();
 		lbltimeanddate = new javax.swing.JLabel();
 		lbladultticketreport = new javax.swing.JLabel();
-		lblmoviename1 = new javax.swing.JLabel();
+		lblticketname1 = new javax.swing.JLabel();
 		jLabel19 = new javax.swing.JLabel();
 		lbltime = new javax.swing.JLabel();
 		jLabel13 = new javax.swing.JLabel();
@@ -103,8 +104,8 @@ public class TicketingPanel extends JPanel {
 		btnnew.setBounds(10, 340, 110, 23);
 		btnsavepurchase = new javax.swing.JButton();
 		btnsavepurchase.setBounds(270, 340, 120, 23);
-		pngimagemovie = new javax.swing.JPanel();
-		pngimagemovie.setBounds(380, 60, 190, 270);
+		pngimageticket = new javax.swing.JPanel();
+		pngimageticket.setBounds(380, 60, 190, 270);
 		lblimage = new javax.swing.JLabel();
 		jLabel18 = new javax.swing.JLabel();
 		jLabel18.setBounds(140, 270, 70, 14);
@@ -130,7 +131,7 @@ public class TicketingPanel extends JPanel {
 		add(jLabel3);
 
 		cmbtime.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"2:00PM", "3:00PM", "3:30PM", "4:00PM", "5:30PM", "6:00PM",
+				"8:00AM","8:15AM","8:45AM","9:00AM","10:00AM","11:00AM","12:00AM", "1:00PM", "2:30PM", "4:00PM", "5:30PM", "6:00PM",
 				"7:30PM", "8:00PM", "8:30PM", "9:00PM" }));
 		cmbtime.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,25 +154,25 @@ public class TicketingPanel extends JPanel {
         for (MeanOfTransport c :listenom) 
         {
        
-        	cmbmovies.addItem((String)(c.getRegistrationNumber()));
+        	cmbMOT.addItem((String)(c.getRegistrationNumber()));
         }
         ;
 
-		/*cmbmovies.setModel(new javax.swing.DefaultComboBoxModel()
+		/*cmbMOT.setModel(new javax.swing.DefaultComboBoxModel()
 		{	
 				BusinessDelegator.MeansOfTransportDelegate.doFindAllMeanOfTransports()
 				});*/
-		cmbmovies.addItemListener(new java.awt.event.ItemListener() {
+		cmbMOT.addItemListener(new java.awt.event.ItemListener() {
 			public void itemStateChanged(java.awt.event.ItemEvent evt) {
-				cmbmoviesItemStateChanged(evt);
+				cmbMOTItemStateChanged(evt);
 			}
 		});
-		cmbmovies.addActionListener(new java.awt.event.ActionListener() {
+		cmbMOT.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				cmbmoviesActionPerformed(evt);
+				cmbMOTActionPerformed(evt);
 			}
 		});
-		add(cmbmovies);
+		add(cmbMOT);
 
 		jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12));
 		jLabel6.setText("Date:");
@@ -277,7 +278,7 @@ public class TicketingPanel extends JPanel {
 		jPanel1.add(lblTotalCOSTreport);
 		lblTotalCOSTreport.setBounds(150, 90, 350, 14);
 
-		jLabel14.setText("Movie Name: ");
+		jLabel14.setText("Ticket Name: ");
 		jPanel1.add(jLabel14);
 		jLabel14.setBounds(10, 10, 100, 14);
 
@@ -297,9 +298,9 @@ public class TicketingPanel extends JPanel {
 		jPanel1.add(lbladultticketreport);
 		lbladultticketreport.setBounds(150, 30, 390, 14);
 
-		lblmoviename1.setText(" ");
-		jPanel1.add(lblmoviename1);
-		lblmoviename1.setBounds(150, 10, 390, 14);
+		lblticketname1.setText(" ");
+		jPanel1.add(lblticketname1);
+		lblticketname1.setBounds(150, 10, 390, 14);
 
 		jLabel19.setText("Child Ticket(s): ");
 		jPanel1.add(jLabel19);
@@ -334,20 +335,20 @@ public class TicketingPanel extends JPanel {
 		});
 		add(btnsavepurchase);
 
-		pngimagemovie.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+		pngimageticket.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
 		lblimage.setIcon(new javax.swing.ImageIcon(getClass().getResource(
 				"/images/aee.png")));
 		lblimage.setText("");
 
-		javax.swing.GroupLayout pngimagemovieLayout = new javax.swing.GroupLayout(
-				pngimagemovie);
-		pngimagemovie.setLayout(pngimagemovieLayout);
-		pngimagemovieLayout.setHorizontalGroup(pngimagemovieLayout
+		javax.swing.GroupLayout pngimageticketLayout = new javax.swing.GroupLayout(
+				pngimageticket);
+		pngimageticket.setLayout(pngimageticketLayout);
+		pngimageticketLayout.setHorizontalGroup(pngimageticketLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
 						javax.swing.GroupLayout.Alignment.TRAILING,
-						pngimagemovieLayout
+						pngimageticketLayout
 								.createSequentialGroup()
 								.addContainerGap(
 										javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -357,12 +358,12 @@ public class TicketingPanel extends JPanel {
 										169,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addGap(35, 35, 35)));
-		pngimagemovieLayout.setVerticalGroup(pngimagemovieLayout
+		pngimageticketLayout.setVerticalGroup(pngimageticketLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addComponent(lblimage, javax.swing.GroupLayout.DEFAULT_SIZE,
 						266, Short.MAX_VALUE));
 
-		add(pngimagemovie);
+		add(pngimageticket);
 
 		jLabel18.setText("Sub-Total: ");
 		add(jLabel18);
@@ -378,7 +379,7 @@ public class TicketingPanel extends JPanel {
 	private void cmbtimeActionPerformed(java.awt.event.ActionEvent evt) {
 	}
 
-	private void cmbmoviesActionPerformed(java.awt.event.ActionEvent evt) {
+	private void cmbMOTActionPerformed(java.awt.event.ActionEvent evt) {
 	}
 
 	private void cmbdateActionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,7 +397,7 @@ public class TicketingPanel extends JPanel {
 
 	private void btnviewtotalsaleActionPerformed(java.awt.event.ActionEvent evt) {
 
-		DecimalFormat formatter = new DecimalFormat("$#,###.00");
+		DecimalFormat formatter = new DecimalFormat("Mil#,###.00");
 		JOptionPane.showMessageDialog(
 				null,
 				"Ticket Sold\n\n Adult: " + Integer.toString(overralladult)
@@ -406,15 +407,15 @@ public class TicketingPanel extends JPanel {
 	}
 
 	private void btncomputechargeActionPerformed(java.awt.event.ActionEvent evt) {
-		final double AdultCONST = 600.00;
-		final double ChildCONST = 350.00;
+		final double AdultCONST = 450;
+		final double ChildCONST = 350;
 		double subtotal = 0;
 		double childsubtotal = 0;
 		double adultsubtotal = 0;
 		double tax = 0;
 		double total = 0;
 
-		DecimalFormat formatter = new DecimalFormat("$#,###.00");
+		DecimalFormat formatter = new DecimalFormat("Mil#,###.00");
 
 		String adultstring = (String) cmbadult.getSelectedItem();
 		String childstring = (String) cmdchild.getSelectedItem();
@@ -434,7 +435,7 @@ public class TicketingPanel extends JPanel {
 		lblsubtotal.setText(formatter.format(subtotal));
 		lblGCT.setText(formatter.format(tax));
 		lblTotal.setText(formatter.format(total));
-
+		overralltotalsale=0;
 		overralltotalsale = overralltotalsale + total;
 		overralladult = overralladult
 				+ Integer.parseInt((String) cmbadult.getSelectedItem());
@@ -444,15 +445,15 @@ public class TicketingPanel extends JPanel {
 	}
 
 	private void btnsavepurchaseActionPerformed(java.awt.event.ActionEvent evt) {
-		lblmoviename1.setText((String) cmbmovies.getSelectedItem());
+		lblticketname1.setText((String) cmbMOT.getSelectedItem());
 		lbladultticketreport.setText((String) cmbadult.getSelectedItem());
 		lblchildticketreport.setText((String) cmdchild.getSelectedItem());
 		lbltimeanddate.setText((String) cmbdate.getSelectedItem() + " :: "
 				+ (String) cmbtime.getSelectedItem());
 		lblTotalCOSTreport.setText(lblTotal.getText());
 
-		purchasesave[0][0] = "Movie Name: "
-				+ (String) cmbmovies.getSelectedItem();
+		purchasesave[0][0] = "ticket Name: "
+				+ (String) cmbMOT.getSelectedItem();
 		purchasesave[1][0] = "Adult Ticket(s): "
 				+ (String) cmbadult.getSelectedItem();
 		purchasesave[2][0] = "Child Ticket(s): "
@@ -465,7 +466,7 @@ public class TicketingPanel extends JPanel {
 
 	private void btnexportActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter("movie.txt",
+			BufferedWriter out = new BufferedWriter(new FileWriter("ticket.txt",
 					true));
 			out.newLine();
 			for (int i = 0; i < 5; i++) {
@@ -483,13 +484,13 @@ public class TicketingPanel extends JPanel {
 	}
 
 	private void btnnewActionPerformed(java.awt.event.ActionEvent evt) {
-		lblmoviename1.setText(" ");
+		lblticketname1.setText(" ");
 		lbladultticketreport.setText(" ");
 		lblchildticketreport.setText(" ");
 		lbltimeanddate.setText(" ");
 		lblTotalCOSTreport.setText(" ");
 
-		cmbmovies.setSelectedIndex(0);
+		cmbMOT.setSelectedIndex(0);
 		cmbadult.setSelectedIndex(0);
 		cmdchild.setSelectedIndex(0);
 		cmbdate.setSelectedIndex(0);
@@ -499,7 +500,7 @@ public class TicketingPanel extends JPanel {
 		lblsubtotal.setText("0");
 	}
 
-	private void cmbmoviesItemStateChanged(java.awt.event.ItemEvent evt) {
+	private void cmbMOTItemStateChanged(java.awt.event.ItemEvent evt) {
 	}
 
 	private javax.swing.JButton btncomputecharge;
@@ -510,7 +511,7 @@ public class TicketingPanel extends JPanel {
 	private javax.swing.JButton btnviewtotalsale;
 	private javax.swing.JComboBox cmbadult;
 	private javax.swing.JComboBox cmbdate;
-	private javax.swing.JComboBox cmbmovies;
+	private javax.swing.JComboBox cmbMOT;
 	private javax.swing.JComboBox cmbtime;
 	private javax.swing.JComboBox cmdchild;
 	private javax.swing.JLabel jLabel1;
@@ -538,9 +539,9 @@ public class TicketingPanel extends JPanel {
 	private javax.swing.JLabel lblchildticketreport;
 	private javax.swing.JLabel lblimage;
 	private javax.swing.JLabel lblmaindate;
-	private javax.swing.JLabel lblmoviename1;
+	private javax.swing.JLabel lblticketname1;
 	private javax.swing.JLabel lblsubtotal;
 	private javax.swing.JLabel lbltime;
 	private javax.swing.JLabel lbltimeanddate;
-	private javax.swing.JPanel pngimagemovie;
+	private javax.swing.JPanel pngimageticket;
 }
