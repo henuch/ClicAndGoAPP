@@ -1,28 +1,25 @@
 package model;
 
-
-
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import BusinessDelegator.ReadingManagementDelegate;
 import BusinessDelegator.StationDelegate;
 import BusinessDelegator.StationLineManagementDelegate;
-import entities.Ebook;
 import entities.Station;
 
-public class StationTableModel extends AbstractTableModel{
-	
-	List<Station> stations ;
-	String[] entete = { "Name", "Reference","Longitude","Latitude" };
+public class StationTableModel extends AbstractTableModel {
 
+	List<Station> stations;
+	String[] entete = { "Name", "Reference", "Longitude", "Latitude" };
 
 	public StationTableModel() {
-	stations = StationDelegate.doFindAllStations();
+		stations = StationDelegate.doFindAllStations();
 	}
-	public StationTableModel(String search ) {		
-		stations= (List<Station>) StationLineManagementDelegate.doFindStationByName(search);
+
+	public StationTableModel(String search) {
+		Object station = StationLineManagementDelegate
+				.doFindStationByName(search);
 	}
 
 	@Override
@@ -50,7 +47,7 @@ public class StationTableModel extends AbstractTableModel{
 		case 3: {
 			return stations.get(rowIndex).getY();
 		}
-		
+
 		default:
 			throw new IllegalArgumentException();
 
@@ -64,5 +61,4 @@ public class StationTableModel extends AbstractTableModel{
 
 	}
 
-	
 }
