@@ -44,5 +44,5 @@ public interface StationLineManagementRemote {
 
 	public List<Line> findAllLinesByStationId(Integer stationId);
 
-	public Integer[][] RemplirMatrice();
+	public int[][] RemplirMatrice();
 }

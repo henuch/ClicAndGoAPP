@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +48,10 @@ public class TicketTableModel extends AbstractTableModel {
 
             }
             case 3: {
-                return tickets.get(rowIndex).getMeanOfTransport();
+                return tickets.get(rowIndex).getMeanOfTransport().getRegistrationNumber();
             }
             case 4: {
-                return tickets.get(rowIndex).getUser();
+                return tickets.get(rowIndex).getUser().getUserId();
 
             }
             default:
@@ -79,5 +80,6 @@ public class TicketTableModel extends AbstractTableModel {
         
         return searchTickets;
     }
+	
 
 }

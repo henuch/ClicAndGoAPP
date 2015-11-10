@@ -87,7 +87,7 @@ public class StationLineManagementDelegate {
 		return getProxy().AntecedentInTheSameLine(station, station1);
 	}
 
-	public static Integer[][] doRemplirMatrice() {
+	public static int[][] doRemplirMatrice() {
 		return getProxy().RemplirMatrice();
 	}
 }
