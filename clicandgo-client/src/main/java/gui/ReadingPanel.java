@@ -37,6 +37,7 @@ public class ReadingPanel extends JPanel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		System.out.println("1");
 		authentifiedUser = UserServicesDelegate.doAuthenticate(
 				SessionDelegate.doGetLogin(), SessionDelegate.doGetPwd());
 
