@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 public class UserPanel extends JPanel {
 	private JTable table;
 	private JTextField txtSearch;
+	private javax.swing.JLabel lblimage;
 	public UserPanel() {
 		setLayout(null);
 		
