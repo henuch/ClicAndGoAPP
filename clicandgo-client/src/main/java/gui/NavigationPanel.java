@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -15,11 +16,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import services.impl.StationServices;
+import BusinessDelegator.LineServicesDelegate;
+import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.StationDelegate;
+import BusinessDelegator.StationLineManagementDelegate;
 import Dijkstra.Dessin;
 import Dijkstra.Dijkstra;
 import Dijkstra.Graphe;
+import entities.Line;
 import entities.Station;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class NavigationPanel extends JPanel {
 
@@ -28,6 +37,9 @@ public class NavigationPanel extends JPanel {
 	double overralltotalsale = 0;
 	int overralladult = 0;
 	int overrallchild = 0;
+	private JComboBox<Object> cmbArrival;
+	private JComboBox<Object> cmbdeparture;
+	
 
 	/**
 	 * Create the panel.
@@ -42,16 +54,71 @@ public class NavigationPanel extends JPanel {
 
 	private void initialize() {
 		setLayout(null);
-		jLabel5 = new javax.swing.JLabel();
-		jLabel5.setBounds(27, 51, 120, 29);
 		btnnew = new javax.swing.JButton();
+		btnnew = new javax.swing.JButton();
+		panel_Itinerary = new JPanel();
+
+		cmbArrival = new JComboBox<>();
+		//cmbArrival = new javax.swing.JComboBox<String>();
+		
+		cmbArrival.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println(cmbArrival.getSelectedItem());
+			}
+		});
+		cmbdeparture = new JComboBox<>();
+		//cmbdeparture = new javax.swing.JComboBox<String>();
+		
+		
+		cmbArrival.setBounds(255, 107, 230, 20);
+		panel_Itinerary.add(cmbArrival);
+		
+		List<Station> stations = StationLineManagementDelegate.doFindAllStations();
+		for(Station s : stations)
+		{
+			cmbdeparture.addItem(s.getName());
+			//cmbArrival.addItem(s.getName());
+		}
+		
+		List<Station> stations2 = StationLineManagementDelegate.doFindAllStations();
+		for(Station s : stations2)
+		{
+			//cmbdeparture.addItem(s.getName());
+			cmbArrival.addItem(s.getName());
+		}
+		
+		
+		cmbdeparture.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				Object[] departOb=cmbdeparture.getSelectedObjects();
+				System.out.println(cmbdeparture.getSelectedItem());
+				System.out.println(cmbdeparture.getSelectedIndex());
+
+				System.out.println(cmbdeparture.getSelectedObjects().toString());
+				System.out.println(departOb);
+				
+
+				
+			}
+		});
+		
+		cmbdeparture.setBounds(255, 27, 230, 20);
+		panel_Itinerary.add(cmbdeparture);
+		
+
+
+
+		lbldeparture = new javax.swing.JLabel();
+		lbldeparture.setBounds(27, 51, 120, 29);
 		btnnew.setBounds(10, 340, 110, 23);
 
-		jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12));
-		jLabel5.setText("Departure");
-		add(jLabel5);
+		lbldeparture.setFont(new java.awt.Font("Tahoma", 0, 12));
+		lbldeparture.setText("Departure");
+		add(lbldeparture);
 
-		panel_Itinerary = new JPanel();
 		panel_Itinerary.setBounds(10, 30, 771, 491);
 		add(panel_Itinerary);
 		panel_Itinerary.setLayout(null);
@@ -68,7 +135,7 @@ public class NavigationPanel extends JPanel {
 		btnsavepurchase.setText("Search");
 
 		Trip = new JPanel();
-		Trip.setBounds(10, 152, 751, 77);
+		Trip.setBounds(10, 152, 751, 88);
 		panel_Itinerary.add(Trip);
 		Trip.setLayout(null);
 		Trip.setBorder(javax.swing.BorderFactory.createTitledBorder(
@@ -79,7 +146,7 @@ public class NavigationPanel extends JPanel {
 				new java.awt.Font("Arial", 2, 12),
 				new java.awt.Color(102, 0, 0)));
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 21, 731, 45);
+		textArea.setBounds(10, 21, 731, 56);
 		Trip.add(textArea);
 		textArea.setBackground(SystemColor.control);
 		btncomputecharge = new javax.swing.JButton();
@@ -87,36 +154,29 @@ public class NavigationPanel extends JPanel {
 		panel_Itinerary.add(btncomputecharge);
 		
 				btncomputecharge.setText("See on Google Map");
-				cmbmovies = new javax.swing.JComboBox();
-				cmbmovies.setBounds(255, 27, 230, 20);
-				panel_Itinerary.add(cmbmovies);
 				
-						cmbmovies.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-								"Ariana", "Hammam Lif", "Barcelone", "La marsa", "Rades",
-								"Passage", "Ezzahra", "Mohamed 5", "Cite Olympique", "Megrine",
-								"Manar 2", "Menzeh 9" }));
+				
+			
+				
 						jSeparator2 = new javax.swing.JSeparator();
 						jSeparator2.setBounds(255, 76, 230, 10);
 						panel_Itinerary.add(jSeparator2);
-						JComboBox comboBox = new JComboBox();
-						comboBox.setBounds(255, 107, 230, 20);
-						panel_Itinerary.add(comboBox);
-						comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-								"Ariana", "Hammam Lif", "Barcelone", "La marsa", "Rades",
-								"Passage", "Ezzahra", "Mohamed 5", "Cite Olympique", "Megrine",
-								"Manar 2", "Menzeh 9" }));
+						
+						
+						
+						
 						
 								JLabel label = new JLabel();
-								label.setBounds(10, 102, 120, 29);
+								label.setBounds(22, 102, 120, 29);
 								panel_Itinerary.add(label);
 								label.setText("Arrival");
 								label.setFont(new Font("Tahoma", Font.PLAIN, 12));
-						cmbmovies.addItemListener(new java.awt.event.ItemListener() {
+						cmbdeparture.addItemListener(new java.awt.event.ItemListener() {
 							public void itemStateChanged(java.awt.event.ItemEvent evt) {
 								cmbmoviesItemStateChanged(evt);
 							}
 						});
-						cmbmovies.addActionListener(new java.awt.event.ActionListener() {
+						cmbdeparture.addActionListener(new java.awt.event.ActionListener() {
 							public void actionPerformed(java.awt.event.ActionEvent evt) {
 								cmbmoviesActionPerformed(evt);
 							}
@@ -152,9 +212,9 @@ public class NavigationPanel extends JPanel {
 						{ N, N, N, N, 15, N, N, N, N, N, N, N },
 
 				};
-				String depart = (String) cmbmovies.getSelectedItem();
+				String depart =  cmbdeparture.getSelectedItem().toString();
 
-				String arrival = (String) comboBox.getSelectedItem();
+				String arrival =  cmbArrival.getSelectedItem().toString();
 
 				Station stationdepart = StationDelegate
 						.findStationByStationName(depart);
@@ -167,12 +227,12 @@ public class NavigationPanel extends JPanel {
 				textArea.setVisible(true);
 				textArea.setText(dij.AfficherDestinationEtCout(depart, arrival));
 
-				// SessionDelegate.doSetDeparture(stationdepart.getName());
-				// SessionDelegate.doSetArrival(arrival);
-				//
-				// System.out.println("Arrivée: "+SessionDelegate.doGetArrival());
-				// System.out.println("Depart : "+SessionDelegate.doGetDeparture());
-				// System.out.println("Cout : "+SessionDelegate.doGetArrival());
+				 SessionDelegate.doSetDeparture(depart);
+				 SessionDelegate.doSetArrival(arrival);
+				
+				 System.out.println("Arrivée: "+SessionDelegate.doGetArrival());
+				 System.out.println("Depart : "+SessionDelegate.doGetDeparture());
+				 System.out.println("Cout : "+SessionDelegate.doGetDuration());
 
 			}
 
@@ -206,8 +266,8 @@ public class NavigationPanel extends JPanel {
 	private javax.swing.JButton btncomputecharge;
 	private javax.swing.JButton btnnew;
 	private javax.swing.JButton btnsavepurchase;
-	private javax.swing.JComboBox cmbmovies;
-	private javax.swing.JLabel jLabel5;
+	
+	private javax.swing.JLabel lbldeparture;
 	private javax.swing.JSeparator jSeparator2;
 	private JPanel panel;
 	private JPanel panel_Itinerary;
