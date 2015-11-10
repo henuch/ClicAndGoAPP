@@ -61,7 +61,8 @@ public class Session implements SessionRemote {
     
     
     public Session() {
-        // TODO Auto-generated constructor stub
+        arrival="Ariana";
+        departure="Ariana";
     }
 
 	@Override

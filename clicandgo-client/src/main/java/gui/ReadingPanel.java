@@ -187,7 +187,7 @@ public class ReadingPanel extends JPanel {
 		buttonRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(SessionDelegate.doGetDuration());
-				jTable1.setModel(new EbookTableModel());
+				jTable1.setModel(new EbookTableModel("sa"));
 			}
 		});
 		buttonRefresh.addMouseListener(new MouseAdapter() {
