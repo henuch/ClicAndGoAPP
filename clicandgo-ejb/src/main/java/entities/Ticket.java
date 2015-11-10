@@ -72,6 +72,16 @@ public class Ticket implements Serializable {
 		this.meanOfTransport = meanOfTransport;
 	}
 
+	public Ticket(Integer ticketId, State state, Double price, User user,
+			MeanOfTransport meanOfTransport) {
+		super();
+		this.ticketId = ticketId;
+		this.state = state;
+		this.price = price;
+		this.user = user;
+		this.meanOfTransport = meanOfTransport;
+	}
+
 	
 
 

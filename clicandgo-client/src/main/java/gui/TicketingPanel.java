@@ -1,6 +1,8 @@
 package gui;
 
+import java.awt.Graphics2D;
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -14,14 +16,25 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import entities.MeanOfTransport;
-import entities.State;
-import entities.Ticket;
-import entities.User;
+import model.TicketTableModel;
 import BusinessDelegator.MeansOfTransportDelegate;
 import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.TicketServicesDelegate;
 import BusinessDelegator.UserServicesDelegate;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import entities.MeanOfTransport;
+import entities.State;
+import entities.Ticket;
+import entities.User;
+import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TicketingPanel extends JPanel {
 
@@ -34,7 +47,7 @@ public class TicketingPanel extends JPanel {
 	int overralladult = 0;
 	int overrallchild = 0;
 	User authentifiedUser;
-	
+
 	/**
 	 * Create the panel.
 	 */
@@ -42,7 +55,7 @@ public class TicketingPanel extends JPanel {
 	public TicketingPanel() {
 		DateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM dd, yyyy");
 		Date date = new Date();
-		//lblmaindate.setText(dateFormat.format(date));
+		// lblmaindate.setText(dateFormat.format(date));
 		initialize();
 	}
 
@@ -137,7 +150,8 @@ public class TicketingPanel extends JPanel {
 		add(jLabel3);
 
 		cmbtime.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"8:00AM","8:15AM","8:45AM","9:00AM","10:00AM","11:00AM","12:00AM", "1:00PM", "2:30PM", "4:00PM", "5:30PM", "6:00PM",
+				"8:00AM", "8:15AM", "8:45AM", "9:00AM", "10:00AM", "11:00AM",
+				"12:00AM", "1:00PM", "2:30PM", "4:00PM", "5:30PM", "6:00PM",
 				"7:30PM", "8:00PM", "8:30PM", "9:00PM" }));
 		cmbtime.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,20 +168,20 @@ public class TicketingPanel extends JPanel {
 		jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12));
 		jLabel5.setText("Select MOT: ");
 		add(jLabel5);
-		
-		
-		List <MeanOfTransport> listenom = MeansOfTransportDelegate.doFindAllMeanOfTransports();
-        for (MeanOfTransport c :listenom) 
-        {
-       
-        	cmbMOT.addItem((String)(c.getRegistrationNumber()));
-        }
-        ;
 
-		/*cmbMOT.setModel(new javax.swing.DefaultComboBoxModel()
-		{	
-				BusinessDelegator.MeansOfTransportDelegate.doFindAllMeanOfTransports()
-				});*/
+		List<MeanOfTransport> listenom = MeansOfTransportDelegate
+				.doFindAllMeanOfTransports();
+		for (MeanOfTransport c : listenom) {
+
+			cmbMOT.addItem((String) (c.getRegistrationNumber()));
+		}
+		;
+
+		/*
+		 * cmbMOT.setModel(new javax.swing.DefaultComboBoxModel() {
+		 * BusinessDelegator
+		 * .MeansOfTransportDelegate.doFindAllMeanOfTransports() });
+		 */
 		cmbMOT.addItemListener(new java.awt.event.ItemListener() {
 			public void itemStateChanged(java.awt.event.ItemEvent evt) {
 				cmbMOTItemStateChanged(evt);
@@ -183,9 +197,8 @@ public class TicketingPanel extends JPanel {
 		jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12));
 		jLabel6.setText("Date:");
 		add(jLabel6);
-			String dt = "2015-11-11"
-					+ "";  // Start date
-		
+		String dt = "2015-11-11" + ""; // Start date
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();
 		try {
@@ -194,10 +207,10 @@ public class TicketingPanel extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(int i=0; i<7; i++){
-		c.add(Calendar.DATE, 1);  // number of days to add
-		dt = sdf.format(c.getTime());  // dt is now the new date
-		cmbdate.addItem(dt);
+		for (int i = 0; i < 7; i++) {
+			c.add(Calendar.DATE, 1); // number of days to add
+			dt = sdf.format(c.getTime()); // dt is now the new date
+			cmbdate.addItem(dt);
 		}
 		cmbdate.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,6 +334,15 @@ public class TicketingPanel extends JPanel {
 		jLabel13.setBounds(10, 90, 140, 14);
 
 		add(jPanel1);
+		
+		panel = new JPanel();
+		panel.setBounds(139, 10, 1, 1);
+		jPanel1.add(panel);
+		panel.setLayout(null);
+		
+		table = new JTable();
+		table.setBounds(0, 0, 1, 1);
+		panel.add(table);
 
 		lblGCT.setText("0");
 		add(lblGCT);
@@ -341,7 +363,8 @@ public class TicketingPanel extends JPanel {
 		});
 		add(btnsavepurchase);
 
-		pngimageticket.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+		pngimageticket
+				.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
 		lblimage.setIcon(new javax.swing.ImageIcon(getClass().getResource(
 				"/images/aee.png")));
@@ -379,6 +402,15 @@ public class TicketingPanel extends JPanel {
 
 		lblsubtotal.setText("0");
 		add(lblsubtotal);
+		
+		JButton btnNewButton = new JButton("List Tickets");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table.setModel(new TicketTableModel());
+			}
+		});
+		btnNewButton.setBounds(386, 500, 89, 23);
+		add(btnNewButton);
 
 	}
 
@@ -420,10 +452,7 @@ public class TicketingPanel extends JPanel {
 		double adultsubtotal = 0;
 		double tax = 0;
 		double total = 0;
-		
-		
 
-		
 		DecimalFormat formatter = new DecimalFormat("Mil#,###.00");
 
 		String adultstring = (String) cmbadult.getSelectedItem();
@@ -436,7 +465,7 @@ public class TicketingPanel extends JPanel {
 		adultsubtotal = adult * AdultCONST;
 
 		subtotal = childsubtotal + adultsubtotal;
-		
+
 		tax = 0.175 * subtotal;
 
 		total = tax + subtotal;
@@ -444,7 +473,7 @@ public class TicketingPanel extends JPanel {
 		lblsubtotal.setText(formatter.format(subtotal));
 		lblGCT.setText(formatter.format(tax));
 		lblTotal.setText(formatter.format(total));
-		overralltotalsale=0;
+		overralltotalsale = 0;
 		overralltotalsale = overralltotalsale + total;
 		overralladult = overralladult
 				+ Integer.parseInt((String) cmbadult.getSelectedItem());
@@ -482,9 +511,6 @@ public class TicketingPanel extends JPanel {
 		double tax = 0;
 		double total = 0;
 		
-		
-
-		
 		DecimalFormat formatter = new DecimalFormat("Mil#,###.00");
 
 		String adultstring = (String) cmbadult.getSelectedItem();
@@ -497,13 +523,13 @@ public class TicketingPanel extends JPanel {
 		adultsubtotal = adult * AdultCONST;
 
 		subtotal = childsubtotal + adultsubtotal;
-		
+
 		tax = 0.175 * subtotal;
 
 		total = tax + subtotal;
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter("ticket.txt",
-					true));
+			BufferedWriter out = new BufferedWriter(new FileWriter(
+					"ticket.txt", true));
 			out.newLine();
 			for (int i = 0; i < 5; i++) {
 				out.write(purchasesave[i][0]);
@@ -515,24 +541,60 @@ public class TicketingPanel extends JPanel {
 			JOptionPane
 					.showMessageDialog(null, "successfully exported to file");
 			System.out.print(SessionDelegate.doGetLogin());
-			User u=UserServicesDelegate.doAuthenticate(SessionDelegate.doGetLogin(), SessionDelegate.doGetPwd());
+			User u = UserServicesDelegate.doAuthenticate(
+					SessionDelegate.doGetLogin(), SessionDelegate.doGetPwd());
 			Ticket ticket = new Ticket();
-			MeanOfTransport mft=MeansOfTransportDelegate.dofindMeanOftransportByName((String) cmbMOT.getSelectedItem());
+			MeanOfTransport mft = MeansOfTransportDelegate
+					.dofindMeanOftransportByName((String) cmbMOT
+							.getSelectedItem());
 			
+			
+			System.out.println("aaaaaaaaaaaaaaaaaaa"+table.getRowCount());
 			ticket.setMeanOfTransport(mft);
 			ticket.setPrice(total);
 			ticket.setState(State.PAID);
 			ticket.setUser(u);
 			System.out.print(TicketServicesDelegate.doaddTicket(ticket));
-			
-			
-//			ticket.setUser(authentifiedUser);
-//			System.out.print(authentifiedUser.getName());
-			
+			Document document = new Document(PageSize.A4.rotate());
+			try {
+				PdfWriter pdf_writer = PdfWriter.getInstance(document,
+						new FileOutputStream("heni.pdf"));
+				
+				System.out.println("cv");
+				document.open();
+				System.out.println("behi");
+				PdfContentByte cb = pdf_writer.getDirectContent();
+System.out.println("zouz");
+				cb.saveState();
+				System.out.println("thletha");
+				Graphics2D g2 = cb.createGraphicsShapes(500, 500);
+				System.out.println("arb3a");
+
+				java.awt.Shape oldClip = g2.getClip();
+				System.out.println("5amsa");
+				g2.clipRect(0, 0, 500, 500);
+
+				table.print(g2);
+				System.out.println("setta");
+				g2.setClip(oldClip);
+System.out.println("sab3a");
+				g2.dispose();
+				cb.restoreState();
+				JOptionPane.showMessageDialog(null,
+						"User List sucessefully exported to PDF");
+				
+			} catch (Exception e1) {
+				System.err.println(e1.getMessage());
+			}
+			document.close();
+
+			// ticket.setUser(authentifiedUser);
+			// System.out.print(authentifiedUser.getName());
+
 		} catch (IOException e) {
 			System.out.println("Exception ");
 		}
-		
+
 	}
 
 	private void btnnewActionPerformed(java.awt.event.ActionEvent evt) {
@@ -597,4 +659,6 @@ public class TicketingPanel extends JPanel {
 	private javax.swing.JLabel lbltime;
 	private javax.swing.JLabel lbltimeanddate;
 	private javax.swing.JPanel pngimageticket;
+	private JTable table;
+	private JPanel panel;
 }
