@@ -64,7 +64,7 @@ public class Authentification extends JFrame {
 	public Authentification() {
 		// initialize();
 		setTheme();
-		setTitle("Authentication");
+		setTitle("Identification");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);  
