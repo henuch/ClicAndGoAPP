@@ -25,7 +25,7 @@ public class LineModel extends AbstractTableModel{
 	lines = StationLineManagementDelegate.doFindAllLines();
 	}
 	public LineModel(String search ) {		
-	line=  (Line) StationLineManagementDelegate.doFindLineByName(search);
+	lines=  StationLineManagementDelegate.dolookUpLinet(search);
 	}
 
 	@Override
