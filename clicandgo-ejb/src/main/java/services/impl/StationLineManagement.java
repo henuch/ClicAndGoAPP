@@ -214,15 +214,17 @@ public class StationLineManagement implements StationLineManagementRemote,
 				stationId1);
 		List<Line> lines = findAllLinesByStationId(station.getStationId());
 		List<Line> lines1 = findAllLinesByStationId(station1.getStationId());
-		Line line = new Line();
+		Line line = null;
 
 		try {
-			for (Line l : lines) {
-				for (Line l1 : lines1) {
-					if (l.getLineId() == l1.getLineId()) {
-						line = l1;
-					} else {
-						line = null;
+			if (line == null) {
+				for (Line l : lines) {
+					if (line == null) {
+						for (Line l1 : lines1) {
+							if (l.getLineId() == l1.getLineId()) {
+								line = l1;
+							}
+						}
 					}
 				}
 			}
@@ -273,11 +275,11 @@ public class StationLineManagement implements StationLineManagementRemote,
 
 		StationLine stationLine = new StationLine();
 
-		Integer Nmax = 8;
+		Integer Nmax = stations.size();
 		Integer[][] matrice = new Integer[Nmax][Nmax];
 		for (int i = 0; i < Nmax; i++) {
 			for (int j = 0; j < Nmax; j++) {
-				matrice[i][j] = 1;
+				matrice[i][j] = 0;
 			}
 
 		}
