@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +19,6 @@ import javax.swing.SwingConstants;
 
 import BusinessDelegator.SessionDelegate;
 import Dijkstra.Mapy;
-import Dijkstra.MapyInitial;
 
 public class TravelerGI extends JFrame {
 
@@ -40,6 +40,7 @@ public class TravelerGI extends JFrame {
 	private JButton itineraryBtn;
 	// private JButton mapBtn_1;
 	private JButton mapBtn;
+	private JButton mapBtn_1;
 
 	/**
 	 * 
@@ -52,8 +53,8 @@ public class TravelerGI extends JFrame {
 	NavigationPanel navigationPanel = new NavigationPanel();
 	TimeTablePanel timeTablePanel = new TimeTablePanel();
 	Mapy MapPanel = new Mapy();
-	//MapyInitial MapPanelInitial = new MapyInitial();
-	
+
+	// MapyInitial MapPanelInitial = new MapyInitial();
 
 	/**
 	 * Create the application.
@@ -71,18 +72,30 @@ public class TravelerGI extends JFrame {
 		panelMenu = new javax.swing.JPanel();
 
 		ticketingBtn = new JButton();
+		ticketingBtn.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/ticket.png")));
+		ticketingBtn.setFont(new Font("DialogInput", Font.BOLD, 16));
+		ticketingBtn.setForeground(new Color(255, 102, 51));
 		readingBtn = new JButton();
+		readingBtn.setFont(new Font("DialogInput", Font.BOLD, 16));
+		readingBtn.setForeground(new Color(255, 102, 51));
+		readingBtn.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/books-icon.png")));
 		// buttonTime_2 = new JButton();
 		timeBtn = new JButton();
+		timeBtn.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/time-icon.png")));
+		timeBtn.setForeground(new Color(0, 0, 102));
+		timeBtn.setFont(new Font("DialogInput", Font.BOLD, 16));
 
 		mapBtn = new JButton();
 		mapBtn.setText("See On Map");
 		mapBtn.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-//				if((SessionDelegate.doGetDeparture()==null)&&(SessionDelegate.doGetArrival()==null))
-//				seeOnmap2BtnActionPerformed(e);
-		seeOnmapBtnActionPerformed(e);
+				// if((SessionDelegate.doGetDeparture()==null)&&(SessionDelegate.doGetArrival()==null))
+				// seeOnmap2BtnActionPerformed(e);
+				seeOnmapBtnActionPerformed(e);
 			}
 		});
 
@@ -106,14 +119,14 @@ public class TravelerGI extends JFrame {
 		panelMenu.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(102, 0, 0)));
 
-		readingBtn.setText("Reading");
+		readingBtn.setText("Reading    ");
 		readingBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				readingBtnActionPerformed(evt);
 			}
 		});
 
-		ticketingBtn.setText("Ticketing");
+		ticketingBtn.setText("Ticketing  ");
 		ticketingBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				ticketingBtnActionPerformed(evt);
@@ -121,6 +134,10 @@ public class TravelerGI extends JFrame {
 		});
 
 		itineraryBtn = new JButton();
+		itineraryBtn.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/er.png")));
+		itineraryBtn.setForeground(new Color(255, 102, 51));
+		itineraryBtn.setFont(new Font("DialogInput", Font.BOLD, 16));
 		itineraryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelContent.removeAll();
@@ -139,17 +156,21 @@ public class TravelerGI extends JFrame {
 				panelContent.revalidate();
 			}
 		});
-		itineraryBtn.setText("Itinerary");
+		itineraryBtn.setText("Itinerary  ");
 
-		mapBtn = new JButton();
-		mapBtn.addActionListener(new ActionListener() {
+		mapBtn_1 = new JButton();
+		mapBtn_1.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/Apps-Google-Maps-icon.png")));
+		mapBtn_1.setForeground(new Color(0, 0, 102));
+		mapBtn_1.setFont(new Font("DialogInput", Font.BOLD, 16));
+		mapBtn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				seeOnmapBtnActionPerformed(e);
 
 			}
 		});
-		mapBtn.setText("See Map");
+		mapBtn_1.setText("See Map    ");
 
 		JLabel lblUSER = new JLabel();
 
@@ -204,7 +225,7 @@ public class TravelerGI extends JFrame {
 																159,
 																Short.MAX_VALUE)
 														.addComponent(
-																mapBtn,
+																mapBtn_1,
 																GroupLayout.DEFAULT_SIZE,
 																159,
 																Short.MAX_VALUE)
@@ -231,7 +252,7 @@ public class TravelerGI extends JFrame {
 						.addComponent(itineraryBtn, GroupLayout.PREFERRED_SIZE,
 								62, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(mapBtn, GroupLayout.PREFERRED_SIZE, 66,
+						.addComponent(mapBtn_1, GroupLayout.PREFERRED_SIZE, 66,
 								GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(ticketingBtn, GroupLayout.PREFERRED_SIZE,
@@ -344,13 +365,13 @@ public class TravelerGI extends JFrame {
 		panelContent.revalidate(); // TODO add your handling code here:
 	}// GEN-LAST:event_gestionCategorieBtnActionPerformed
 
-	
-//	public void seeOnmap2BtnActionPerformed(ActionEvent e) {// GEN-FIRST:event_gestionCategorieBtnActionPerformed
-//		panelContent.removeAll();
-//		panelContent.add(MapPanelInitial);
-//		panelContent.repaint();
-//		panelContent.revalidate(); // TODO add your handling code here:
-//	}
+	// public void seeOnmap2BtnActionPerformed(ActionEvent e) {//
+	// GEN-FIRST:event_gestionCategorieBtnActionPerformed
+	// panelContent.removeAll();
+	// panelContent.add(MapPanelInitial);
+	// panelContent.repaint();
+	// panelContent.revalidate(); // TODO add your handling code here:
+	// }
 	public static void main(String args[]) {
 		/* Set the Nimbus look and feel */
 		// <editor-fold defaultstate="collapsed"
