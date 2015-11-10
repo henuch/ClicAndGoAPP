@@ -33,11 +33,11 @@ public class TravelerGI extends JFrame {
 	private javax.swing.JPanel panelGeneral;
 	private javax.swing.JPanel panelMenu;
 	private JPanel TimeTablePanel;
-
+	
 	private JButton btnNewButton;
 	private JButton itineraryBtn;
 	private JButton placesBtn;
-
+	
 	/**
 	 * 
 	 */
@@ -55,6 +55,7 @@ public class TravelerGI extends JFrame {
 	public TravelerGI() {
 		this.setBounds(180, 20, 30, 30);
 		initComponents();
+		setResizable(false);
 	}
 
 	private void initComponents() {

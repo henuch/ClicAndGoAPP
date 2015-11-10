@@ -49,6 +49,7 @@ public class ContentManagerGui extends JFrame {
 	public ContentManagerGui() {
 		this.setBounds(180, 20, 30, 30);
 		initComponents();
+		setResizable(false);
 	}
 
 	private void initComponents() {
