@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+
 import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.UserServicesDelegate;
 import entities.ContentManager;
@@ -55,6 +57,7 @@ public class Authentification extends JFrame {
 	 */
 	public Authentification() {
 		// initialize();
+		setTheme();
 		setTitle("Authentication");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 750);
@@ -133,6 +136,19 @@ public class Authentification extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(257, 295, 151, 20);
 		panel.add(passwordField);
+	}
+	
+	public static void setTheme(){
+		 try   
+		   {   
+		     //set this attribute will change the window border style definitions   
+		     BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated ;   
+		     org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+		   }   
+		   catch ( Exception e )   
+		   {   
+		     // TODO Exception   
+		   }   
 	}
 
 }
