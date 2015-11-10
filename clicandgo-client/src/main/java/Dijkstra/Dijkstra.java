@@ -1,5 +1,6 @@
 package Dijkstra;
 
+import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.EntityManager;
@@ -169,6 +170,42 @@ public class Dijkstra {
 		return ch;
 	}
 
+	public List<Station> afficheListStations(String depart, String arrivee) {
+		List stationsToDraw = null;
+		Station stationdepart = StationDelegate
+				.findStationByStationName(depart);
+		Station stationarrivee = StationDelegate
+				.findStationByStationName(arrivee);
+		int i = stationarrivee.getReference();
+		int source = stationdepart.getReference();
+
+		int antécédent = i;
+		Vector<Integer> lesNoeudsIntermediaires = new Vector<Integer>();
+		;
+		System.out.println(" de " + depart + " à "
+				+ arrivee + ":");
+		while (antécédent != source) {
+			lesNoeudsIntermediaires.add(antécédent);
+			antécédent = R[antécédent];
+
+		}
+		lesNoeudsIntermediaires.add(source);
+		for (int j = lesNoeudsIntermediaires.size() - 1; j > 0; j--) {
+			Station stationvariable = StationDelegate
+					.doFindStationByReference(lesNoeudsIntermediaires.get(j));
+			         stationsToDraw.add(stationvariable);
+			System.out.print("-->" + stationvariable.getName());
+			
+		}
+		System.out.print("-->" + stationarrivee.getName());
+		System.out.println();
+		String yy = "-->"+arrivee;
+		stationsToDraw.add(stationarrivee);
+		return stationsToDraw; 
+		
+	}
+
+	
 	public String afficheChemin(int i) {
         String ch=null;
         String sh=null;
