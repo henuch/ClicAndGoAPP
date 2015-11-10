@@ -18,8 +18,7 @@ public class StationTableModel extends AbstractTableModel {
 	}
 
 	public StationTableModel(String search) {
-		Object station = StationLineManagementDelegate
-				.doFindStationByName(search);
+		stations = StationLineManagementDelegate.doLookUpStation(search);
 	}
 
 	@Override

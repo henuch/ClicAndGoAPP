@@ -258,10 +258,10 @@ public class StationPanel extends JPanel {
 		buttonDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Integer x = (Integer) tableMot.getValueAt(
+				String x = (String) tableMot.getValueAt(
 						tableMot.getSelectedRow(), 0);
 
-				Station meanOfTransport = StationDelegate.doFindStationById(x);
+				Station meanOfTransport = (Station) StationLineManagementDelegate.doFindStationByName(x);
 
 				StationDelegate.doDeleteStationById((meanOfTransport
 						.getStationId()));

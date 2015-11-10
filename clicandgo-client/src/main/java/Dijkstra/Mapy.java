@@ -17,8 +17,13 @@ import entities.Line;
 import entities.Station;
 
 public class Mapy extends JPanel {
+	public Mapy() {
+		setLayout(null);
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
+	
+
 		Graphics2D gr = (Graphics2D) g;
 		String depart=SessionDelegate.doGetDeparture();
 		String arrival=SessionDelegate.doGetArrival();
