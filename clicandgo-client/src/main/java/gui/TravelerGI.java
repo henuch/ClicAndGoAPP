@@ -17,6 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import BusinessDelegator.SessionDelegate;
+import Dijkstra.Mapy;
 
 public class TravelerGI extends JFrame {
 
@@ -36,7 +37,7 @@ public class TravelerGI extends JFrame {
 	
 	private JButton btnNewButton;
 	private JButton itineraryBtn;
-	private JButton placesBtn;
+	private JButton mapBtn;
 	
 	/**
 	 * 
@@ -48,6 +49,7 @@ public class TravelerGI extends JFrame {
 	TicketingPanel ticketingPanel = new TicketingPanel();
 	NavigationPanel navigationPanel = new NavigationPanel();
 	TimeTablePanel timeTablePanel = new TimeTablePanel();
+	Mapy MapPanel = new Mapy();
 
 	/**
 	 * Create the application.
@@ -68,6 +70,18 @@ public class TravelerGI extends JFrame {
 		readingBtn = new JButton();
 		// buttonTime_2 = new JButton();
 		timeBtn = new JButton();
+		
+		
+		mapBtn = new JButton();
+		mapBtn.setText("See On Map");
+		mapBtn.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				seeOnMapBtnActionPerformed(e);
+			}
+		});
+
+		
 
 		logoutBtn = new javax.swing.JButton();
 		logoutBtn.setText("Logout");
@@ -124,8 +138,8 @@ public class TravelerGI extends JFrame {
 		});
 		itineraryBtn.setText("Itinerary");
 
-		placesBtn = new JButton();
-		placesBtn.setText("Places");
+		mapBtn = new JButton();
+		mapBtn.setText("See Map");
 
 		JLabel lblUSER = new JLabel();
 
@@ -145,16 +159,16 @@ public class TravelerGI extends JFrame {
 				panelMenu);
 		panelMenuLayout.setHorizontalGroup(
 			panelMenuLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(panelMenuLayout.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(panelMenuLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(panelMenuLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(logoutBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(lblUSER, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(itineraryBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(ticketingBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+						.addComponent(mapBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
 						.addComponent(timeBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(lblUSER, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(logoutBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(itineraryBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(ticketingBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(readingBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(placesBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+						.addComponent(readingBtn, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		panelMenuLayout.setVerticalGroup(
@@ -164,19 +178,16 @@ public class TravelerGI extends JFrame {
 					.addComponent(lblUSER, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(itineraryBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(mapBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(ticketingBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(timeBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(readingBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(placesBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-					.addGroup(panelMenuLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(panelMenuLayout.createSequentialGroup()
-							.addGap(18)
-							.addComponent(timeBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
-						.addComponent(timeBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-					.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+					.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 					.addGap(24))
 		);
 		panelMenu.setLayout(panelMenuLayout);
@@ -269,6 +280,14 @@ public class TravelerGI extends JFrame {
 		panelContent.repaint();
 		panelContent.revalidate(); // TODO add your handling code here:
 	}
+	
+	private void seeOnMapBtnActionPerformed(ActionEvent e) {// GEN-FIRST:event_gestionCategorieBtnActionPerformed
+		panelContent.removeAll();
+		panelContent.add(MapPanel);
+		panelContent.repaint();
+		panelContent.revalidate(); // TODO add your handling code here:
+	}// GEN-LAST:event_gestionCategorieBtnActionPerformed
+
 
 	public static void main(String args[]) {
 		/* Set the Nimbus look and feel */

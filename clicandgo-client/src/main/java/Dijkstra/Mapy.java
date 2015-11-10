@@ -8,16 +8,29 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import services.impl.Session;
 import BusinessDelegator.LineServicesDelegate;
+import BusinessDelegator.SessionDelegate;
 import BusinessDelegator.StationDelegate;
 import BusinessDelegator.StationLineManagementDelegate;
 import entities.Line;
 import entities.Station;
 
 public class Mapy extends JPanel {
+	public Mapy() {
+		setLayout(null);
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
+	
+
 		Graphics2D gr = (Graphics2D) g;
+		String depart=SessionDelegate.doGetDeparture();
+		String arrival=SessionDelegate.doGetArrival();
+		Station sta=(Station) StationLineManagementDelegate.doFindStationByName(depart);
+		int [][]mat=StationLineManagementDelegate.doRemplirMatrice();
+		Graphe g0 = new Graphe(mat);
+		Dijkstra dij=new Dijkstra(sta.getReference(),g0);
 		
 		
 	//gr.setColor(Color.red);
@@ -45,13 +58,24 @@ public class Mapy extends JPanel {
 
 			}
 			for (int i = 0; i < stations.size()-1; i++) {
-				gr.setColor(Color.black);
-				gr.setStroke(new BasicStroke( (float) 1.5 ));
+				gr.setColor(Color.GRAY);
+				gr.setStroke(new BasicStroke( (float) 3 ));
 				gr.drawLine(stations.get(i).getX()+5, stations.get(i).getY()+5,
 						stations.get(i+1).getX()+5, stations.get(i+1).getY()+5);
 			}
 			
 
+		}
+		
+		List<Station> stationtoDraw=dij.afficheListStations(depart,arrival);
+	
+		for (int i = 0; i < stationtoDraw.size()-1; i++)
+		{
+			gr.setColor(Color.GREEN);
+			gr.setStroke(new BasicStroke( (float) 3.5 ));
+			gr.drawLine(stationtoDraw.get(i).getX()+5, stationtoDraw.get(i).getY()+8,
+					stationtoDraw.get(i+1).getX()+5, stationtoDraw.get(i+1).getY()+8);
+			
 		}
 
 	
