@@ -1,5 +1,7 @@
 package guiContentManager;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -20,6 +22,10 @@ import entities.Line;
 import entities.MeanOfTransport;
 
 public class MeanOfTransportPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTable tableMot;
 	private JTextField searchText;
 	private JTextField textFieldRegistrationNumber;
@@ -139,24 +145,24 @@ public class MeanOfTransportPanel extends JPanel {
 		nbWagons = new JSpinner();
 		nbWagons.setBounds(230, 101, 29, 20);
 		jpanelAdd.add(nbWagons);
-		
-				JButton buttonAdd = new JButton();
-				buttonAdd.setBounds(515, 63, 137, 23);
-				jpanelAdd.add(buttonAdd);
-				buttonAdd.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						MeanOfTransport meanOfTransport = new MeanOfTransport();
-						meanOfTransport
-								.setRegistrationNumber(textFieldRegistrationNumber
-										.getText());
-						meanOfTransport.setCapacity((Integer) capacity.getValue());
-						meanOfTransport.setNbOfWagons((Integer) nbWagons.getValue());
-						MeansOfTransportDelegate.doAddMeanOfTransport(meanOfTransport);
-						tableMot.setModel(new MeanOfTransportModel());
-					}
-				});
-				buttonAdd.setText("Add");
+
+		JButton buttonAdd = new JButton();
+		buttonAdd.setBounds(515, 63, 137, 23);
+		jpanelAdd.add(buttonAdd);
+		buttonAdd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MeanOfTransport meanOfTransport = new MeanOfTransport();
+				meanOfTransport
+						.setRegistrationNumber(textFieldRegistrationNumber
+								.getText());
+				meanOfTransport.setCapacity((Integer) capacity.getValue());
+				meanOfTransport.setNbOfWagons((Integer) nbWagons.getValue());
+				MeansOfTransportDelegate.doAddMeanOfTransport(meanOfTransport);
+				tableMot.setModel(new MeanOfTransportModel());
+			}
+		});
+		buttonAdd.setText("Add");
 
 		JPanel panelAssign = new JPanel();
 		panelAssign.setBounds(375, 125, 297, 123);
@@ -175,9 +181,8 @@ public class MeanOfTransportPanel extends JPanel {
 		comboBoxLine.setBounds(150, 63, 137, 20);
 
 		panelAssign.add(comboBoxLine);
-		List <Line> lines = LineServicesDelegate.doFindAllLines();
-		for(Line l: lines)
-		{
+		List<Line> lines = LineServicesDelegate.doFindAllLines();
+		for (Line l : lines) {
 			comboBoxLine.addItem(l.getName());
 		}
 
@@ -193,24 +198,30 @@ public class MeanOfTransportPanel extends JPanel {
 		panelAssign.add(lblLine);
 
 		JButton assign = new JButton();
+		assign.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		assign.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String x = (String) tableMot.getValueAt(
 						tableMot.getSelectedRow(), 0);
-				MeanOfTransport meanOfTransport=MeansOfTransportDelegate.doFindMeanOfTransportById(x);
-				Line line = LineServicesDelegate.doFindLineByName(comboBoxLine.getSelectedItem().toString().trim());
-				MeansOfTransportDelegate.doAssignMeanOfTransportToLine(meanOfTransport.getRegistrationNumber(),line.getLineId());
+				MeanOfTransport meanOfTransport = MeansOfTransportDelegate
+						.doFindMeanOfTransportById(x);
+				Line line = LineServicesDelegate.doFindLineByName(comboBoxLine
+						.getSelectedItem().toString().trim());
+				MeansOfTransportDelegate.doAssignMeanOfTransportToLine(
+						meanOfTransport.getRegistrationNumber(),
+						line.getLineId());
 				tableMot.setModel(new MeanOfTransportModel());
-				
-				
-				
+
 			}
 		});
 		assign.setText("assign");
 		assign.setBounds(150, 89, 137, 23);
 		panelAssign.add(assign);
-		
+
 		JPanel panelDelete = new JPanel();
 		panelDelete.setBounds(375, 261, 297, 90);
 		add(panelDelete);
@@ -223,26 +234,28 @@ public class MeanOfTransportPanel extends JPanel {
 				new java.awt.Font("Arial", 2, 12),
 				new java.awt.Color(102, 0, 0))); // NOI18N
 		panelDelete.setLayout(null);
-		
+
 		JLabel lblSelectAMean_1 = new JLabel();
-		lblSelectAMean_1.setText("Remove a mean of transport from circuit\r\n\r\n");
+		lblSelectAMean_1
+				.setText("Remove a mean of transport from circuit\r\n\r\n");
 		lblSelectAMean_1.setBounds(10, 22, 277, 23);
 		panelDelete.add(lblSelectAMean_1);
-		
+
 		JButton buttonDelete = new JButton();
 		buttonDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String x = (String) tableMot.getValueAt(
 						tableMot.getSelectedRow(), 0);
-				
-				MeanOfTransport meanOfTransport=MeansOfTransportDelegate.doFindMeanOfTransportById(x);
 
-				MeansOfTransportDelegate.DoDeleteMeanOfTransportById(meanOfTransport.getRegistrationNumber());
+				MeanOfTransport meanOfTransport = MeansOfTransportDelegate
+						.doFindMeanOfTransportById(x);
+
+				MeansOfTransportDelegate
+						.DoDeleteMeanOfTransportById(meanOfTransport
+								.getRegistrationNumber());
 				tableMot.setModel(new MeanOfTransportModel());
-				
-				
-				
+
 			}
 		});
 		buttonDelete.setText("delete");

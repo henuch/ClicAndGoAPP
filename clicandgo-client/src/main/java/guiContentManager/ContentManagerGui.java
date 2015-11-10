@@ -1,26 +1,20 @@
 package guiContentManager;
 
 import gui.Authentification;
-import gui.ReadingPanel;
 import gui.TravelerGI;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
-
-import java.awt.Font;
-
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import BusinessDelegator.SessionDelegate;
@@ -218,7 +212,7 @@ private void btnMeanoftransportActionPerformed(ActionEvent e) {// GEN-FIRST:even
 }// GEN-LAST:event_gestionFournisseursBtnActionPerformed
 
 
-public static void main(String args[]) {
+	public static void main(String args[]) {
 	/* Set the Nimbus look and feel */
 	// <editor-fold defaultstate="collapsed"
 	// desc=" Look and feel setting code (optional) ">
