@@ -134,13 +134,13 @@ public class StationPanel extends JPanel {
 		jpanelAdd.add(lblRegistrationNumber);
 
 		JLabel lblx = new JLabel();
-		lblx.setText("x");
-		lblx.setBounds(10, 100, 109, 23);
+		lblx.setText("Longitude");
+		lblx.setBounds(20, 70, 109, 23);
 		jpanelAdd.add(lblx);
 
 		JLabel lblNumberOfWagons = new JLabel();
-		lblNumberOfWagons.setText("Number of Wagons");
-		lblNumberOfWagons.setBounds(10, 100, 109, 23);
+		lblNumberOfWagons.setText("Latitude");
+		lblNumberOfWagons.setBounds(20, 100, 109, 23);
 		jpanelAdd.add(lblNumberOfWagons);
 
 		Name = new JTextField();
@@ -217,18 +217,20 @@ public class StationPanel extends JPanel {
 		assign.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// String x = (String) tableMot.getValueAt(
-				// tableMot.getSelectedRow(), 0);
-				// Station meanOfTransport = MeansOfTransportDelegate
-				// .doFindStationById(x);
-				// Line line =
-				// LineServicesDelegate.doFindLineByName(comboBoxLine
-				// .getSelectedItem().toString().trim());
-				// MeansOfTransportDelegate.doAssignStationToLine(
-				// meanOfTransport.getRegistrationNumber(),
-				// line.getLineId());
-				// tableMot.setModel(new StationTableModel());
+				String x = (String) tableMot.getValueAt(
+						tableMot.getSelectedRow(), 0);
 
+				Station meanOfTransport = (Station) StationLineManagementDelegate
+						.doFindStationByName(x);
+
+				Line line = LineServicesDelegate.doFindLineByName(comboBoxLine
+						.getSelectedItem().toString().trim());
+				Integer duration = 5;
+				Integer distance = 5;
+				StationLineManagementDelegate.doAssignStationToLine(
+						meanOfTransport.getStationId(), line.getLineId(), 5,
+						duration, distance);
+				tableMot.setModel(new StationTableModel());
 			}
 		});
 		assign.setText("assign");
@@ -261,7 +263,8 @@ public class StationPanel extends JPanel {
 				String x = (String) tableMot.getValueAt(
 						tableMot.getSelectedRow(), 0);
 
-				Station meanOfTransport = (Station) StationLineManagementDelegate.doFindStationByName(x);
+				Station meanOfTransport = (Station) StationLineManagementDelegate
+						.doFindStationByName(x);
 
 				StationDelegate.doDeleteStationById((meanOfTransport
 						.getStationId()));
