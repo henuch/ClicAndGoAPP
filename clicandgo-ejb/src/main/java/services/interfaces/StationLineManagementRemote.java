@@ -47,4 +47,6 @@ public interface StationLineManagementRemote {
 	public int[][] RemplirMatrice();
 
 	Line findoutLIneBynName(String name);
+
+	List<Station> lookUpStation(String id);
 }

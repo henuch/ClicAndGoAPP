@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import services.interfaces.StationLineManagementLocal;
 import services.interfaces.StationLineManagementRemote;
 import entities.Line;
-import entities.MeanOfTransport;
 import entities.Station;
 import entities.StationLine;
 
@@ -347,5 +346,22 @@ int N=9999;
 		} catch (Exception e) {
 			return null;
 		}
-	}}
+	}
+	
+	@Override
+	public List<Station> lookUpStation(String id) {
+		try {
+			String jpql = "select m from Station m where m.name LIKE :param";
+			Query query = entityManager.createQuery(jpql);
+			query.setParameter("param", '%' + id + '%');
+			return query.getResultList();
+
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+
+
+}
 
