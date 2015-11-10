@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +18,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import BusinessDelegator.SessionDelegate;
+import Dijkstra.Mapy;
 
 public class TravelerGI extends JFrame {
 
@@ -36,7 +38,9 @@ public class TravelerGI extends JFrame {
 
 	private JButton btnNewButton;
 	private JButton itineraryBtn;
-	private JButton placesBtn;
+	// private JButton mapBtn_1;
+	private JButton mapBtn;
+	private JButton mapBtn_1;
 
 	/**
 	 * 
@@ -49,12 +53,20 @@ public class TravelerGI extends JFrame {
 	NavigationPanel navigationPanel = new NavigationPanel();
 	TimeTablePanel timeTablePanel = new TimeTablePanel();
 
+	private JLabel lblbackk;
+
+	Mapy MapPanel = new Mapy(); 
+	//MapyInitial MapPanelInitial = new MapyInitial();
+	 
+ 
+
 	/**
 	 * Create the application.
 	 */
 	public TravelerGI() {
 		this.setBounds(180, 20, 30, 30);
 		initComponents();
+		setResizable(false);
 	}
 
 	private void initComponents() {
@@ -64,9 +76,32 @@ public class TravelerGI extends JFrame {
 		panelMenu = new javax.swing.JPanel();
 
 		ticketingBtn = new JButton();
+		ticketingBtn.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/ticket.png")));
+		ticketingBtn.setFont(new Font("DialogInput", Font.BOLD, 16));
+		ticketingBtn.setForeground(new Color(255, 102, 51));
 		readingBtn = new JButton();
+		readingBtn.setFont(new Font("DialogInput", Font.BOLD, 16));
+		readingBtn.setForeground(new Color(255, 102, 51));
+		readingBtn.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/books-icon.png")));
 		// buttonTime_2 = new JButton();
 		timeBtn = new JButton();
+		timeBtn.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/time-icon.png")));
+		timeBtn.setForeground(new Color(0, 0, 102));
+		timeBtn.setFont(new Font("DialogInput", Font.BOLD, 16));
+
+		mapBtn = new JButton();
+		mapBtn.setText("See On Map");
+		mapBtn.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				// if((SessionDelegate.doGetDeparture()==null)&&(SessionDelegate.doGetArrival()==null))
+				// seeOnmap2BtnActionPerformed(e);
+				seeOnmapBtnActionPerformed(e);
+			}
+		});
 
 		logoutBtn = new javax.swing.JButton();
 		logoutBtn.setText("Logout");
@@ -88,14 +123,14 @@ public class TravelerGI extends JFrame {
 		panelMenu.setBorder(javax.swing.BorderFactory
 				.createLineBorder(new java.awt.Color(102, 0, 0)));
 
-		readingBtn.setText("Reading");
+		readingBtn.setText("Reading    ");
 		readingBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				readingBtnActionPerformed(evt);
 			}
 		});
 
-		ticketingBtn.setText("Ticketing");
+		ticketingBtn.setText("Ticketing  ");
 		ticketingBtn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				ticketingBtnActionPerformed(evt);
@@ -103,6 +138,10 @@ public class TravelerGI extends JFrame {
 		});
 
 		itineraryBtn = new JButton();
+		itineraryBtn.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/er.png")));
+		itineraryBtn.setForeground(new Color(255, 102, 51));
+		itineraryBtn.setFont(new Font("DialogInput", Font.BOLD, 16));
 		itineraryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelContent.removeAll();
@@ -121,10 +160,21 @@ public class TravelerGI extends JFrame {
 				panelContent.revalidate();
 			}
 		});
-		itineraryBtn.setText("Itinerary");
+		itineraryBtn.setText("Itinerary  ");
 
-		placesBtn = new JButton();
-		placesBtn.setText("Places");
+		mapBtn_1 = new JButton();
+		mapBtn_1.setIcon(new ImageIcon(TravelerGI.class
+				.getResource("/images/Apps-Google-Maps-icon.png")));
+		mapBtn_1.setForeground(new Color(0, 0, 102));
+		mapBtn_1.setFont(new Font("DialogInput", Font.BOLD, 16));
+		mapBtn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				seeOnmapBtnActionPerformed(e);
+
+			}
+		});
+		mapBtn_1.setText("See Map    ");
 
 		JLabel lblUSER = new JLabel();
 
@@ -142,42 +192,85 @@ public class TravelerGI extends JFrame {
 
 		javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(
 				panelMenu);
-		panelMenuLayout.setHorizontalGroup(
-			panelMenuLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(panelMenuLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(panelMenuLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(timeBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(lblUSER, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(logoutBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(itineraryBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(ticketingBtn, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(readingBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-						.addComponent(placesBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		panelMenuLayout.setVerticalGroup(
-			panelMenuLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(panelMenuLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblUSER, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(itineraryBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(ticketingBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(readingBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(placesBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-					.addGroup(panelMenuLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(panelMenuLayout.createSequentialGroup()
-							.addGap(18)
-							.addComponent(timeBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
-						.addComponent(timeBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-					.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(24))
-		);
+		panelMenuLayout
+				.setHorizontalGroup(panelMenuLayout
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								Alignment.TRAILING,
+								panelMenuLayout
+										.createSequentialGroup()
+										.addContainerGap()
+										.addGroup(
+												panelMenuLayout
+														.createParallelGroup(
+																Alignment.TRAILING)
+														.addComponent(
+																logoutBtn,
+																Alignment.LEADING,
+																GroupLayout.DEFAULT_SIZE,
+																159,
+																Short.MAX_VALUE)
+														.addComponent(
+																lblUSER,
+																Alignment.LEADING,
+																GroupLayout.DEFAULT_SIZE,
+																159,
+																Short.MAX_VALUE)
+														.addComponent(
+																itineraryBtn,
+																Alignment.LEADING,
+																GroupLayout.DEFAULT_SIZE,
+																159,
+																Short.MAX_VALUE)
+														.addComponent(
+																ticketingBtn,
+																Alignment.LEADING,
+																GroupLayout.DEFAULT_SIZE,
+																159,
+																Short.MAX_VALUE)
+														.addComponent(
+																mapBtn_1,
+																GroupLayout.DEFAULT_SIZE,
+																159,
+																Short.MAX_VALUE)
+														.addComponent(
+																timeBtn,
+																GroupLayout.DEFAULT_SIZE,
+																159,
+																Short.MAX_VALUE)
+														.addComponent(
+																readingBtn,
+																Alignment.LEADING,
+																GroupLayout.DEFAULT_SIZE,
+																159,
+																Short.MAX_VALUE))
+										.addContainerGap()));
+		panelMenuLayout.setVerticalGroup(panelMenuLayout.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				panelMenuLayout
+						.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(lblUSER, GroupLayout.PREFERRED_SIZE, 50,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(18)
+						.addComponent(itineraryBtn, GroupLayout.PREFERRED_SIZE,
+								62, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(mapBtn_1, GroupLayout.PREFERRED_SIZE, 66,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(ticketingBtn, GroupLayout.PREFERRED_SIZE,
+								62, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(timeBtn, GroupLayout.PREFERRED_SIZE, 66,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(readingBtn, GroupLayout.PREFERRED_SIZE,
+								66, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 203,
+								Short.MAX_VALUE)
+						.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE,
+								38, GroupLayout.PREFERRED_SIZE).addGap(24)));
 		panelMenu.setLayout(panelMenuLayout);
 
 		panelContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -222,6 +315,14 @@ public class TravelerGI extends JFrame {
 																682,
 																Short.MAX_VALUE))
 										.addContainerGap()));
+		
+		lblbackk = new JLabel("");
+		lblbackk.setIcon(new javax.swing.ImageIcon(getClass().getResource(
+				"/images/traveler.jpg")));
+		lblbackk.setText("");
+		panelContent.add(lblbackk, "name_253067401558896");
+		
+	
 		bodyPanel.setLayout(bodyPanelLayout);
 
 		btnNewButton = new JButton("");
@@ -269,6 +370,20 @@ public class TravelerGI extends JFrame {
 		panelContent.revalidate(); // TODO add your handling code here:
 	}
 
+	public void seeOnmapBtnActionPerformed(ActionEvent e) {// GEN-FIRST:event_gestionCategorieBtnActionPerformed
+		panelContent.removeAll();
+		panelContent.add(MapPanel);
+		panelContent.repaint();
+		panelContent.revalidate(); // TODO add your handling code here:
+	}// GEN-LAST:event_gestionCategorieBtnActionPerformed
+
+	// public void seeOnmap2BtnActionPerformed(ActionEvent e) {//
+	// GEN-FIRST:event_gestionCategorieBtnActionPerformed
+	// panelContent.removeAll();
+	// panelContent.add(MapPanelInitial);
+	// panelContent.repaint();
+	// panelContent.revalidate(); // TODO add your handling code here:
+	// }
 	public static void main(String args[]) {
 		/* Set the Nimbus look and feel */
 		// <editor-fold defaultstate="collapsed"

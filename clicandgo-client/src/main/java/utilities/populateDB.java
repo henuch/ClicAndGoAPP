@@ -55,18 +55,27 @@ public class populateDB {
 		// //////Populate Users
 		Traveler traveler = new Traveler();
 		traveler.setName("houcem");
+		traveler.setSurname("hidri");
 		traveler.setPassword("houcem");
+		traveler.setEmail("houcem.hidri@esprit.tn");
 		System.out.println(UserServicesDelegate.getProxy().addUser(traveler));
 
 		Traveler traveler2 = new Traveler();
 		traveler2.setName("sabrine");
+		traveler2.setSurname("Maalej");
 		traveler2.setPassword("sabrine");
+		traveler2.setEmail("sabrine.maalej@esprit.tn");
+		
+
 		traveler2.setNbOfWordsPerMinute(300);
 		System.out.println(UserServicesDelegate.getProxy().addUser(traveler2));
 
 		ContentManager contentManager = new ContentManager();
 		contentManager.setName("yosr");
 		contentManager.setPassword("yosr");
+		contentManager.setSurname("gouider");
+		contentManager.setEmail("yosr.gouider@esprit.tn");
+		 
 		System.out.println(UserServicesDelegate.getProxy().addUser(
 				contentManager));
 

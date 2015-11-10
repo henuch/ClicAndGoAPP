@@ -13,7 +13,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
@@ -22,8 +21,8 @@ import BusinessDelegator.SessionDelegate;
 public class ContentManagerGui extends JFrame {
 
 	private javax.swing.JPanel bodyPanel;
-	//private JPanel meanOfTransportPanel;
-	//private JPanel stationPanel;
+	// private JPanel meanOfTransportPanel;
+	// private JPanel stationPanel;
 	private javax.swing.JButton ItineraryBtn;
 	private JButton btnMeanoftransport;
 	private javax.swing.JButton logoutBtn;
@@ -32,9 +31,9 @@ public class ContentManagerGui extends JFrame {
 	private javax.swing.JPanel panelMenu;
 	private JButton btnNewButton;
 	UserPanel userpanel = new UserPanel();
-	LinePanel linepanel =new LinePanel();
-	MeanOfTransportPanel meanOfTransportPanel= new MeanOfTransportPanel();
-	StationPanel stationPanel =new StationPanel();
+	LinePanel linepanel = new LinePanel();
+	MeanOfTransportPanel meanOfTransportPanel = new MeanOfTransportPanel();
+	StationPanel stationPanel = new StationPanel();
 	/**
  * 
  */
@@ -42,6 +41,7 @@ public class ContentManagerGui extends JFrame {
 	// private JFrame frame;
 	Authentification authentification = new Authentification();
 	private JLabel label;
+	private JLabel lblMan;
 
 	/**
 	 * Create the application.
@@ -49,6 +49,7 @@ public class ContentManagerGui extends JFrame {
 	public ContentManagerGui() {
 		this.setBounds(180, 20, 30, 30);
 		initComponents();
+		setResizable(false);
 	}
 
 	private void initComponents() {
@@ -59,7 +60,6 @@ public class ContentManagerGui extends JFrame {
 		ItineraryBtn = new javax.swing.JButton();
 		logoutBtn = new javax.swing.JButton();
 		btnMeanoftransport = new JButton();
-	
 
 		logoutBtn.addActionListener(new ActionListener() {
 
@@ -95,19 +95,14 @@ public class ContentManagerGui extends JFrame {
 		JButton btnLine = new JButton();
 		btnLine.setText("Line");
 		btnLine.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LineBtnActionPerformed(e);
-				
+
 			}
 		});
 
-		
-		
-		
-		
-		
 		JButton btnUser = new JButton();
 		btnUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,6 +246,13 @@ public class ContentManagerGui extends JFrame {
 																623,
 																Short.MAX_VALUE))
 										.addContainerGap()));
+
+		lblMan = new JLabel("");
+		lblMan.setIcon(new javax.swing.ImageIcon(getClass().getResource(
+				"/images/man.jpg")));
+		lblMan.setText("");
+		panelContent.add(lblMan, "name_255224931389993");
+
 		bodyPanel.setLayout(bodyPanelLayout);
 
 		btnNewButton = new JButton("");
@@ -272,12 +274,14 @@ public class ContentManagerGui extends JFrame {
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
+
 	private void LineBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
 		panelContent.removeAll();
 		panelContent.add(linepanel);
 		panelContent.repaint();
 		panelContent.revalidate();
 	}
+
 	private void StationLineBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
 		panelContent.removeAll();
 		panelContent.add(stationPanel);

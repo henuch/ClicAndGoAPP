@@ -90,4 +90,19 @@ public class StationLineManagementDelegate {
 	public static int[][] doRemplirMatrice() {
 		return getProxy().RemplirMatrice();
 	}
+
+	public static Line dofindoutLIneBynName(String name) {
+		return getProxy().findoutLIneBynName(name);
+
+	}
+
+	public static List<Line> dolookUpLinet(String name) {
+		return getProxy().lookUpLinet(name);
+	}
+
+	public static List<Station> doLookUpStation(String id) {
+		return getProxy().lookUpStation(id);
+
+	}
+
 }

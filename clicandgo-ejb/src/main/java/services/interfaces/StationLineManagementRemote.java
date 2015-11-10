@@ -19,7 +19,7 @@ public interface StationLineManagementRemote {
 	public Station findStationById(Integer id);
 
 	public Object findStationByName(String name);
-
+	public List<Line> lookUpLinet(String name);
 	public Line findLineById(Integer id);
 
 	public Object findLineByName(String name);
@@ -45,4 +45,8 @@ public interface StationLineManagementRemote {
 	public List<Line> findAllLinesByStationId(Integer stationId);
 
 	public int[][] RemplirMatrice();
+
+	Line findoutLIneBynName(String name);
+
+	List<Station> lookUpStation(String id);
 }

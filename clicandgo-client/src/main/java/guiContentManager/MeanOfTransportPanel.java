@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import model.MeanOfTransportModel;
 import BusinessDelegator.LineServicesDelegate;
 import BusinessDelegator.MeansOfTransportDelegate;
+import BusinessDelegator.StationLineManagementDelegate;
 import entities.Line;
 import entities.MeanOfTransport;
 
@@ -205,12 +206,14 @@ public class MeanOfTransportPanel extends JPanel {
 		assign.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+//				Integer x = (Integer) tableMot.getValueAt(
+//						tableMot.getSelectedRow(), 0);
 				String x = (String) tableMot.getValueAt(
 						tableMot.getSelectedRow(), 0);
-				MeanOfTransport meanOfTransport = MeansOfTransportDelegate
-						.doFindMeanOfTransportById(x);
-				Line line = LineServicesDelegate.doFindLineByName(comboBoxLine
-						.getSelectedItem().toString().trim());
+				System.out.println(x);
+				//
+				Line line = (Line) StationLineManagementDelegate.doFindLineByName(comboBoxLine.getSelectedItem().toString().trim());
+				MeanOfTransport meanOfTransport = MeansOfTransportDelegate.dofindMeanOftransportByName(x);
 				MeansOfTransportDelegate.doAssignMeanOfTransportToLine(
 						meanOfTransport.getRegistrationNumber(),
 						line.getLineId());

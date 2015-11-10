@@ -367,7 +367,7 @@ public class TicketingPanel extends JPanel {
 				.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
 		lblimage.setIcon(new javax.swing.ImageIcon(getClass().getResource(
-				"/images/aee.png")));
+				"/images/time-icon.png")));
 		lblimage.setText("");
 
 		javax.swing.GroupLayout pngimageticketLayout = new javax.swing.GroupLayout(

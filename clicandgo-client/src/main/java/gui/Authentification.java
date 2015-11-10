@@ -1,7 +1,10 @@
 package gui;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,6 +25,9 @@ import entities.ContentManager;
 import entities.Traveler;
 import entities.User;
 import guiContentManager.ContentManagerGui;
+
+import java.awt.Color;
+import java.awt.CardLayout;
 
 public class Authentification extends JFrame {
 	public User authentifiedUser;
@@ -60,31 +66,39 @@ public class Authentification extends JFrame {
 		setTheme();
 		setTitle("Authentication");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 750);
+		setResizable(false);
+		setLocationRelativeTo(null);  
+		
+		setBounds(100, 100, 677, 475);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new CardLayout(0, 0));
+		
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 969, 695);
-		contentPane.add(panel);
+		contentPane.add(panel, "name_242183231327260");
+		
 		panel.setLayout(null);
 
 		JLabel labelLogin = new JLabel("Login: ");
-		labelLogin.setBounds(142, 194, 76, 14);
+		labelLogin.setFont(new Font("Roboto", Font.BOLD | Font.ITALIC, 17));
+		labelLogin.setForeground(new Color(0, 51, 102));
+		labelLogin.setBounds(10, 229, 89, 18);
 		panel.add(labelLogin);
 
 		JLabel labelPassword = new JLabel("Password: ");
-		labelPassword.setBounds(142, 298, 76, 14);
+		labelPassword.setFont(new Font("Roboto", Font.BOLD | Font.ITALIC, 17));
+		labelPassword.setForeground(new Color(0, 51, 102));
+		labelPassword.setBounds(10, 287, 89, 18);
 		panel.add(labelPassword);
 
 		loginField = new JTextField();
-		loginField.setBounds(257, 191, 151, 20);
+		loginField.setBounds(98, 227, 151, 20);
 		panel.add(loginField);
 		loginField.setColumns(10);
 
 		JButton buttonLogin = new JButton("Login");
+		buttonLogin.setFont(new Font("Roboto", Font.PLAIN, 12));
 
 		buttonLogin.addActionListener(new ActionListener() {
 
@@ -125,17 +139,25 @@ public class Authentification extends JFrame {
 				}
 			}
 		});
-		buttonLogin.setBounds(491, 442, 117, 23);
+		buttonLogin.setBounds(570, 394, 76, 41);
 		panel.add(buttonLogin);
 
 		JLabel labelTitre = new JLabel("Authentication");
-		labelTitre.setFont(new Font("Arial", Font.PLAIN, 27));
-		labelTitre.setBounds(424, 43, 184, 39);
+		labelTitre.setForeground(new Color(0, 153, 204));
+		labelTitre.setFont(new Font("Roboto", Font.BOLD, 32));
+		labelTitre.setBounds(225, 26, 282, 69);
 		panel.add(labelTitre);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(257, 295, 151, 20);
+		passwordField.setBounds(98, 288, 151, 20);
 		panel.add(passwordField);
+		
+		JLabel lblBackground = new JLabel("");
+		lblBackground.setBounds(-56, -203, 1277, 860);
+		lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource(
+				"/images/backgr.jpg")));
+		lblBackground.setText("");
+		panel.add(lblBackground);
 	}
 	
 	public static void setTheme(){
@@ -150,5 +172,4 @@ public class Authentification extends JFrame {
 		     // TODO Exception   
 		   }   
 	}
-
 }

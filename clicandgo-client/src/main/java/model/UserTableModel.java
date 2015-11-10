@@ -15,7 +15,7 @@ public class UserTableModel extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 	List<User> users;
-	String[] entete = {"userId", "name", "surname", "email", "password"};
+	String[] entete = {"userId", "name", "surname", "email"};
 
 	public UserTableModel(String name) {
 		users = UserServicesDelegate.doFindUserByName(name);
@@ -50,10 +50,6 @@ public class UserTableModel extends AbstractTableModel {
 		}
 		case 3: {
 			return users.get(rowIndex).getEmail();
-		}
-		case 4: {
-			return users.get(rowIndex).getPassword();
-
 		}
 		default:
 			throw new IllegalArgumentException();
