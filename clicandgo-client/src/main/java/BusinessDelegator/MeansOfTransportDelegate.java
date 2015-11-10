@@ -42,4 +42,8 @@ public class MeansOfTransportDelegate {
 	public static List<MeanOfTransport> doLookUpMeanOfTransport(String id) {
 		return getProxy().lookUpMeanOfTransport(id);
 	}
+	
+	public static MeanOfTransport dofindMeanOftransportByName(String name)
+	{return getProxy().findMeanOfTransportByName(name);
+	}
 }

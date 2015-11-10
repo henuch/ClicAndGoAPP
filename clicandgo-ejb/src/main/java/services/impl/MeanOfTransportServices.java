@@ -11,6 +11,7 @@ import services.interfaces.MeanOfTransportServicesLocal;
 import services.interfaces.MeanOfTransportServicesRemote;
 import entities.Line;
 import entities.MeanOfTransport;
+import entities.Station;
 
 /**
  * Session Bean implementation class MeanOfTransportServices
@@ -140,4 +141,12 @@ public class MeanOfTransportServices implements MeanOfTransportServicesRemote,
 		return null;
 	}
 
-}
+	@Override
+	public MeanOfTransport findMeanOfTransportByName(String name) {
+		String jpql = "select m from MeanOfTransport m where m.registrationNumber LIKE :param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param",'%'+name+'%');
+		return (MeanOfTransport) query.getSingleResult();
+		}
+	}
+

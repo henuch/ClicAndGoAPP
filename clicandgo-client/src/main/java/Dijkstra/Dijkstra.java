@@ -165,7 +165,7 @@ public class Dijkstra {
 		System.out.print("-->" + stationarrivee.getName());
 		System.out.println();
 		String yy = "-->"+arrivee; 
-		ch="le Chemin de " + depart + " à " + arrivee + ": "+sh+yy;
+		ch="To go from  " + depart + " to " + arrivee + ": "+sh+yy;
 		return ch;
 	}
 
@@ -189,12 +189,13 @@ public class Dijkstra {
 		}
 		System.out.print("-->" + i);
 		System.out.println();
-		ch="le Chemin de " + x0 + " à " + i + ": "+sh;
+		ch="Your Itinerary  from " + x0 + " to " + i + ": "+sh;
 		
 		return ch;
 	}
 
 	public String AfficherDestinationEtCout(String depart, String arrivee) { // Station
+	int time=0;
 		String ch=null	;	
 		String sh=null;// stationdepart=StationDelegate.findStationByStationName(depart);
 		Station stationarrivee = StationDelegate
@@ -211,7 +212,15 @@ public class Dijkstra {
 //		SessionDelegate.doSetDeparture(depart);
 //		SessionDelegate.doSetDuration(duree);
 
-		ch="le cout du chemin est "+duree+" \n "+sh;
+	
+		time=(int) (duree/0.75);
+		
+		
+		
+		String timer="";
+		timer="Your itinerary takes about "+time+" minutes";
+		
+		ch="Your itinerary is  "+duree+" km long .\n "+sh+ " \n"+timer;
 		return ch;
 
 		
