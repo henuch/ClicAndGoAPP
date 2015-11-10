@@ -206,11 +206,14 @@ public class MeanOfTransportPanel extends JPanel {
 		assign.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Integer x = (Integer) tableMot.getValueAt(
+//				Integer x = (Integer) tableMot.getValueAt(
+//						tableMot.getSelectedRow(), 0);
+				String x = (String) tableMot.getValueAt(
 						tableMot.getSelectedRow(), 0);
-				Line line = StationLineManagementDelegate.doFindLineById(x);
-				MeanOfTransport meanOfTransport = MeansOfTransportDelegate.dofindMeanOftransportByName(comboBoxLine
-						.getSelectedItem().toString().trim());
+				System.out.println(x);
+				//
+				Line line = (Line) StationLineManagementDelegate.doFindLineByName(comboBoxLine.getSelectedItem().toString().trim());
+				MeanOfTransport meanOfTransport = MeansOfTransportDelegate.dofindMeanOftransportByName(x);
 				MeansOfTransportDelegate.doAssignMeanOfTransportToLine(
 						meanOfTransport.getRegistrationNumber(),
 						line.getLineId());

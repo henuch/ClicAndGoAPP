@@ -14,8 +14,8 @@ import BusinessDelegator.StationLineManagementDelegate;
 import entities.Line;
 import entities.Station;
 
-public class Mapy extends JPanel {
-	public Mapy() {
+public class MapyInitial extends JPanel {
+	public MapyInitial() {
 		setLayout(null);
 	}
 
@@ -65,17 +65,6 @@ public class Mapy extends JPanel {
 						.getY() + 155, stations.get(i + 1).getX() + 155,
 						stations.get(i + 1).getY() + 155);
 			}
-
-		}
-
-		List<Station> stationtoDraw = dij.afficheListStations(depart, arrival);
-
-		for (int i = 0; i < stationtoDraw.size() - 1; i++) {
-			gr.setColor(Color.GREEN);
-			gr.setStroke(new BasicStroke((float) 3.5));
-			gr.drawLine(stationtoDraw.get(i).getX() + 155, stationtoDraw.get(i)
-					.getY() + 158, stationtoDraw.get(i + 1).getX() + 155,
-					stationtoDraw.get(i + 1).getY() + 158);
 
 		}
 
