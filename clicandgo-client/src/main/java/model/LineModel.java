@@ -17,6 +17,7 @@ public class LineModel extends AbstractTableModel{
 	 */
 	private static final long serialVersionUID = 1L;
 	List<Line> lines ;
+	Line line= new Line();
 	String[] entete = { "Reference", "Name","Number of stations" };
 
 
@@ -24,7 +25,7 @@ public class LineModel extends AbstractTableModel{
 	lines = StationLineManagementDelegate.doFindAllLines();
 	}
 	public LineModel(String search ) {		
-	lines= (List<Line>) StationLineManagementDelegate.doFindLineByName(search);
+	line=  (Line) StationLineManagementDelegate.doFindLineByName(search);
 	}
 
 	@Override

@@ -15,7 +15,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import model.*;
+import model.LineModel;
+import model.MeanOfTransportModel;
 import BusinessDelegator.LineServicesDelegate;
 import BusinessDelegator.MeansOfTransportDelegate;
 import BusinessDelegator.StationLineManagementDelegate;
@@ -69,7 +70,7 @@ public class LinePanel extends JPanel {
 		panelMOTList.add(scrollPane);
 
 		tableMot = new JTable();
-		tableMot.setModel(new MeanOfTransportModel());
+		tableMot.setModel(new LineModel());
 		scrollPane.setColumnHeaderView(tableMot);
 		scrollPane.setViewportView(tableMot);
 
@@ -89,10 +90,14 @@ public class LinePanel extends JPanel {
 		jPanelSearch.add(searchText);
 
 		JButton SearchBtn = new JButton();
+		SearchBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		SearchBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tableMot.setModel(new MeanOfTransportModel(searchText.getText()));
+				tableMot.setModel(new LineModel(searchText.getText()));
 			}
 		});
 		SearchBtn.setText("Search");
@@ -130,10 +135,7 @@ public class LinePanel extends JPanel {
 		lblnumberOfStation.setBounds(10, 63, 109, 23);
 		jpanelAdd.add(lblnumberOfStation);
 
-//		JLabel lblNumberOfWagons = new JLabel();
-//		lblNumberOfWagons.setText("Number of Wagons");
-//		lblNumberOfWagons.setBounds(10, 100, 109, 23);
-//		jpanelAdd.add(lblNumberOfWagons);
+//		
 
 		Name = new JTextField();
 		Name.setBounds(200, 30, 95, 20);
