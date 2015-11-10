@@ -135,7 +135,7 @@ public class NavigationPanel extends JPanel {
 		btnsavepurchase.setText("Search");
 
 		Trip = new JPanel();
-		Trip.setBounds(10, 152, 751, 88);
+		Trip.setBounds(10, 152, 751, 94);
 		panel_Itinerary.add(Trip);
 		Trip.setLayout(null);
 		Trip.setBorder(javax.swing.BorderFactory.createTitledBorder(
@@ -146,7 +146,7 @@ public class NavigationPanel extends JPanel {
 				new java.awt.Font("Arial", 2, 12),
 				new java.awt.Color(102, 0, 0)));
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 21, 731, 56);
+		textArea.setBounds(10, 21, 731, 62);
 		Trip.add(textArea);
 		textArea.setBackground(SystemColor.control);
 		btncomputecharge = new javax.swing.JButton();
@@ -196,31 +196,43 @@ public class NavigationPanel extends JPanel {
 				// Mapy mapy=new Mapy();
 				// panel.add(mapy);
 				// mapy.setSize(panel.getWidth()-50,panel.getHeight()-50);
-
+            
 				int N = Graphe.ALPHA_NOTDEF;
-				int[][] matDuree = { { N, 5, N, N, N, N, N, N, N, N, N, N },
-						{ 5, N, 4, N, N, N, N, N, N, N, N, N },
-						{ N, 4, N, 2, N, N, N, N, N, N, N, N },
-						{ N, N, 2, N, 2, N, N, N, N, 8, N, N },
-						{ N, N, N, 2, N, 10, N, N, N, N, N, 15 },
-						{ N, N, N, N, 10, N, 5, N, N, N, N, N },
-						{ N, N, N, N, N, 5, N, 5, N, N, N, N },
-						{ N, N, N, N, N, N, 5, N, 7, N, N, N },
-						{ N, N, N, N, N, N, N, 7, N, N, N, N },
-						{ N, N, N, 8, N, N, N, N, N, N, 3, N },
-						{ N, N, N, N, N, N, N, N, N, 3, N, N },
-						{ N, N, N, N, 15, N, N, N, N, N, N, N },
-
-				};
+				//int [] [] matDuree=
+				int[][] matDuree = StationLineManagementDelegate.doRemplirMatrice();
+			for (int i = 0; i < matDuree.length; i++) {
+				System.out.print("\n");
+				for (int j = 0; j < matDuree[i].length; j++) {
+					System.out.print(matDuree[i][j] + " ");
+					
+			
+				}}
+			
+//				{ 
+//						{ N, 5, N, N, N, N, N, N, N, N, N, N },
+//						{ 5, N, 4, N, N, N, N, N, N, N, N, N },
+//						{ N, 4, N, 2, N, N, N, N, N, N, N, N },
+//						{ N, N, 2, N, 2, N, N, N, N, 8, N, N },
+//						{ N, N, N, 2, N, 10, N, N, N, N, N, 15 },
+//						{ N, N, N, N, 10, N, 5, N, N, N, N, N },
+//						{ N, N, N, N, N, 5, N, 5, N, N, N, N },
+//						{ N, N, N, N, N, N, 5, N, 7, N, N, N },
+//						{ N, N, N, N, N, N, N, 7, N, N, N, N },
+//						{ N, N, N, 8, N, N, N, N, N, N, 3, N },
+//						{ N, N, N, N, N, N, N, N, N, 3, N, N },
+//						{ N, N, N, N, 15, N, N, N, N, N, N, N },
+//
+//				};
 				String depart =  cmbdeparture.getSelectedItem().toString();
 
 				String arrival =  cmbArrival.getSelectedItem().toString();
-
+				 System.out.println(depart);
+				 System.out.println(arrival);
 				Station stationdepart = StationDelegate
 						.findStationByStationName(depart);
 				Graphe g0 = new Graphe(matDuree);
-				Dijkstra dij = new Dijkstra(stationdepart.getReference(), g0);
-				dij.AfficherDestinationEtCout(depart, arrival);
+				Dijkstra dij = new Dijkstra(stationdepart.getReference(),g0);
+				dij.AfficherDestinationEtCout(depart,arrival);
 				// textField_2.setVisible(true);
 				// textField_2.setText(dij.AfficherDestinationEtCout(depart,
 				// arrival));
@@ -236,7 +248,7 @@ public class NavigationPanel extends JPanel {
 
 			}
 
-		});
+			});
 
 		// panel = new JPanel();
 		// panel.setBounds(10, 60, 471, 450);
