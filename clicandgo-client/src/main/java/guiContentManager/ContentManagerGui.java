@@ -20,9 +20,10 @@ import javax.swing.SwingConstants;
 import BusinessDelegator.SessionDelegate;
 
 public class ContentManagerGui extends JFrame {
-        
+
 	private javax.swing.JPanel bodyPanel;
 	private JPanel meanOfTransportPanel;
+	private JPanel stationPanel;
 	private javax.swing.JButton ItineraryBtn;
 	private JButton btnMeanoftransport;
 	private javax.swing.JButton logoutBtn;
@@ -31,226 +32,286 @@ public class ContentManagerGui extends JFrame {
 	private javax.swing.JPanel panelMenu;
 	private JButton btnNewButton;
 	UserPanel userpanel = new UserPanel();
-/**
+	/**
  * 
  */
-private static final long serialVersionUID = 1L;
-// private JFrame frame;
-Authentification authentification = new Authentification();
-private JLabel label;
+	private static final long serialVersionUID = 1L;
+	// private JFrame frame;
+	Authentification authentification = new Authentification();
+	private JLabel label;
 
-/**
- * Create the application.
- */
-public ContentManagerGui() {
-	this.setBounds(180, 20, 30, 30);
-	initComponents();
-}
+	/**
+	 * Create the application.
+	 */
+	public ContentManagerGui() {
+		this.setBounds(180, 20, 30, 30);
+		initComponents();
+	}
 
-private void initComponents() {
-	setTitle("Content Manager Interface");
-	panelGeneral = new javax.swing.JPanel();
-	bodyPanel = new javax.swing.JPanel();
-	panelMenu = new javax.swing.JPanel();
-	ItineraryBtn = new javax.swing.JButton();
-	logoutBtn = new javax.swing.JButton();
-	btnMeanoftransport = new JButton();
-	
-	
-	 meanOfTransportPanel = new MeanOfTransportPanel();
+	private void initComponents() {
+		setTitle("Content Manager Interface");
+		panelGeneral = new javax.swing.JPanel();
+		bodyPanel = new javax.swing.JPanel();
+		panelMenu = new javax.swing.JPanel();
+		ItineraryBtn = new javax.swing.JButton();
+		logoutBtn = new javax.swing.JButton();
+		btnMeanoftransport = new JButton();
+		stationPanel = new StationPanel();
 
-	logoutBtn.addActionListener(new ActionListener() {
-		
-		public void actionPerformed(ActionEvent e) {
-			dispose();
-		}
-	});
+		meanOfTransportPanel = new MeanOfTransportPanel();
 
-	panelContent = new javax.swing.JPanel();
+		logoutBtn.addActionListener(new ActionListener() {
 
-	setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-	getContentPane().setLayout(new java.awt.CardLayout());
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 
-	panelMenu.setBorder(javax.swing.BorderFactory
-			.createLineBorder(new java.awt.Color(102, 0, 0)));
+		panelContent = new javax.swing.JPanel();
 
-	ItineraryBtn.setText("Station");
-	ItineraryBtn.addActionListener(new java.awt.event.ActionListener() {
-		public void actionPerformed(java.awt.event.ActionEvent evt) {
-			AuthentificationBtnActionPerformed(evt);
-		}
-	});
+		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		getContentPane().setLayout(new java.awt.CardLayout());
 
-	logoutBtn.setText("Logout");
-	
-	btnMeanoftransport.setText("MeanOfTransport");
-	btnMeanoftransport.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			btnMeanoftransportActionPerformed(e);
-		}
-	});
-	
-	
-	JButton btnLine = new JButton();
-	btnLine.setText("Line");
-	
-	JButton btnUser = new JButton();
-	btnUser.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			panelContent.removeAll();
-			panelContent.add(userpanel);
-			panelContent.repaint();
-			panelContent.revalidate(); // TODO add your handling code here:
-		}// GEN-LAST:event_gestionCategorieBtnActionPerformed
-		
-	});
-	btnUser.setText("User");
+		panelMenu.setBorder(javax.swing.BorderFactory
+				.createLineBorder(new java.awt.Color(102, 0, 0)));
 
-	javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(
-			panelMenu);
-	panelMenuLayout.setHorizontalGroup(
-		panelMenuLayout.createParallelGroup(Alignment.LEADING)
-			.addGroup(panelMenuLayout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(panelMenuLayout.createParallelGroup(Alignment.LEADING)
-					.addGroup(panelMenuLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(ItineraryBtn, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-						.addComponent(logoutBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addComponent(btnMeanoftransport, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnLine, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE)
-					.addComponent(btnUser, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(43, Short.MAX_VALUE))
-	);
-	panelMenuLayout.setVerticalGroup(
-		panelMenuLayout.createParallelGroup(Alignment.LEADING)
-			.addGroup(panelMenuLayout.createSequentialGroup()
-				.addContainerGap()
-				.addComponent(ItineraryBtn, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-				.addGap(34)
-				.addComponent(btnMeanoftransport, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-				.addGap(35)
-				.addComponent(btnLine, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-				.addGap(38)
-				.addComponent(btnUser, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-				.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-				.addGap(19))
-	);
-	panelMenu.setLayout(panelMenuLayout);
+		ItineraryBtn.setText("Station & Line");
+		ItineraryBtn.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				StationLineBtnActionPerformed(evt);
+			}
+		});
 
-	panelContent.setBackground(new java.awt.Color(255, 255, 255));
-	panelContent.setBorder(javax.swing.BorderFactory
-			.createLineBorder(new java.awt.Color(102, 0, 0)));
-	panelContent.setLayout(new java.awt.CardLayout());
-	
-	label = new JLabel();
-	label.setText("Hi, "+SessionDelegate.doGetLogin());
-	label.setHorizontalAlignment(SwingConstants.CENTER);
-	label.setFont(new Font("Arial Black", Font.BOLD, 16));
+		logoutBtn.setText("Logout");
 
-	javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(
-			bodyPanel);
-	bodyPanelLayout.setHorizontalGroup(
-		bodyPanelLayout.createParallelGroup(Alignment.LEADING)
-			.addGroup(bodyPanelLayout.createSequentialGroup()
-				.addGap(4)
-				.addGroup(bodyPanelLayout.createParallelGroup(Alignment.LEADING, false)
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(panelMenu, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-				.addGap(18)
-				.addComponent(panelContent, GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
-				.addContainerGap())
-	);
-	bodyPanelLayout.setVerticalGroup(
-		bodyPanelLayout.createParallelGroup(Alignment.LEADING)
-			.addGroup(Alignment.TRAILING, bodyPanelLayout.createSequentialGroup()
-				.addContainerGap()
-				.addGroup(bodyPanelLayout.createParallelGroup(Alignment.TRAILING)
-					.addGroup(bodyPanelLayout.createSequentialGroup()
-						.addComponent(label, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, 520, GroupLayout.PREFERRED_SIZE))
-					.addComponent(panelContent, GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE))
-				.addContainerGap())
-	);
-	bodyPanel.setLayout(bodyPanelLayout);
+		btnMeanoftransport.setText("MeanOfTransport");
+		btnMeanoftransport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnMeanoftransportActionPerformed(e);
+			}
+		});
 
-	 btnNewButton = new JButton("");
-	 btnNewButton.setBackground(new Color(255, 255, 255));
-	 
-	javax.swing.GroupLayout panelGeneralLayout = new javax.swing.GroupLayout(
-			panelGeneral);
-	panelGeneral.setLayout(panelGeneralLayout);
-	panelGeneralLayout.setHorizontalGroup(panelGeneralLayout
-			.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-			.addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-					javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-	panelGeneralLayout.setVerticalGroup(panelGeneralLayout
-			.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-			.addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-					javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		JButton btnLine = new JButton();
+		btnLine.setText("Line");
 
-	getContentPane().add(panelGeneral, "card2");
+		JButton btnUser = new JButton();
+		btnUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelContent.removeAll();
+				panelContent.add(userpanel);
+				panelContent.repaint();
+				panelContent.revalidate(); // TODO add your handling code here:
+			}// GEN-LAST:event_gestionCategorieBtnActionPerformed
 
-	
-	pack();
-}// </editor-fold>//GEN-END:initComponents
+		});
+		btnUser.setText("User");
 
-private void AuthentificationBtnActionPerformed(
-		java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
-	panelContent.removeAll();
-//	panelContent.add(stationPanel);
-	panelContent.repaint();
-	panelContent.revalidate(); // TODO add your handling code here:
-}// GEN-LAST:event_gestionFournisseursBtnActionPerformed
+		javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(
+				panelMenu);
+		panelMenuLayout
+				.setHorizontalGroup(panelMenuLayout
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								panelMenuLayout
+										.createSequentialGroup()
+										.addContainerGap()
+										.addGroup(
+												panelMenuLayout
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addGroup(
+																panelMenuLayout
+																		.createParallelGroup(
+																				Alignment.TRAILING,
+																				false)
+																		.addComponent(
+																				ItineraryBtn,
+																				GroupLayout.DEFAULT_SIZE,
+																				137,
+																				Short.MAX_VALUE)
+																		.addComponent(
+																				logoutBtn,
+																				GroupLayout.DEFAULT_SIZE,
+																				GroupLayout.DEFAULT_SIZE,
+																				Short.MAX_VALUE))
+														.addComponent(
+																btnMeanoftransport,
+																GroupLayout.PREFERRED_SIZE,
+																137,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																btnLine,
+																GroupLayout.PREFERRED_SIZE,
+																137,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																btnUser,
+																GroupLayout.PREFERRED_SIZE,
+																137,
+																GroupLayout.PREFERRED_SIZE))
+										.addContainerGap(43, Short.MAX_VALUE)));
+		panelMenuLayout.setVerticalGroup(panelMenuLayout.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				panelMenuLayout
+						.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(ItineraryBtn, GroupLayout.PREFERRED_SIZE,
+								66, GroupLayout.PREFERRED_SIZE)
+						.addGap(34)
+						.addComponent(btnMeanoftransport,
+								GroupLayout.PREFERRED_SIZE, 66,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(35)
+						.addComponent(btnLine, GroupLayout.PREFERRED_SIZE, 66,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(38)
+						.addComponent(btnUser, GroupLayout.PREFERRED_SIZE, 66,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 174,
+								Short.MAX_VALUE)
+						.addComponent(logoutBtn, GroupLayout.PREFERRED_SIZE,
+								46, GroupLayout.PREFERRED_SIZE).addGap(19)));
+		panelMenu.setLayout(panelMenuLayout);
 
-private void btnMeanoftransportActionPerformed(ActionEvent e) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
-	panelContent.removeAll();
-	panelContent.add(meanOfTransportPanel);
-	panelContent.repaint();
-	panelContent.revalidate(); // TODO add your handling code here:
-}// GEN-LAST:event_gestionFournisseursBtnActionPerformed
+		panelContent.setBackground(new java.awt.Color(255, 255, 255));
+		panelContent.setBorder(javax.swing.BorderFactory
+				.createLineBorder(new java.awt.Color(102, 0, 0)));
+		panelContent.setLayout(new java.awt.CardLayout());
 
+		label = new JLabel();
+		label.setText("Hi, " + SessionDelegate.doGetLogin());
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Arial Black", Font.BOLD, 16));
+
+		javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(
+				bodyPanel);
+		bodyPanelLayout.setHorizontalGroup(bodyPanelLayout.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				bodyPanelLayout
+						.createSequentialGroup()
+						.addGap(4)
+						.addGroup(
+								bodyPanelLayout
+										.createParallelGroup(Alignment.LEADING,
+												false)
+										.addComponent(label,
+												GroupLayout.DEFAULT_SIZE,
+												GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addComponent(panelMenu,
+												GroupLayout.DEFAULT_SIZE, 162,
+												Short.MAX_VALUE))
+						.addGap(18)
+						.addComponent(panelContent, GroupLayout.DEFAULT_SIZE,
+								780, Short.MAX_VALUE).addContainerGap()));
+		bodyPanelLayout
+				.setVerticalGroup(bodyPanelLayout
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								Alignment.TRAILING,
+								bodyPanelLayout
+										.createSequentialGroup()
+										.addContainerGap()
+										.addGroup(
+												bodyPanelLayout
+														.createParallelGroup(
+																Alignment.TRAILING)
+														.addGroup(
+																bodyPanelLayout
+																		.createSequentialGroup()
+																		.addComponent(
+																				label,
+																				GroupLayout.DEFAULT_SIZE,
+																				92,
+																				Short.MAX_VALUE)
+																		.addPreferredGap(
+																				ComponentPlacement.UNRELATED)
+																		.addComponent(
+																				panelMenu,
+																				GroupLayout.PREFERRED_SIZE,
+																				520,
+																				GroupLayout.PREFERRED_SIZE))
+														.addComponent(
+																panelContent,
+																GroupLayout.DEFAULT_SIZE,
+																623,
+																Short.MAX_VALUE))
+										.addContainerGap()));
+		bodyPanel.setLayout(bodyPanelLayout);
+
+		btnNewButton = new JButton("");
+		btnNewButton.setBackground(new Color(255, 255, 255));
+
+		javax.swing.GroupLayout panelGeneralLayout = new javax.swing.GroupLayout(
+				panelGeneral);
+		panelGeneral.setLayout(panelGeneralLayout);
+		panelGeneralLayout.setHorizontalGroup(panelGeneralLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+		panelGeneralLayout.setVerticalGroup(panelGeneralLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+
+		getContentPane().add(panelGeneral, "card2");
+
+		pack();
+	}// </editor-fold>//GEN-END:initComponents
+
+	private void StationLineBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
+		panelContent.removeAll();
+		panelContent.add(stationPanel);
+		panelContent.repaint();
+		panelContent.revalidate(); // TODO add your handling code here:
+	}// GEN-LAST:event_gestionFournisseursBtnActionPerformed
+
+	private void btnMeanoftransportActionPerformed(ActionEvent e) {// GEN-FIRST:event_gestionFournisseursBtnActionPerformed
+		panelContent.removeAll();
+		panelContent.add(meanOfTransportPanel);
+		panelContent.repaint();
+		panelContent.revalidate(); // TODO add your handling code here:
+	}// GEN-LAST:event_gestionFournisseursBtnActionPerformed
 
 	public static void main(String args[]) {
-	/* Set the Nimbus look and feel */
-	// <editor-fold defaultstate="collapsed"
-	// desc=" Look and feel setting code (optional) ">
-	/*
-	 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-	 * default look and feel. For details see
-	 * http://download.oracle.com/javase
-	 * /tutorial/uiswing/lookandfeel/plaf.html
-	 */
-	try {
-		for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-				.getInstalledLookAndFeels()) {
-			if ("Windows".equals(info.getName())) {
-				javax.swing.UIManager.setLookAndFeel(info.getClassName());
-				break;
+		/* Set the Nimbus look and feel */
+		// <editor-fold defaultstate="collapsed"
+		// desc=" Look and feel setting code (optional) ">
+		/*
+		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
+		 * default look and feel. For details see
+		 * http://download.oracle.com/javase
+		 * /tutorial/uiswing/lookandfeel/plaf.html
+		 */
+		try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+					.getInstalledLookAndFeels()) {
+				if ("Windows".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
 			}
+		} catch (ClassNotFoundException ex) {
+			java.util.logging.Logger.getLogger(TravelerGI.class.getName()).log(
+					java.util.logging.Level.SEVERE, null, ex);
+		} catch (InstantiationException ex) {
+			java.util.logging.Logger.getLogger(TravelerGI.class.getName()).log(
+					java.util.logging.Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
+			java.util.logging.Logger.getLogger(TravelerGI.class.getName()).log(
+					java.util.logging.Level.SEVERE, null, ex);
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			java.util.logging.Logger.getLogger(TravelerGI.class.getName()).log(
+					java.util.logging.Level.SEVERE, null, ex);
 		}
-	} catch (ClassNotFoundException ex) {
-		java.util.logging.Logger.getLogger(TravelerGI.class.getName()).log(
-				java.util.logging.Level.SEVERE, null, ex);
-	} catch (InstantiationException ex) {
-		java.util.logging.Logger.getLogger(TravelerGI.class.getName()).log(
-				java.util.logging.Level.SEVERE, null, ex);
-	} catch (IllegalAccessException ex) {
-		java.util.logging.Logger.getLogger(TravelerGI.class.getName()).log(
-				java.util.logging.Level.SEVERE, null, ex);
-	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-		java.util.logging.Logger.getLogger(TravelerGI.class.getName()).log(
-				java.util.logging.Level.SEVERE, null, ex);
+		// </editor-fold>
+
+		/* Create and display the form */
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				new ContentManagerGui().setVisible(true);
+			}
+		});
+
 	}
-	// </editor-fold>
-
-	/* Create and display the form */
-	java.awt.EventQueue.invokeLater(new Runnable() {
-		public void run() {
-			new ContentManagerGui().setVisible(true);
-		}
-	});
-
-} 
 }
