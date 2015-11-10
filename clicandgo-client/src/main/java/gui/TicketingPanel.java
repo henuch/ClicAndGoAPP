@@ -15,8 +15,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import entities.MeanOfTransport;
+import entities.State;
+import entities.Ticket;
+import entities.User;
 import BusinessDelegator.MeansOfTransportDelegate;
 import BusinessDelegator.SessionDelegate;
+import BusinessDelegator.TicketServicesDelegate;
+import BusinessDelegator.UserServicesDelegate;
 
 public class TicketingPanel extends JPanel {
 
@@ -28,7 +33,8 @@ public class TicketingPanel extends JPanel {
 	double overralltotalsale = 0;
 	int overralladult = 0;
 	int overrallchild = 0;
-
+	User authentifiedUser;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -414,7 +420,10 @@ public class TicketingPanel extends JPanel {
 		double adultsubtotal = 0;
 		double tax = 0;
 		double total = 0;
+		
+		
 
+		
 		DecimalFormat formatter = new DecimalFormat("Mil#,###.00");
 
 		String adultstring = (String) cmbadult.getSelectedItem();
@@ -427,7 +436,7 @@ public class TicketingPanel extends JPanel {
 		adultsubtotal = adult * AdultCONST;
 
 		subtotal = childsubtotal + adultsubtotal;
-
+		
 		tax = 0.175 * subtotal;
 
 		total = tax + subtotal;
@@ -465,6 +474,33 @@ public class TicketingPanel extends JPanel {
 	}
 
 	private void btnexportActionPerformed(java.awt.event.ActionEvent evt) {
+		final double AdultCONST = 450;
+		final double ChildCONST = 350;
+		double subtotal = 0;
+		double childsubtotal = 0;
+		double adultsubtotal = 0;
+		double tax = 0;
+		double total = 0;
+		
+		
+
+		
+		DecimalFormat formatter = new DecimalFormat("Mil#,###.00");
+
+		String adultstring = (String) cmbadult.getSelectedItem();
+		String childstring = (String) cmdchild.getSelectedItem();
+
+		int adult = Integer.parseInt(adultstring);
+		int child = Integer.parseInt(childstring);
+
+		childsubtotal = child * ChildCONST;
+		adultsubtotal = adult * AdultCONST;
+
+		subtotal = childsubtotal + adultsubtotal;
+		
+		tax = 0.175 * subtotal;
+
+		total = tax + subtotal;
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("ticket.txt",
 					true));
@@ -478,9 +514,25 @@ public class TicketingPanel extends JPanel {
 
 			JOptionPane
 					.showMessageDialog(null, "successfully exported to file");
+			System.out.print(SessionDelegate.doGetLogin());
+			User u=UserServicesDelegate.doAuthenticate(SessionDelegate.doGetLogin(), SessionDelegate.doGetPwd());
+			Ticket ticket = new Ticket();
+			MeanOfTransport mft=MeansOfTransportDelegate.dofindMeanOftransportByName((String) cmbMOT.getSelectedItem());
+			
+			ticket.setMeanOfTransport(mft);
+			ticket.setPrice(total);
+			ticket.setState(State.PAID);
+			ticket.setUser(u);
+			System.out.print(TicketServicesDelegate.doaddTicket(ticket));
+			
+			
+//			ticket.setUser(authentifiedUser);
+//			System.out.print(authentifiedUser.getName());
+			
 		} catch (IOException e) {
 			System.out.println("Exception ");
 		}
+		
 	}
 
 	private void btnnewActionPerformed(java.awt.event.ActionEvent evt) {
@@ -498,6 +550,7 @@ public class TicketingPanel extends JPanel {
 		lblTotal.setText("0");
 		lblGCT.setText("0");
 		lblsubtotal.setText("0");
+		System.out.println(authentifiedUser);
 	}
 
 	private void cmbMOTItemStateChanged(java.awt.event.ItemEvent evt) {
