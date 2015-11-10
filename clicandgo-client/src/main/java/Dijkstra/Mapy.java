@@ -53,7 +53,7 @@ public class Mapy extends JPanel {
 					gr.setColor(Color.BLUE);
 		
 					gr.drawString(station.getName(), station.getX(), station.getY()-10);
-                     
+		
 				}
 
 			}
