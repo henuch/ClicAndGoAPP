@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class TimeTablePanel extends JPanel {
 	private JTable table;
-	private JTable table2;
 	/**
 	 * Launch the application.
 	 */
@@ -36,21 +35,6 @@ public class TimeTablePanel extends JPanel {
 	private void initialize() {
 
 		setLayout(null);
-		
-		
-		table2 = new JTable();
-		table2.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"sd", "sd", "ds"},
-				{"ds", "ds", "ds"},
-				{"ds", "ds", null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
-		table2.getColumnModel().getColumn(0).setResizable(false);
-		add(table2);
 
 
 		JPanel panel = new JPanel();
@@ -76,9 +60,9 @@ public class TimeTablePanel extends JPanel {
 				//initialize();
 
 				if(n==2){
-					table.setVisible(false);
+					table.setVisible(true);
 
-					table2.setVisible(true);
+					
 					//initialize();
 				}
 
@@ -91,18 +75,28 @@ public class TimeTablePanel extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"545", "5454"},
-				{"5454", "55"},
+				{"Departure", "Hour", "Arrival", "Hour"},
+				{"Ariana", "15", "Cit\u00E9 olympique", "15:15"},
+				{"Cit\u00E9 olympique", "15:20", "Med 5", "15:30"},
+				{"Med5", "15:35", "Passage", "15:45"},
+				{"Passage", "15:50", "Manar 2 ", "16:05"},
+				{"Passage", "15:50", "Barcelone", "16:00"},
+				{"Barcelone", "16:05", "Megrine", "16:20"},
+				{"Manar 2", "16:10", "Menzeh 9", "16:15"},
+				{"Megrine", "16:25", "Hammam Lif", null},
 			},
 			new String[] {
-				"New column", "New column"
+				"New column", "New column", "New column", "New column"
 			}
 		));
-		table.setBounds(270, 280, 280, 129);
+		table.getColumnModel().getColumn(0).setPreferredWidth(120);
+		table.getColumnModel().getColumn(1).setPreferredWidth(66);
+		table.getColumnModel().getColumn(2).setPreferredWidth(120);
+		table.getColumnModel().getColumn(3).setPreferredWidth(76);
+		table.setBounds(155, 280, 491, 171);
 		
 		add(table);
 		table.setVisible(false);
-		table2.setVisible(false);
 
 		List<MeanOfTransport> meanOfTransports = MeansOfTransportDelegate.doFindAllMeanOfTransports();
 		for(MeanOfTransport m : meanOfTransports)
