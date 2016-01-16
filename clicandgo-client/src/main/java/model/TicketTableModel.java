@@ -45,8 +45,8 @@ public class TicketTableModel extends AbstractTableModel {
 
 		}
 		case 3: {
-			return tickets.get(rowIndex).getMeanOfTransport()
-					.getRegistrationNumber();
+//			return tickets.get(rowIndex).getMeanOfTransport()
+//					.getRegistrationNumber();
 		}
 		case 4: {
 			return tickets.get(rowIndex).getUser().getUserId();

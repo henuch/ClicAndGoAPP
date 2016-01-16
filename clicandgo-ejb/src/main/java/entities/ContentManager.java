@@ -19,6 +19,14 @@ public class ContentManager extends User implements Serializable {
 	public ContentManager() {
 		super();
 	}   
+	public ContentManager(String name, String surname, String email,
+			String password, String companyName) {
+		this.setName(name);
+		this.setSurname(surname);
+		this.setPassword(password);
+		this.setEmail(email);
+		this.companyName = companyName;
+	}
 	public String getCompanyName() {
 		return this.companyName;
 	}

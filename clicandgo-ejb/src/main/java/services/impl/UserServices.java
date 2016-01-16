@@ -93,7 +93,6 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 
 	@Override
 	public User authenticate(String name, String password) {
-
 		User found = new User();
 		Query query = entityManager
 				.createQuery("select u from User u where u.name=:name and u.password=:password");
@@ -108,20 +107,22 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 					Level.WARNING,
 					"auth attempt failed with login=" + name + " and password="
 							+ password);
-			return null;
-		}
 
+		}
+		return found;
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findUserByName(String name) {
-		Query query = entityManager.createQuery("select p from User p where UPPER(p.name) LIKE:pname");
+		Query query = entityManager
+				.createQuery("select p from User p where UPPER(p.name) LIKE:pname");
 		query.setParameter("pname", "%" + name + "%");
-return query.getResultList();
+		return query.getResultList();
 	}
 
 	@Override
-	public User updateReadingSpeed(int id,int speed) {
+	public User updateReadingSpeed(int id, int speed) {
 		User user = entityManager.find(User.class, id);
 		try {
 			user.setNbOfWordsPerMinute(speed);

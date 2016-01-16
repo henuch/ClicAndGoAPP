@@ -550,7 +550,7 @@ public class TicketingPanel extends JPanel {
 			
 			
 			System.out.println("aaaaaaaaaaaaaaaaaaa"+table.getRowCount());
-			ticket.setMeanOfTransport(mft);
+			//ticket.setMeanOfTransport(mft);
 			ticket.setPrice(total);
 			ticket.setState(State.PAID);
 			ticket.setUser(u);

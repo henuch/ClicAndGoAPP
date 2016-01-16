@@ -22,7 +22,7 @@ public class MeanOfTransport implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Line line;
-	private List<Ticket> tickets;
+	//private List<Ticket> tickets;
 
 	public MeanOfTransport() {
 		super();
@@ -64,13 +64,13 @@ public class MeanOfTransport implements Serializable {
 				+ ", line=" + line + "]";
 	}
 	
-	@OneToMany(mappedBy = "meanOfTransport")
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
-	}
+//	@OneToMany(mappedBy = "meanOfTransport")
+//	public List<Ticket> getTickets() {
+//		return tickets;
+//	}
+//	public void setTickets(List<Ticket> tickets) {
+//		this.tickets = tickets;
+//	}
 	
 	 
 
